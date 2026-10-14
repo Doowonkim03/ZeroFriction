@@ -4,3 +4,4 @@ Cashwin - Project Lead
 Doowon - Member
 Alex(Zhehao) - Member
 Jocelyn(Jialin) - Member
+Diego(Shengze Xue) - Member

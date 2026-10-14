@@ -1,7 +1,7 @@
 -- Fictional assessment records from the INFS3605 sample table.
 -- Stable IDs make this seed safe to rerun without creating duplicates.
 -- File references are sample names; this script does not upload files.
-insert into public.task_assessments (
+insert into public.coach_task_assessments (
   id,
   trade_type,
   business_size,

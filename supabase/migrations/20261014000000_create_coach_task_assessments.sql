@@ -1,6 +1,6 @@
--- Base assessment record for the ZeroFriction prototype.
+-- Coach assessment records. Kept separate from the existing task_assessments table.
 -- Recommendation fields can be filled after the initial business details.
-create table public.task_assessments (
+create table public.coach_task_assessments (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz not null default now(),
   trade_type text,
@@ -19,4 +19,4 @@ create table public.task_assessments (
 
 -- No client access policy is defined yet. Add scoped policies when the
 -- application's authentication and ownership model is decided.
-alter table public.task_assessments enable row level security;
+alter table public.coach_task_assessments enable row level security;

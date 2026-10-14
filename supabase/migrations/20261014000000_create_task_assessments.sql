@@ -1,6 +1,6 @@
 -- Base assessment record for the ZeroFriction prototype.
 -- Recommendation fields can be filled after the initial business details.
-create table public.task_assessments (
+create table if not exists public.task_assessments (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz not null default now(),
   trade_type text,

@@ -1,6 +1,6 @@
 -- Coach assessment records. Kept separate from the existing task_assessments table.
 -- Recommendation fields can be filled after the initial business details.
-create table public.coach_task_assessments (
+create table if not exists public.coach_task_assessments (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz not null default now(),
   trade_type text,

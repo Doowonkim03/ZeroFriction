@@ -78,3 +78,61 @@ Use the existing Supabase `task_assessments` table with these fields:
 - Previous assessment or recommendation history
 - Advanced analytics and reporting
 - Production deployment or hosting
+
+## Build Plan
+1. Business details form and saving assessments to Supabase · Doowon
+2. Document upload and storage in Supabase · Alex
+3. AI agent to analyse business tasks and identify AI opportunities · Cashwin
+4. Rank and explain the top 1–2 AI recommendations · Miki
+5. Display personalised recommendations and first-step action plan · Diego
+6. Human approval and saving selected recommendations · Jocelyn
+
+Agent: Analyse uploaded business tasks, identify relevant AI opportunities, recommend the top 1-2 use cases and generate a practical first-step action plan.  Responsible: Cashwin
+Check-ins: 24th October at 4PM, Microsoft Teams
+Each person brings: Progress on assigned features, working GitHub branches, completed functionality, any blockers and next steps.
+
+## Slices
+Done:(Document upload and storage in Supabase, AI agent to analyse business tasks and identify AI opportunities)
+Now:  Rank and explain the top 1-2 AI recommendations.
+Next:
+
+## Decisions
+- [date]: [decision], because [reason]
+
+## Slice 2 (Document upload and storage in Supabase)
+  Story: As a trade business owner, I want to upload an example document such as a quote, invoice or job description so that the AI Task Clinic can analyse my actual business task and recommend relevant AI opportunities.
+  Data: Reads the existing task assessment ID and uploaded document. Stores the file securely in Supabase Storage and saves its storage reference in task_assessments.uploaded_file_ref.
+  Rule: Only accept PDF, DOCX and TXT files up to 10 MB. Keep uploaded documents private and accessible only through server-side operations.
+  Done when:
+  1. 1. A user can select and upload a supported document.
+  2. 2. The document is successfully stored in Supabase Storage.
+  3. 3. The uploaded file reference is saved against the correct task assessment.
+  4. 4. The user receives a clear success or error message.
+  5. 5. Existing assessment functionality continues to work.
+  Not in this slice: AI document analysis, AI recommendations, action-plan generation and human approval.
+
+## Slice 3 (AI agent to analyse business tasks and identify AI opportunities)
+ Story: As a trade business owner, I want an AI agent to analyse my business information and uploaded document so that I can identify relevant AI opportunities without researching different tools myself.
+  Data: Reads trade_type, business_size, admin_pain_points, task_type and uploaded_file_ref from Supabase. Saves the analysis to identified_pain_points.
+  Rule: The agent must analyse the actual business information and document content. If essential information is missing, it should ask for clarification rather than invent details.
+  Done when:
+  1. The agent can access the submitted business information.
+  2. The agent can analyse the uploaded document's content.
+  3. The agent identifies relevant administrative pain points and potential AI opportunities.
+  4. The analysis is saved to the correct Supabase assessment.
+  5. Existing functionality continues working.
+  Not in this slice: Recommendation ranking, results-page design, action-plan generation and human approval.
+
+## Now Slice (Rank and explain the top 1-2 AI recommendations.)
+Story: As a trade business owner, I want to receive the most relevant AI recommendations based on my business needs so that I can understand which opportunities are worth exploring first.
+  Data: Data it reads or changes Reads trade_type, business_size, admin_pain_points, task_type and identified_pain_points.  Saves recommendations to ai_use_case, recommendation_reason, potential_benefit and relevance_ranking in Supabase.
+  Rule: Recommendations must be ranked based on relevance to the business problem, potential time savings, implementation effort and risk. Only the top 1–2 recommendations should be returned.
+  Done when:
+  1. The system uses the AI analysis from Slice 3.
+  2. It generates and ranks the top 1–2 relevant AI use cases.
+  3. Each recommendation explains why it was selected.
+  4. Each recommendation describes its potential benefit.
+  5. Recommendations are saved against the correct assessment in Supabase.
+  6. Existing functionality continues working.
+  Not in this slice: Results-page design, action-plan generation and human approval.
+

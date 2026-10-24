@@ -16,6 +16,10 @@
 <style>
 .assessment-panel{margin:20px 0}.assessment-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:end}.assessment-form label{display:grid;gap:6px;color:var(--muted);font-size:11px;font-weight:700}.assessment-form input,.assessment-form select{width:100%;min-width:0;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--white);color:var(--ink)}.assessment-form button{min-height:39px}.assessment-list{display:grid;gap:8px;margin-top:18px}.assessment-item{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;padding:11px 0;border-top:1px solid var(--line)}.assessment-item strong{font-size:12px}.assessment-item small{color:var(--muted);font-size:11px}.assessment-status{min-height:18px;margin:8px 0 0;color:var(--muted);font-size:12px}.assessment-status.error{color:#a33131}@media(max-width:900px){.assessment-form{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:540px){.assessment-form,.assessment-item{grid-template-columns:1fr}}
 </style>
+<style>
+.document-upload-panel{margin:0 0 20px}.document-upload-form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) auto;gap:14px;align-items:end;padding:18px 20px}.document-upload-form label{display:grid;gap:6px;color:var(--muted);font-size:11px;font-weight:700}.document-upload-form input,.document-upload-form select{width:100%;min-width:0;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--white);color:var(--ink)}.document-upload-form button{min-height:39px}.document-upload-panel .assessment-status{padding:0 20px}@media(max-width:900px){.document-upload-form{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:540px){.document-upload-form{grid-template-columns:1fr}}
+.assessment-analysis-actions{padding:0 20px 18px}.analysis-disclosure{margin:0 0 12px;color:var(--muted);font-size:11px;line-height:1.5}.analysis-result{white-space:pre-wrap;line-height:1.6;color:var(--ink);font-size:12px;background:#f7f9fb;border-radius:8px;padding:12px;margin-top:10px}.analysis-clarification{display:grid;gap:8px;margin-top:12px;color:var(--muted);font-size:11px;font-weight:700}.analysis-clarification textarea{width:100%;min-height:76px;padding:10px;border:1px solid var(--line);border-radius:6px;resize:vertical;font:inherit;color:var(--ink)}.recommendation-actions{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}.recommendation-result{display:grid;gap:12px;margin-top:12px}.recommendation-card{padding:12px;background:#f7f9fb;border:1px solid var(--line);border-radius:8px}.recommendation-card h3{font-size:13px;margin:0 0 8px}.recommendation-card p{font-size:11px;line-height:1.55;margin:7px 0;color:var(--ink)}.recommendation-scores{color:var(--muted)!important}
+</style>
 <script>window.ZF_SUPABASE = {url:'https://zocfisqgqbqxjdgnvnoe.supabase.co', anonKey:'sb_publishable_BZjEPwjKOjsCbbopw57OQg_EQYe_QaP'};</script>
 </head>
 <body>
@@ -35,6 +39,7 @@
         <section class="scenarios" aria-label="Example business scenarios"><div><span class="eyebrow">QUICK DEMOS</span><h2>See how the plan changes</h2></div><div class="scenario-grid"><button class="scenario-card" data-scenario="mark" type="button"><span class="scenario-icon amber">⚡</span><strong>Mark's electrical team</strong><small>6 people · quoting · scope writing</small><span class="scenario-link">View example plan →</span></button><button class="scenario-card" data-scenario="plumber" type="button"><span class="scenario-icon blue">◈</span><strong>Solo plumber</strong><small>1 person · enquiries · missing details</small><span class="scenario-link">View example plan →</span></button><button class="scenario-card" data-scenario="builder" type="button"><span class="scenario-icon green">▧</span><strong>Small builder</strong><small>18 people · compliance · checklist</small><span class="scenario-link">View example plan →</span></button></div></section>
 
         <section class="panel assessment-panel" aria-labelledby="assessment-title"><div class="panel-head"><div><span class="eyebrow">SAVED TO SUPABASE</span><h2 id="assessment-title">New assessment</h2></div></div><form id="assessment-form" class="assessment-form"><label>Trade type<select name="trade_type" required><option value="">Choose a trade</option><option>Electrical</option><option>Plumbing</option><option>Carpentry</option><option>General building</option><option>Other construction trade</option></select></label><label>Business size<input name="business_size" type="number" min="1" max="200" step="1" required placeholder="Number of people"></label><label>Main admin task<select name="task_type" required><option value="">Choose a task</option><option>Quoting</option><option>Customer communication</option><option>Invoicing</option><option>Scheduling</option><option>Job documentation</option><option>Compliance paperwork</option></select></label><label>Biggest bottleneck<input name="bottleneck" type="text" maxlength="500" required placeholder="What slows this task down?"></label><button class="primary-button" type="submit">Save assessment</button></form><p id="assessment-status" class="assessment-status" role="status" aria-live="polite"></p><div id="assessment-list" class="assessment-list" aria-live="polite"><p class="muted small">Saved assessments will appear here.</p></div></section>
+        <section class="panel document-upload-panel" aria-labelledby="document-upload-title"><div class="panel-head"><div><span class="eyebrow">PRIVATE SUPABASE STORAGE</span><h2 id="document-upload-title">Upload an example document</h2></div></div><form id="document-upload-form" class="document-upload-form"><label>Saved assessment<select id="upload-assessment-id" name="assessment_id" required><option value="">Choose an assessment</option></select></label><label>Document (PDF, DOCX or TXT; up to 10 MB)<input name="document" type="file" accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain" required></label><button class="primary-button" type="submit">Upload document</button></form><p id="document-upload-status" class="assessment-status" role="status" aria-live="polite"></p><div class="assessment-analysis-actions"><p class="analysis-disclosure">Analysis sends the assessment details and document content to Google's Gemini AI service. Upload client or business documents only if you have permission to share them for this purpose.</p><button id="analyze-assessment" class="secondary-button" type="button" disabled>Analyze selected assessment</button><p id="assessment-analysis-status" class="assessment-status" role="status" aria-live="polite"></p><div id="assessment-analysis-result" class="analysis-result" hidden></div><label id="analysis-clarification-wrap" class="analysis-clarification" hidden>Answer the clarification question(s)<textarea id="analysis-clarification-answer" maxlength="2000" placeholder="Add the missing information here"></textarea></label><div class="recommendation-actions"><button id="rank-recommendations" class="secondary-button" type="button" disabled>Rank AI recommendations</button><p id="recommendation-status" class="assessment-status" role="status" aria-live="polite"></p><div id="recommendation-result" class="recommendation-result" hidden></div></div></div></section>
         <div id="error" class="error" role="alert" hidden></div>
         <section class="workspace" aria-label="Coaching session and plan"><div class="panel conversation"><div class="panel-head"><div><span class="eyebrow">01 / CONSULTATION</span><h2>Coach session</h2></div><span id="progress" class="progress-label">Ready to begin</span></div><div id="chat" class="chat" aria-live="polite"><div class="empty-chat"><span class="empty-symbol">✦</span><h3>Let's make AI relevant to your business.</h3><p>Start a short session, or open one of the three example businesses above.</p></div></div><div id="composer" class="composer" hidden></div></div>
           <div class="panel plan-panel"><div class="panel-head"><div><span class="eyebrow">02 / YOUR NEXT STEP</span><h2>Personalised AI plan</h2></div><span id="plan-status" class="plan-status">WAITING FOR CONTEXT</span></div><div id="plan" class="plan-content"><div class="empty-plan"><div class="plan-illustration"><span>✦</span><i></i><b>✓</b></div><h3>Built around your answers</h3><p>Your plan will show relevant use cases, why each was chosen, a small adoption test and a concrete first action.</p><ul><li><span>1</span> Explain your business</li><li><span>2</span> Explore recommendations</li><li><span>3</span> Leave with a first step</li></ul></div></div></div></section>
@@ -349,28 +354,67 @@ loadHistory().then(items=>{if(items.length) openSession(items[0].id)}).catch(err
 const assessmentForm = document.getElementById('assessment-form');
 const assessmentStatus = document.getElementById('assessment-status');
 const assessmentList = document.getElementById('assessment-list');
+const documentUploadForm = document.getElementById('document-upload-form');
+const documentUploadStatus = document.getElementById('document-upload-status');
+const assessmentSelect = document.getElementById('upload-assessment-id');
+const analyzeAssessmentButton = document.getElementById('analyze-assessment');
+const assessmentAnalysisStatus = document.getElementById('assessment-analysis-status');
+const assessmentAnalysisResult = document.getElementById('assessment-analysis-result');
+const analysisClarificationWrap = document.getElementById('analysis-clarification-wrap');
+const analysisClarificationAnswer = document.getElementById('analysis-clarification-answer');
+const rankRecommendationsButton = document.getElementById('rank-recommendations');
+const recommendationStatus = document.getElementById('recommendation-status');
+const recommendationResult = document.getElementById('recommendation-result');
 
-function supabaseRequestHeaders() {
-  return { apikey: window.ZF_SUPABASE.anonKey, Authorization: `Bearer ${window.ZF_SUPABASE.anonKey}`, 'Content-Type': 'application/json' };
+function supabaseRequestHeaders(includeJsonContentType=true) {
+  const headers = { apikey: window.ZF_SUPABASE.anonKey, Authorization: `Bearer ${window.ZF_SUPABASE.anonKey}` };
+  if (includeJsonContentType) headers['Content-Type'] = 'application/json';
+  return headers;
 }
 function showAssessmentStatus(message, isError=false) {
   assessmentStatus.textContent = message;
   assessmentStatus.classList.toggle('error', isError);
 }
+function showDocumentUploadStatus(message, isError=false) {
+  documentUploadStatus.textContent = message;
+  documentUploadStatus.classList.toggle('error', isError);
+}
+function showAssessmentAnalysisStatus(message, isError=false) {
+  assessmentAnalysisStatus.textContent = message;
+  assessmentAnalysisStatus.classList.toggle('error', isError);
+}
+function showRecommendationStatus(message, isError=false) {
+  recommendationStatus.textContent = message;
+  recommendationStatus.classList.toggle('error', isError);
+}
+function updateAssessmentActionAvailability() {
+  const selectedOption = assessmentSelect.selectedOptions[0];
+  const hasDocument = selectedOption?.dataset.hasUploadedFile === 'true';
+  analyzeAssessmentButton.disabled = !hasDocument;
+  rankRecommendationsButton.disabled = selectedOption?.dataset.canRecommend !== 'true';
+  if (assessmentSelect.value && !hasDocument) {
+    showAssessmentAnalysisStatus('Upload a document for the selected assessment before analysing it.');
+  }
+}
 function renderAssessments(items) {
-  assessmentList.innerHTML = items.length ? items.map(item => `<article class="assessment-item"><strong>${escapeHtml(item.trade_type)} · ${escapeHtml(item.business_size)} ${item.business_size===1?'person':'people'}</strong><small>${escapeHtml(item.task_type)} · ${new Date(item.created_at).toLocaleDateString()}</small><small>Biggest bottleneck: ${escapeHtml(item.admin_pain_points)}</small></article>`).join('') : '<p class="muted small">No saved assessments yet.</p>';
+  const selectedId = assessmentSelect.value;
+  assessmentSelect.innerHTML = '<option value="">Choose an assessment</option>' + items.map(item => `<option value="${escapeHtml(item.id)}" data-has-uploaded-file="${item.has_uploaded_file}" data-can-recommend="${item.can_recommend}">${escapeHtml(item.trade_type)} · ${escapeHtml(item.task_type)} · ${new Date(item.created_at).toLocaleDateString()}${item.has_uploaded_file?' · document uploaded':' · no document'}</option>`).join('');
+  if (items.some(item => item.id === selectedId)) assessmentSelect.value = selectedId;
+  updateAssessmentActionAvailability();
+  assessmentList.innerHTML = items.length ? items.map(item => `<article class="assessment-item"><strong>${escapeHtml(item.trade_type)} · ${escapeHtml(item.business_size)} ${item.business_size===1?'person':'people'}</strong><small>${escapeHtml(item.task_type)} · ${new Date(item.created_at).toLocaleDateString()}</small><small>Biggest bottleneck: ${escapeHtml(item.admin_pain_points)}</small><small>${item.has_uploaded_file?'Document uploaded':'No document uploaded'} · ${item.has_analysis?'Analysis available':'Analysis not run'}</small></article>`).join('') : '<p class="muted small">No saved assessments yet.</p>';
 }
 async function loadAssessments() {
   const config = window.ZF_SUPABASE;
   if (!config.url || !config.anonKey) {
     renderAssessments([]);
     showAssessmentStatus('Configure the Supabase project URL and public anon key to load or save assessments.');
-    return;
+    return [];
   }
   const response = await window.ZF_REMOTE_FETCH(`${config.url.replace(/\/+$/, '')}/functions/v1/assessments`, {headers:supabaseRequestHeaders()});
   const data = await response.json();
   if (!response.ok) throw new Error(data.error || 'Could not load saved assessments.');
   renderAssessments(data);
+  return data;
 }
 assessmentForm.addEventListener('submit', async event => {
   event.preventDefault();
@@ -393,11 +437,181 @@ assessmentForm.addEventListener('submit', async event => {
     if (!response.ok) throw new Error(data.error || 'Could not save the assessment.');
     assessmentForm.reset();
     await loadAssessments();
+    assessmentSelect.value = data.id;
+    updateAssessmentActionAvailability();
+    recommendationResult.hidden = true;
     showAssessmentStatus('Assessment saved.');
   } catch (error) {
     showAssessmentStatus(error.message || 'Could not save the assessment.', true);
   } finally {
     submitButton.disabled = false;
+  }
+});
+documentUploadForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (!documentUploadForm.reportValidity()) return;
+  const config = window.ZF_SUPABASE;
+  if (!config.url || !config.anonKey) {
+    showDocumentUploadStatus('Configure the Supabase project URL and public anon key before uploading.', true);
+    return;
+  }
+
+  const formData = new FormData(documentUploadForm);
+  const file = formData.get('document');
+  const extension = file instanceof File ? file.name.split('.').pop().toLowerCase() : '';
+  if (!(file instanceof File) || !['pdf','docx','txt'].includes(extension)) {
+    showDocumentUploadStatus('Choose a PDF, DOCX or TXT document.', true);
+    return;
+  }
+  if (file.size > 10 * 1024 * 1024) {
+    showDocumentUploadStatus('The document must be 10 MB or smaller.', true);
+    return;
+  }
+
+  const submitButton = documentUploadForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  showDocumentUploadStatus('Uploading document securely...');
+  try {
+    const response = await window.ZF_REMOTE_FETCH(`${config.url.replace(/\/+$/, '')}/functions/v1/assessments`, {
+      method:'POST', headers:supabaseRequestHeaders(false), body:formData
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Could not upload the document.');
+    documentUploadForm.querySelector('input[type="file"]').value = '';
+    try {
+      await loadAssessments();
+      assessmentSelect.value = data.assessment_id;
+      updateAssessmentActionAvailability();
+      recommendationResult.hidden = true;
+      showDocumentUploadStatus('Document uploaded successfully and attached to the selected assessment.');
+    } catch (error) {
+      console.error('Document uploaded, but assessment refresh failed:', error);
+      showDocumentUploadStatus('The document uploaded, but the assessment list could not be refreshed. Reload the page to verify it.', true);
+    }
+  } catch (error) {
+    showDocumentUploadStatus(error.message || 'Could not upload the document.', true);
+  } finally {
+    submitButton.disabled = false;
+  }
+});
+assessmentSelect.addEventListener('change', () => {
+  showAssessmentAnalysisStatus('');
+  updateAssessmentActionAvailability();
+  assessmentAnalysisResult.hidden = true;
+  analysisClarificationWrap.hidden = true;
+  analysisClarificationAnswer.value = '';
+  analyzeAssessmentButton.textContent = 'Analyze selected assessment';
+  showRecommendationStatus('');
+  recommendationResult.hidden = true;
+});
+analyzeAssessmentButton.addEventListener('click', async () => {
+  const config = window.ZF_SUPABASE;
+  if (!assessmentSelect.value) {
+    showAssessmentAnalysisStatus('Choose a saved assessment first.', true);
+    return;
+  }
+  if (!config.url || !config.anonKey) {
+    showAssessmentAnalysisStatus('Configure the Supabase project URL and public anon key before analysing.', true);
+    return;
+  }
+
+  analyzeAssessmentButton.disabled = true;
+  showAssessmentAnalysisStatus('Analysing the assessment and uploaded document...');
+  try {
+    const response = await window.ZF_REMOTE_FETCH(`${config.url.replace(/\/+$/, '')}/functions/v1/assessments`, {
+      method:'POST',
+      headers:supabaseRequestHeaders(),
+      body:JSON.stringify({
+        action:'analyze',
+        assessment_id:assessmentSelect.value,
+        clarification_answer:analysisClarificationAnswer.value
+      })
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Could not analyse the selected assessment.');
+
+    const analysis = data.analysis;
+    const lines = [analysis.summary, '', 'Administrative pain points',
+      ...analysis.pain_points.map(item => `• ${item.pain_point}\n  Evidence: ${item.evidence}`),
+      '', 'Potential AI opportunities',
+      ...analysis.potential_ai_opportunities.map(item =>
+        `• ${item.opportunity} — supports ${item.task_supported}\n  Evidence: ${item.evidence}`
+      ),
+      ...(analysis.clarification_questions.length
+        ? ['', 'Clarification needed', ...analysis.clarification_questions.map(question => `• ${question}`)]
+        : [])
+    ];
+    assessmentAnalysisResult.textContent = lines.join('\n');
+    assessmentAnalysisResult.hidden = false;
+    analysisClarificationWrap.hidden = !data.needs_clarification;
+    analyzeAssessmentButton.textContent = data.needs_clarification
+      ? 'Submit clarification'
+      : 'Analyze selected assessment';
+    showAssessmentAnalysisStatus(data.needs_clarification
+      ? 'Please answer the question(s) above, then submit your clarification.'
+      : 'Analysis saved to the selected assessment.');
+    try {
+      await loadAssessments();
+      assessmentSelect.value = data.assessment_id;
+      updateAssessmentActionAvailability();
+    } catch (error) {
+      console.error('Analysis completed, but assessment list refresh failed:', error);
+    }
+  } catch (error) {
+    showAssessmentAnalysisStatus(error.message || 'Could not analyse the selected assessment.', true);
+  } finally {
+    updateAssessmentActionAvailability();
+  }
+});
+rankRecommendationsButton.addEventListener('click', async () => {
+  const config = window.ZF_SUPABASE;
+  const assessmentId = assessmentSelect.value;
+  if (!assessmentId) {
+    showRecommendationStatus('Choose a saved assessment first.', true);
+    return;
+  }
+  if (!config.url || !config.anonKey) {
+    showRecommendationStatus('Configure the Supabase project URL and public anon key before generating recommendations.', true);
+    return;
+  }
+
+  rankRecommendationsButton.disabled = true;
+  assessmentSelect.disabled = true;
+  showRecommendationStatus('Generating and ranking recommendations...');
+  recommendationResult.hidden = true;
+  try {
+    const response = await window.ZF_REMOTE_FETCH(`${config.url.replace(/\/+$/, '')}/functions/v1/assessments`, {
+      method:'POST',
+      headers:supabaseRequestHeaders(),
+      body:JSON.stringify({action:'recommend',assessment_id:assessmentId})
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Could not generate recommendations.');
+
+    recommendationResult.replaceChildren();
+    data.recommendations.forEach(recommendation => {
+      const card = document.createElement('article');
+      card.className = 'recommendation-card';
+      const heading = document.createElement('h3');
+      heading.textContent = `#${recommendation.relevance_ranking} · ${recommendation.ai_use_case}`;
+      const reason = document.createElement('p');
+      reason.textContent = `Why it fits: ${recommendation.recommendation_reason}`;
+      const benefit = document.createElement('p');
+      benefit.textContent = `Potential benefit: ${recommendation.potential_benefit}`;
+      const scores = recommendation.ranking_details;
+      const scoreSummary = document.createElement('p');
+      scoreSummary.className = 'recommendation-scores';
+      scoreSummary.textContent = `Ranking factors (1–5): relevance ${scores.relevance}; time-saving potential ${scores.potential_time_savings}; implementation ease ${scores.implementation_ease}; risk ${scores.risk} (lower is better).`;
+      card.append(heading, reason, benefit, scoreSummary);
+      recommendationResult.append(card);
+    });
+    recommendationResult.hidden = false;
+    showRecommendationStatus(`Ranked ${data.recommendations.length} recommendation${data.recommendations.length === 1 ? '' : 's'} and saved to this assessment.`);
+  } catch (error) {
+    showRecommendationStatus(error.message || 'Could not generate recommendations.', true);
+  } finally {
+    assessmentSelect.disabled = false;
+    updateAssessmentActionAvailability();
   }
 });
 loadAssessments().catch(error => showAssessmentStatus(error.message || 'Could not load saved assessments.', true));

@@ -13,6 +13,10 @@
 @media(max-width:540px){.sidebar{grid-template-columns:1fr}.new-button{width:100%}.history-section{max-height:76px}.brand small{display:none}}
 
 </style>
+<style>
+.assessment-panel{margin:20px 0}.assessment-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:end}.assessment-form label{display:grid;gap:6px;color:var(--muted);font-size:11px;font-weight:700}.assessment-form input,.assessment-form select{width:100%;min-width:0;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--white);color:var(--ink)}.assessment-form button{min-height:39px}.assessment-list{display:grid;gap:8px;margin-top:18px}.assessment-item{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;padding:11px 0;border-top:1px solid var(--line)}.assessment-item strong{font-size:12px}.assessment-item small{color:var(--muted);font-size:11px}.assessment-status{min-height:18px;margin:8px 0 0;color:var(--muted);font-size:12px}.assessment-status.error{color:#a33131}@media(max-width:900px){.assessment-form{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:540px){.assessment-form,.assessment-item{grid-template-columns:1fr}}
+</style>
+<script>window.ZF_SUPABASE = {url:'https://zocfisqgqbqxjdgnvnoe.supabase.co', anonKey:'sb_publishable_BZjEPwjKOjsCbbopw57OQg_EQYe_QaP'};</script>
 </head>
 <body>
   <div class="app-shell">
@@ -30,6 +34,7 @@
 
         <section class="scenarios" aria-label="Example business scenarios"><div><span class="eyebrow">QUICK DEMOS</span><h2>See how the plan changes</h2></div><div class="scenario-grid"><button class="scenario-card" data-scenario="mark" type="button"><span class="scenario-icon amber">⚡</span><strong>Mark's electrical team</strong><small>6 people · quoting · scope writing</small><span class="scenario-link">View example plan →</span></button><button class="scenario-card" data-scenario="plumber" type="button"><span class="scenario-icon blue">◈</span><strong>Solo plumber</strong><small>1 person · enquiries · missing details</small><span class="scenario-link">View example plan →</span></button><button class="scenario-card" data-scenario="builder" type="button"><span class="scenario-icon green">▧</span><strong>Small builder</strong><small>18 people · compliance · checklist</small><span class="scenario-link">View example plan →</span></button></div></section>
 
+        <section class="panel assessment-panel" aria-labelledby="assessment-title"><div class="panel-head"><div><span class="eyebrow">SAVED TO SUPABASE</span><h2 id="assessment-title">New assessment</h2></div></div><form id="assessment-form" class="assessment-form"><label>Trade type<select name="trade_type" required><option value="">Choose a trade</option><option>Electrical</option><option>Plumbing</option><option>Carpentry</option><option>General building</option><option>Other construction trade</option></select></label><label>Business size<input name="business_size" type="number" min="1" max="200" step="1" required placeholder="Number of people"></label><label>Main admin task<select name="task_type" required><option value="">Choose a task</option><option>Quoting</option><option>Customer communication</option><option>Invoicing</option><option>Scheduling</option><option>Job documentation</option><option>Compliance paperwork</option></select></label><label>Biggest bottleneck<input name="bottleneck" type="text" maxlength="500" required placeholder="What slows this task down?"></label><button class="primary-button" type="submit">Save assessment</button></form><p id="assessment-status" class="assessment-status" role="status" aria-live="polite"></p><div id="assessment-list" class="assessment-list" aria-live="polite"><p class="muted small">Saved assessments will appear here.</p></div></section>
         <div id="error" class="error" role="alert" hidden></div>
         <section class="workspace" aria-label="Coaching session and plan"><div class="panel conversation"><div class="panel-head"><div><span class="eyebrow">01 / CONSULTATION</span><h2>Coach session</h2></div><span id="progress" class="progress-label">Ready to begin</span></div><div id="chat" class="chat" aria-live="polite"><div class="empty-chat"><span class="empty-symbol">✦</span><h3>Let's make AI relevant to your business.</h3><p>Start a short session, or open one of the three example businesses above.</p></div></div><div id="composer" class="composer" hidden></div></div>
           <div class="panel plan-panel"><div class="panel-head"><div><span class="eyebrow">02 / YOUR NEXT STEP</span><h2>Personalised AI plan</h2></div><span id="plan-status" class="plan-status">WAITING FOR CONTEXT</span></div><div id="plan" class="plan-content"><div class="empty-plan"><div class="plan-illustration"><span>✦</span><i></i><b>✓</b></div><h3>Built around your answers</h3><p>Your plan will show relevant use cases, why each was chosen, a small adoption test and a concrete first action.</p><ul><li><span>1</span> Explain your business</li><li><span>2</span> Explore recommendations</li><li><span>3</span> Leave with a first step</li></ul></div></div></div></section>
@@ -158,6 +163,7 @@ window.ZF_DATA = {"trades":{"electrical":"Electrical","plumbing":"Plumbing","car
   }
   function validId(id) { return typeof id === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id); }
 
+  window.ZF_REMOTE_FETCH = window.fetch.bind(window);
   window.fetch = async (input, init = {}) => {
     const path = String(input).split('?')[0];
     const method = (init.method || 'GET').toUpperCase();
@@ -339,6 +345,62 @@ document.getElementById('new-session').addEventListener('click',startSession);
 document.getElementById('hero-start').addEventListener('click',startSession);
 document.querySelectorAll('[data-scenario]').forEach(button=>button.addEventListener('click',()=>previewScenario(button.dataset.scenario)));
 loadHistory().then(items=>{if(items.length) openSession(items[0].id)}).catch(error=>showError(error.message));
+
+const assessmentForm = document.getElementById('assessment-form');
+const assessmentStatus = document.getElementById('assessment-status');
+const assessmentList = document.getElementById('assessment-list');
+
+function supabaseRequestHeaders() {
+  return { apikey: window.ZF_SUPABASE.anonKey, Authorization: `Bearer ${window.ZF_SUPABASE.anonKey}`, 'Content-Type': 'application/json' };
+}
+function showAssessmentStatus(message, isError=false) {
+  assessmentStatus.textContent = message;
+  assessmentStatus.classList.toggle('error', isError);
+}
+function renderAssessments(items) {
+  assessmentList.innerHTML = items.length ? items.map(item => `<article class="assessment-item"><strong>${escapeHtml(item.trade_type)} · ${escapeHtml(item.business_size)} ${item.business_size===1?'person':'people'}</strong><small>${escapeHtml(item.task_type)} · ${new Date(item.created_at).toLocaleDateString()}</small><small>Biggest bottleneck: ${escapeHtml(item.admin_pain_points)}</small></article>`).join('') : '<p class="muted small">No saved assessments yet.</p>';
+}
+async function loadAssessments() {
+  const config = window.ZF_SUPABASE;
+  if (!config.url || !config.anonKey) {
+    renderAssessments([]);
+    showAssessmentStatus('Configure the Supabase project URL and public anon key to load or save assessments.');
+    return;
+  }
+  const response = await window.ZF_REMOTE_FETCH(`${config.url.replace(/\/+$/, '')}/functions/v1/assessments`, {headers:supabaseRequestHeaders()});
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || 'Could not load saved assessments.');
+  renderAssessments(data);
+}
+assessmentForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (!assessmentForm.reportValidity()) return;
+  const config = window.ZF_SUPABASE;
+  if (!config.url || !config.anonKey) {
+    showAssessmentStatus('Configure the Supabase project URL and public anon key before saving.', true);
+    return;
+  }
+  const values = new FormData(assessmentForm);
+  const submitButton = assessmentForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  showAssessmentStatus('Saving assessment...');
+  try {
+    const response = await window.ZF_REMOTE_FETCH(`${config.url.replace(/\/+$/, '')}/functions/v1/assessments`, {
+      method:'POST', headers:supabaseRequestHeaders(),
+      body:JSON.stringify({trade_type:values.get('trade_type'),business_size:Number(values.get('business_size')),task_type:values.get('task_type'),bottleneck:values.get('bottleneck')})
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Could not save the assessment.');
+    assessmentForm.reset();
+    await loadAssessments();
+    showAssessmentStatus('Assessment saved.');
+  } catch (error) {
+    showAssessmentStatus(error.message || 'Could not save the assessment.', true);
+  } finally {
+    submitButton.disabled = false;
+  }
+});
+loadAssessments().catch(error => showAssessmentStatus(error.message || 'Could not load saved assessments.', true));
 
 </script>
 </body>

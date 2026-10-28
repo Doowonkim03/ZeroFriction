@@ -92,8 +92,8 @@ Check-ins: 24th October at 4PM, Microsoft Teams
 Each person brings: Progress on assigned features, working GitHub branches, completed functionality, any blockers and next steps.
 
 ## Slices
-Done:(Document upload and storage in Supabase, AI agent to analyse business tasks and identify AI opportunities)
-Now:  Rank and explain the top 1-2 AI recommendations.
+Done:(Document upload and storage in Supabase, AI agent to analyse business tasks and identify AI opportunities), Rank and explain the top 1-2 AI recommendations.
+Now: Slice 5
 Next:
 
 ## Decisions
@@ -123,7 +123,7 @@ Next:
   5. Existing functionality continues working.
   Not in this slice: Recommendation ranking, results-page design, action-plan generation and human approval.
 
-## Now Slice (Rank and explain the top 1-2 AI recommendations.)
+## Slice 4:(Rank and explain the top 1-2 AI recommendations.)
 Story: As a trade business owner, I want to receive the most relevant AI recommendations based on my business needs so that I can understand which opportunities are worth exploring first.
   Data: Data it reads or changes Reads trade_type, business_size, admin_pain_points, task_type and identified_pain_points.  Saves recommendations to ai_use_case, recommendation_reason, potential_benefit and relevance_ranking in Supabase.
   Rule: Recommendations must be ranked based on relevance to the business problem, potential time savings, implementation effort and risk. Only the top 1–2 recommendations should be returned.
@@ -136,3 +136,16 @@ Story: As a trade business owner, I want to receive the most relevant AI recomme
   6. Existing functionality continues working.
   Not in this slice: Results-page design, action-plan generation and human approval.
 
+## Slice 5: Display personalised AI recommendations and first-step action plan.
+
+  Story: As a trade business owner, I want to view personalised AI recommendations and select the one most relevant to my business so that I can understand its benefits and receive a clear, practical action plan.
+  Data: Reads ai_use_case, recommendation_reason, potential_benefit and relevance_ranking from Supabase.  Uses the selected recommendation to generate and display a first-step action plan, including a suggested approach and practical next action.
+  Rule: The action plan must be specific to the selected AI use case and the owner's business needs. It must contain at least one clear, achievable first step.
+  Done when:
+  1. The results page displays the top 1–2 ranked AI recommendations from Slice 4.
+  2. Each recommendation shows its relevance and potential benefit.
+  3. The user can select a recommendation to explore.
+  4. A personalised first-step action plan is generated and displayed.
+  5. The plan includes a suggested approach and one practical action.
+  6. Existing functionality continues working.
+  Not in this slice: Human approval, saving the final selection, automatically implementing AI solutions or integrating external business software.

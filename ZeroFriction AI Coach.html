@@ -1,0 +1,236 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ZeroFriction AI Coach</title><style>
+:root{--ink:#10293b;--navy:#10293b;--paper:#f5f7f6;--white:#fff;--teal:#147b80;--teal-soft:#e8f4f3;--muted:#607181;--line:#dde5e5;--danger:#9b3030}*{box-sizing:border-box}body{margin:0;background:linear-gradient(rgba(16,41,59,.82),rgba(16,41,59,.92)),linear-gradient(135deg,#10293b,#147b80);color:var(--ink);font-family:Arial,Helvetica,sans-serif;min-height:100vh}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #fff;outline-offset:3px}.upload-field{border-top:1px solid var(--line);padding-top:18px}.upload-field span{display:block;color:var(--muted);font-size:.85rem;margin-top:8px}.upload-field input{padding:10px!important}.back{position:fixed;z-index:10;left:24px;top:22px;color:#fff;text-decoration:none;font-weight:800}.start-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background-image:linear-gradient(rgba(16,41,59,.82),rgba(16,41,59,.92)),url('/assets/coach-bg.jpg');background-size:cover;background-position:center}.glass{width:min(680px,100%);background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.5);border-radius:18px;padding:52px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.25)}.glass label{color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.75rem}.glass h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.02;letter-spacing:-.04em;margin:18px 0 14px}.glass p{color:var(--muted);margin:0 0 26px}.start-button,.primary,.secondary,.restart{min-height:50px;border-radius:8px;padding:0 20px;border:2px solid var(--teal);font-weight:800}.start-button,.primary{background:var(--teal);color:#fff}.start-button{width:min(320px,100%)}.subnote{display:block;margin-top:16px;color:var(--muted)!important;font-size:.85rem}.app{display:none;min-height:100vh;background:var(--paper);padding:48px 22px}.app.active{display:block}.coach{width:min(760px,100%);margin:auto}.progress-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--teal);margin-bottom:10px}.progress{height:6px;background:#dce4e3;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;width:33.333%;background:var(--teal);transition:width .45s ease}.panel{background:#fff;border-radius:16px;padding:34px;margin-top:20px;box-shadow:0 16px 40px rgba(16,41,59,.08);min-height:520px}.step{animation:slide .38s ease both}.step h2{font-size:clamp(2rem,5vw,3.1rem);line-height:1.03;margin:8px 0 8px}.step-intro{color:var(--muted);margin-bottom:24px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.choice{min-height:86px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);display:flex;align-items:center;gap:12px;text-align:left;padding:16px;font-weight:800}.choice svg{width:28px;height:28px;color:var(--teal);flex:none}.choice:hover,.choice.selected{border-color:var(--teal);background:var(--teal-soft)}.fields{display:grid;gap:18px}.field label{display:block;font-weight:800;margin-bottom:7px}.field input,.field-input{width:100%;min-height:50px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font-size:1rem;background:#fff;color:var(--ink)}.actions{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.secondary{background:#fff;color:var(--ink)}.secondary:disabled{opacity:.4;cursor:not-allowed}.error{min-height:22px;color:var(--danger);margin-top:12px;font-size:.92rem}.loading{display:grid;place-items:center;text-align:center;min-height:520px;background:#fff;border-radius:16px;padding:30px}.loader{width:44px;height:44px;border:4px solid var(--teal-soft);border-top-color:var(--teal);border-radius:50%;animation:spin .9s linear infinite;margin-bottom:22px}.result{margin-top:20px}.result h2{font-size:clamp(2rem,5vw,3rem)}.recommendation{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:12px;padding:24px;margin-top:14px;animation:slide .45s ease both}.recommendation:nth-child(2){animation-delay:.12s}.recommendation h3{margin:0 0 12px;font-size:1.35rem}.recommendation p{color:var(--muted)}.recommendation strong{color:var(--ink)}.control{background:var(--teal-soft);padding:16px;border-radius:10px;margin-top:20px}.plan-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}@keyframes slide{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}@keyframes spin{to{transform:rotate(360deg)}}[aria-live]{outline:none}@media(max-width:620px){.back{left:16px}.glass{padding:36px 22px}.panel{padding:24px 18px}.cards{grid-template-columns:1fr}.app{padding:76px 14px 30px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style></head><body>
+<a class="back" href="/">← Back to home</a>
+<section class="start-screen" id="startScreen"><div class="glass"><label>AI task coach</label><h1>Find your first practical AI step</h1><p>Answer a few questions about the work you want to improve.</p><button class="start-button" id="startNow" type="button">Start now</button><small class="subnote">3 short steps. You stay in control.</small></div></section>
+<main class="app" id="app"><div class="coach" id="coach"><div class="progress-head"><span>AI task coach</span><span id="progressLabel">1/3</span></div><div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1"><i id="progressFill"></i></div><div id="screen" aria-live="polite"></div></div></main>
+<script>window.ZF_SUPABASE = {url:'https://zocfisqgqbqxjdgnvnoe.supabase.co', anonKey:'sb_publishable_BZjEPwjKOjsCbbopw57OQg_EQYe_QaP'};</script>
+<script>
+
+window.ZF_DATA = {"trades":{"electrical":"Electrical","plumbing":"Plumbing","carpentry":"Carpentry","building":"General building","other":"Other construction trade"},"pains":{"quoting":"Preparing quotes","enquiries":"Customer enquiries","invoicing":"Invoicing and follow-up","scheduling":"Scheduling jobs","documentation":"Job notes and paperwork","compliance":"Compliance paperwork"},"tools":{"paper":"Paper, calls and messages","spreadsheet":"Spreadsheets and email","job_software":"Job-management software","mixed":"A mix of tools"},"readiness":{"cautious":"I want to review every AI draft","supported":"My team can help test a small pilot","confident":"I am comfortable testing AI tools"},"bottlenecks":{"quoting":{"collecting_details":"Collecting job details","scope_writing":"Writing the scope of work","price_checking":"Checking prices and assumptions","follow_up":"Following up with customers"},"enquiries":{"repeated_questions":"Answering repeated questions","missing_details":"Getting missing job details","slow_reply":"Replying promptly","handoff":"Passing enquiries to the team"},"invoicing":{"drafting":"Preparing invoice details","missing_details":"Finding completed job details","follow_up":"Following up on unpaid invoices","re_entry":"Re-entering details across tools"},"scheduling":{"changes":"Handling schedule changes","handoff":"Keeping the team informed","missing_details":"Collecting site and job details","re_entry":"Updating several calendars or tools"},"documentation":{"site_notes":"Turning site notes into records","missing_details":"Finding missing job details","re_entry":"Re-entering the same information","handoff":"Sharing records with the team"},"compliance":{"checklist":"Checking required steps","site_notes":"Organising evidence and notes","missing_details":"Finding missing details","handoff":"Preparing information for sign-off"}},"use_cases":{"scope_draft":{"title":"AI-assisted scope draft","description":"Turn a brief set of job notes into a first draft of the work scope and questions to resolve before quoting.","pains":["quoting"],"bottlenecks":["collecting_details","price_checking","scope_writing"],"approach":"Use an approved general-purpose AI assistant to draft scope text from redacted job notes. The owner checks site conditions, materials, prices and final quote.","first_action":"Choose one completed job, remove names and addresses, and write five bullet points describing the work. Ask an AI assistant for a draft scope plus missing-information questions; compare it with the original quote.","check":"Check factual accuracy, missing scope items and whether the draft would have helped the owner. Record time spent on the old and test process; do not assume a saving."},"intake":{"title":"Customer enquiry intake assistant","description":"Draft a short reply that collects the job details needed before an owner assesses the enquiry.","pains":["enquiries","quoting","scheduling"],"bottlenecks":["collecting_details","missing_details","repeated_questions","slow_reply"],"approach":"Create a reviewed reply template and an AI prompt for missing-information questions. Keep a person responsible for sending messages and accepting work.","first_action":"Take three anonymised past enquiries. Ask an AI assistant to suggest the missing job details and a polite draft reply, then edit the wording before anyone sends it.","check":"Check that questions are relevant, the tone is appropriate and no price or appointment is promised without review."},"invoice":{"title":"Invoice preparation checklist","description":"Turn completed-job notes into a checklist of invoice details for a human to verify and enter into the existing system.","pains":["documentation","invoicing"],"bottlenecks":["drafting","missing_details","re_entry","site_notes"],"approach":"Use AI to organise redacted notes into a draft checklist. The business checks quantities, contract terms, tax treatment and final invoice.","first_action":"Select one finished job with a correct invoice. Redact client details and test whether an AI-generated checklist captures the required line items and missing information.","check":"Compare every proposed detail with the original record and note omissions or invented items before considering wider use."},"schedule":{"title":"Job schedule briefing","description":"Summarise changes and open questions into a briefing for the owner and crew.","pains":["documentation","scheduling"],"bottlenecks":["changes","handoff","missing_details","re_entry"],"approach":"Draft a daily briefing from non-sensitive job updates. A person confirms dates, availability and customer commitments.","first_action":"Use a redacted day of past schedule changes to draft a one-page team briefing. Check each date and handoff before sharing it.","check":"Count missed changes and corrections in the test briefing; compare with the current method."},"notes":{"title":"Site-note organiser","description":"Turn rough site notes into a structured job summary with outstanding questions.","pains":["compliance","documentation","quoting"],"bottlenecks":["handoff","re_entry","scope_writing","site_notes"],"approach":"Use AI to structure notes, photo descriptions or dictated text. The tradesperson checks technical details and signs off the record.","first_action":"Choose one completed job and remove identifying details from its notes. Ask an AI assistant for a job summary, decisions and unanswered questions; compare line by line with the record.","check":"Check whether important observations are missing or invented, and whether the format helps the existing handoff."},"compliance":{"title":"Compliance document checklist","description":"Help the team organise required evidence and questions for a licensed person's review.","pains":["compliance","documentation"],"bottlenecks":["checklist","handoff","missing_details","site_notes"],"approach":"Use the business's current, verified checklist as the source. AI may organise records, but a qualified person checks legal and technical requirements and signs off.","first_action":"Pick one completed, correctly signed-off job. Test whether AI can organise its redacted evidence against the business's verified checklist; have the responsible person review every item.","check":"Record missing, incorrect or unsupported items. Do not use AI output as a compliance determination."}},"primary_use_case":{"quoting":"scope_draft","enquiries":"intake","invoicing":"invoice","scheduling":"schedule","documentation":"notes","compliance":"compliance"},"trade_example":{"electrical":"a completed electrical service job","plumbing":"a completed plumbing repair job","carpentry":"a completed carpentry job","building":"a completed building project","other":"a completed trade job"},"trade_enquiry":{"electrical":"an electrical service job","plumbing":"a plumbing repair","carpentry":"a carpentry job","building":"a building project","other":"a trade job"},"tool_trial":{"paper":"Start with a typed sample; no system integration is needed.","spreadsheet":"Keep the trial separate from your live spreadsheet and email workflow.","job_software":"Test outside your live job-management system before considering any integration.","mixed":"Keep the trial separate from the tools your team currently uses."}};
+/* Browser-only API for the shareable, single-file edition. ZF_DATA is embedded by build_standalone.py. */
+(() => {
+  'use strict';
+  const D = window.ZF_DATA;
+  const STORE_KEY = 'zerofriction-ai-coach-standalone-v1';
+  let sessions = {};
+  let canPersist = false;
+
+  try {
+    const saved = localStorage.getItem(STORE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) sessions = parsed;
+    }
+    canPersist = true;
+  } catch (_) {
+    // Some browsers disable storage for file:// pages. The session still works until this tab closes.
+  }
+
+  function save() {
+    if (!canPersist) return;
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(sessions)); }
+    catch (_) { canPersist = false; }
+  }
+  function reply(status, value) {
+    return new Response(JSON.stringify(value), { status, headers: { 'Content-Type': 'application/json; charset=utf-8' } });
+  }
+  function uuid() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+      const n = Math.floor(Math.random() * 16);
+      return (c === 'x' ? n : (n & 3 | 8)).toString(16);
+    });
+  }
+  function businessPhrase(trade) {
+    return `${trade === 'electrical' || trade === 'other' ? 'an' : 'a'} ${D.trades[trade].toLowerCase()} business`;
+  }
+  function question(step, answers) {
+    if (step === 0) return { key:'trade', kind:'choice', prompt:'What kind of construction work does your business do most?', intro:'I’ll start with your business, then focus on the work that takes your attention.', options:D.trades };
+    if (step === 1) return { key:'size', kind:'number', prompt:'How many people work in the business, including you?', intro:`Thanks. I’ll tailor the plan to ${businessPhrase(answers.trade)}.`, min:1, max:200 };
+    if (step === 2) return { key:'pain', kind:'choice', prompt:'Which admin task would you most like to improve first?', intro:'We’ll focus on one task so the first test stays manageable.', options:D.pains };
+    if (step === 3) return { key:'bottleneck', kind:'choice', prompt:`Within ${D.pains[answers.pain].toLowerCase()}, where does the work get stuck?`, intro:'That detail helps me choose a use case instead of giving a broad AI suggestion.', options:D.bottlenecks[answers.pain] };
+    if (step === 4) return { key:'tools', kind:'choice', prompt:'What do you mainly use for this work today?', intro:'I’ll make the trial fit your current process.', options:D.tools };
+    if (step === 5) return { key:'readiness', kind:'choice', prompt:'Which statement best describes how you want to try AI?', intro:'One last question: this decides how cautious the trial should be.', options:D.readiness };
+    return null;
+  }
+  function validate(step, answers, value) {
+    const q = question(step, answers);
+    if (!q) throw new Error('This coaching session is already complete.');
+    if (q.kind === 'number') {
+      if (!Number.isInteger(value) || value < 1 || value > 200) throw new Error('Enter a whole number from 1 to 200.');
+    } else if (typeof value !== 'string' || !Object.prototype.hasOwnProperty.call(q.options, value)) {
+      throw new Error('Choose one of the options shown.');
+    }
+    return q.key;
+  }
+  function selectRecommendation(plan, id, readiness) {
+    const chosen = plan.recommendations.find(item => item.id === id);
+    if (!chosen) throw new Error('Choose one of the recommendations shown.');
+    const readinessText = {
+      cautious: 'The owner reviews every draft before it is used.',
+      supported: 'Assign one team member to test drafts, while the owner approves anything sent or used.',
+      confident: 'You can compare a few draft formats, while keeping human approval for business decisions.'
+    }[readiness];
+    plan.selected = id;
+    plan.adoption = [
+      { when:'First test', action:chosen.first_action },
+      { when:'Review', action:chosen.check },
+      { when:'Decide', action:`${readinessText} Keep the approach only if your small test is useful and accurate for your business.` }
+    ];
+    return plan;
+  }
+  function buildPlan(a) {
+    const pain = a.pain, bottleneck = a.bottleneck, size = a.size;
+    const scored = [];
+    for (const [id, item] of Object.entries(D.use_cases)) {
+      if (!item.pains.includes(pain)) continue;
+      let score = 5;
+      const signals = [`matches your priority: ${D.pains[pain].toLowerCase()}`];
+      if (id === D.primary_use_case[pain]) { score += 2; signals.push('directly targets the task you chose first'); }
+      if (item.bottlenecks.includes(bottleneck)) { score += 3; signals.push(`addresses your bottleneck: ${D.bottlenecks[pain][bottleneck].toLowerCase()}`); }
+      if (size <= 10 && ['scope_draft','intake','notes'].includes(id)) { score++; signals.push('can be tested by a small team without new software integration'); }
+      if (size > 10 && ['schedule','compliance','invoice'].includes(id)) { score++; signals.push('offers a structured handoff for a larger team to review'); }
+      scored.push({ id, item, score, signals });
+    }
+    scored.sort((a,b) => b.score - a.score || a.id.localeCompare(b.id));
+    const picked = scored.slice(0,1).concat(scored.slice(1).filter(row => row.score >= 8).slice(0,1));
+    const recommendations = picked.map(({id,item,score,signals}, index) => {
+      const example = id === 'intake'
+        ? `For your ${D.trades[a.trade].toLowerCase()} business, consider enquiries about ${D.trade_enquiry[a.trade]}. `
+        : `For your ${D.trades[a.trade].toLowerCase()} business, a relevant sample is ${D.trade_example[a.trade]}. `;
+      const why = signals.join('; ');
+      return { id, rank:index+1, title:item.title, description:item.description,
+        why:why.charAt(0).toUpperCase()+why.slice(1)+'.', score,
+        approach:item.approach+' '+D.tool_trial[a.tools], first_action:example+item.first_action, check:item.check };
+    });
+    const primary = recommendations[0];
+    const people = size === 1 ? 'person' : 'people';
+    const plan = {
+      generated_at:new Date().toISOString(),
+      context:`${D.trades[a.trade]} business · ${size} ${people} · ${D.pains[pain].toLowerCase()}`,
+      summary:`You run ${businessPhrase(a.trade)} with ${size} ${people}. Your first priority is ${D.pains[pain].toLowerCase()}, especially ${D.bottlenecks[pain][bottleneck].toLowerCase()}. You currently use ${D.tools[a.tools].toLowerCase()}.`,
+      recommendations,
+      recommended_first:primary.id,
+      guardrails:[
+        'Use redacted or fictional examples in any AI tool unless your business has approved its data handling.',
+        'Keep pricing, safety, compliance, customer promises and final decisions with a qualified person.',
+        'This is a trial plan, not an estimate of hours saved or a claim of business impact.'
+      ],
+      logic:'Offline rule-based coach: +5 for a task match, +2 for the direct task use case, +3 for a bottleneck match, +1 for a team-size fit. Only matching task categories are considered. A second option appears only if it scores at least 8. Scores indicate fit within this prototype, not predicted benefit.',
+      evidence_status:'Recommendations are hypotheses based on your answers. Validate relevance, accuracy and usefulness with real owner feedback and a small test.'
+    };
+    return selectRecommendation(plan, primary.id, a.readiness);
+  }
+  function publicSession(record) {
+    return { ...record, question:question(record.step, record.answers) };
+  }
+  function validId(id) { return typeof id === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id); }
+
+  window.ZF_REMOTE_FETCH = window.fetch.bind(window);
+  window.fetch = async (input, init = {}) => {
+    const path = String(input).split('?')[0];
+    const method = (init.method || 'GET').toUpperCase();
+    let body = {};
+    try { if (init.body) body = JSON.parse(init.body); }
+    catch (_) { return reply(400, {error:'Request must contain a JSON object.'}); }
+    try {
+      if (path === '/api/history' && method === 'GET') {
+        const history = Object.values(sessions).sort((a,b) => b.updated_at.localeCompare(a.updated_at)).slice(0,30)
+          .map(s => ({ id:s.id, created_at:s.created_at, updated_at:s.updated_at, complete:!!s.plan, context:s.plan ? s.plan.context : 'Session in progress' }));
+        return reply(200, history);
+      }
+      if (path === '/api/start' && method === 'POST') {
+        const stamp = new Date().toISOString(), id = uuid();
+        const record = { id, step:0, answers:{}, plan:null, created_at:stamp, updated_at:stamp };
+        sessions[id] = record; save(); return reply(201, publicSession(record));
+      }
+      if (path.startsWith('/api/session/') && ['GET','DELETE'].includes(method)) {
+        const id = path.slice('/api/session/'.length);
+        if (!validId(id)) return reply(400, {error:'Invalid session ID.'});
+        if (!sessions[id]) return reply(404, {error:'Session not found.'});
+        if (method === 'DELETE') { delete sessions[id]; save(); return reply(200, {deleted:true}); }
+        return reply(200, publicSession(sessions[id]));
+      }
+      if (path === '/api/answer' && method === 'POST') {
+        if (!validId(body.session_id)) return reply(400, {error:'Invalid session ID.'});
+        const s = sessions[body.session_id];
+        if (!s) return reply(404, {error:'Session not found.'});
+        const key = validate(s.step, s.answers, body.answer);
+        s.answers[key] = body.answer; s.step++;
+        if (!question(s.step, s.answers)) s.plan = buildPlan(s.answers);
+        s.updated_at = new Date().toISOString(); save(); return reply(200, publicSession(s));
+      }
+      if (path === '/api/back' && method === 'POST') {
+        const s = sessions[body.session_id]; if (!s) return reply(404, {error:'Session not found.'});
+        if (s.step > 0) { const removedKey = keys[s.step - 1]; s.step--; delete s.answers[removedKey]; keys.slice(s.step).forEach(key => delete s.answers[key]); s.plan = null; }
+        s.updated_at = new Date().toISOString(); save(); return reply(200, publicSession(s));
+      }
+      if (path === '/api/select' && method === 'POST') {
+        if (!validId(body.session_id)) return reply(400, {error:'Invalid session ID.'});
+        const s = sessions[body.session_id];
+        if (!s || !s.plan) return reply(404, {error:'Completed plan not found.'});
+        selectRecommendation(s.plan, body.use_case_id, s.answers.readiness);
+        s.updated_at = new Date().toISOString(); save(); return reply(200, publicSession(s));
+      }
+      return reply(404, {error:'Unknown API route.'});
+    } catch (error) { return reply(400, {error:error.message || 'The session could not be updated.'}); }
+  };
+})();
+
+
+function supabaseRequestHeaders(){return {apikey:window.ZF_SUPABASE.anonKey,Authorization:`Bearer ${window.ZF_SUPABASE.anonKey}`,'Content-Type':'application/json'};}
+async function saveCompletedAssessment(planSession){const config=window.ZF_SUPABASE;if(!config||!config.url||!planSession?.plan)return;const a=planSession.answers;const selected=planSession.plan.recommendations.find(r=>r.id===planSession.plan.selected)||planSession.plan.recommendations[0];try{await window.ZF_REMOTE_FETCH(`${config.url.replace(/\/+$/, '')}/functions/v1/assessments`,{method:'POST',headers:supabaseRequestHeaders(),body:JSON.stringify({trade_type:a.trade,business_size:a.size,task_type:a.pain,admin_pain_points:a.bottleneck,uploaded_file_ref:uploadedDocument.name||null,ai_use_case:selected?.title||'',recommendation_reason:selected?.why||'',potential_benefit:selected?.description||'',relevance_ranking:selected?String(selected.rank):'',selected_use_case:selected?.title||'',first_action:selected?.first_action||''})});}catch(_){} }
+const D=window.ZF_DATA;
+const tradeLabels=D.trades,painLabels=D.pains,toolLabels=D.tools,readinessLabels=D.readiness;
+function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+let session=null,uiStep=0,picked={trade:'',pain:'',bottleneck:'',tools:'',readiness:''},busy=false;
+let uploadedDocument={name:'',content:'',size:0,type:''};
+const icon=(name)=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h16M12 4v16"/></svg>';
+async function api(path,method='GET',body=null){const r=await fetch(path,{method,headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});const d=await r.json();if(!r.ok)throw new Error(d.error||'Something went wrong');return d}
+function setProgress(n){document.getElementById('progressLabel').textContent=`${n}/3`;document.getElementById('progressFill').style.width=`${n/3*100}%`;document.querySelector('.progress').setAttribute('aria-valuenow',n)}
+function choiceGrid(options,key){return `<div class="cards">${Object.entries(options).map(([v,l])=>`<button class="choice ${picked[key]===v?'selected':''}" type="button" data-key="${key}" data-value="${v}" aria-pressed="${picked[key]===v}">${icon(key)}<span>${escapeHtml(l)}</span></button>`).join('')}</div>`}
+function validation(msg=''){document.getElementById('validation-message').textContent=msg}
+function readDocument(event){
+  const file=event.target.files && event.target.files[0];
+  if(!file){return;}
+  uploadedDocument={name:file.name,content:'',size:file.size,type:file.type};
+  const status=document.getElementById('upload-status');
+  if(file.type.startsWith('text/') || /\.(txt|md|csv)$/i.test(file.name)){
+    const reader=new FileReader();
+    reader.onload=()=>{uploadedDocument.content=String(reader.result||'').slice(0,12000);if(status)status.textContent=`Selected: ${file.name}`};
+    reader.onerror=()=>{if(status)status.textContent='The document could not be read. Try a text file.'};
+    reader.readAsText(file);
+  }else if(status){status.textContent=`Selected: ${file.name}`;}
+}
+function renderScreen(){setProgress(uiStep+1);const screen=document.getElementById('screen');if(uiStep===0){screen.innerHTML=`<section class="panel step"><span class="eyebrow">Step 1 · Your business</span><h2>What kind of business are you running?</h2><p class="step-intro">Choose your trade, then tell us the team size.</p>${choiceGrid(tradeLabels,'trade')}<div class="fields" style="margin-top:18px"><div class="field"><label for="size">Team size</label><input id="size" type="number" min="1" max="200" inputmode="numeric" value="${session.answers?.size||''}" placeholder="Including you"></div></div><div class="error" id="validation-message" role="alert"></div><div class="actions"><button class="secondary" type="button" disabled>Back</button><button class="primary" id="continue" type="button">Continue</button></div></section>`;bindChoices();document.getElementById('continue').onclick=async()=>{const size=Number(document.getElementById('size').value);if(!picked.trade) return validation('Choose your trade.');if(!Number.isInteger(size)||size<1||size>200)return validation('Enter a whole team size from 1 to 200.');await answerGrouped([['trade',picked.trade],['size',size]])}}
+if(uiStep===1){screen.innerHTML=`<section class="panel step"><span class="eyebrow">Step 2 · Your work</span><h2>Which task keeps slowing you down?</h2><p class="step-intro">Choose the priority task, then the biggest bottleneck.</p>${choiceGrid(painLabels,'pain')}<div class="fields" style="margin-top:18px"><div class="field"><label for="bottleneck">Biggest bottleneck</label><select id="bottleneck" class="field-input"><option value="">Choose a bottleneck</option>${Object.entries(D.bottlenecks[picked.pain||'quoting']||{}).map(([v,l])=>`<option value="${v}" ${picked.bottleneck===v?'selected':''}>${escapeHtml(l)}</option>`).join('')}</select></div></div><div class="error" id="validation-message" role="alert"></div><div class="actions"><button class="secondary" id="back" type="button">Back</button><button class="primary" id="continue" type="button">Continue</button></div></section>`;bindChoices(()=>updateBottlenecks());document.getElementById('bottleneck').onchange=e=>picked.bottleneck=e.target.value;document.getElementById('back').onclick=()=>goBack(2);document.getElementById('continue').onclick=async()=>{if(!picked.pain)return validation('Choose a priority task.');if(!picked.bottleneck)return validation('Choose the biggest bottleneck.');await answerGrouped([['pain',picked.pain],['bottleneck',picked.bottleneck]])}}
+if(uiStep===2){screen.innerHTML=`<section class="panel step"><span class="eyebrow">Step 3 · How you work</span><h2>How do you work and review drafts?</h2><p class="step-intro">We’ll match recommendations to the tools you already use.</p>${choiceGrid(toolLabels,'tools')}<div class="fields" style="margin-top:18px">${choiceGrid(readinessLabels,'readiness')}<div class="field upload-field"><label for="document-upload">Example document <span>(optional)</span></label><input id="document-upload" type="file" accept=".txt,.md,.csv,.pdf,.doc,.docx"><span id="upload-status">${uploadedDocument.name?`Selected: ${escapeHtml(uploadedDocument.name)}`:'Add a redacted quote, invoice, job note or enquiry example.'}</span></div></div><div class="error" id="validation-message" role="alert"></div><div class="actions"><button class="secondary" id="back" type="button">Back</button><button class="primary" id="continue" type="button">Continue</button></div></section>`;bindChoices();document.getElementById('document-upload').onchange=readDocument;document.getElementById('back').onclick=()=>goBack(2);document.getElementById('continue').onclick=async()=>{if(!picked.tools)return validation('Choose your current tools.');if(!picked.readiness)return validation('Choose how you want to review AI drafts.');await showLoading([['tools',picked.tools],['readiness',picked.readiness]])}}
+}
+function bindChoices(callback){document.querySelectorAll('.choice[data-key]').forEach(b=>b.onclick=()=>{picked[b.dataset.key]=b.dataset.value;document.querySelectorAll(`[data-key="${b.dataset.key}"]`).forEach(x=>{x.classList.toggle('selected',x===b);x.setAttribute('aria-pressed',String(x===b))});validation();if(callback)callback()})}
+function updateBottlenecks(){picked.bottleneck='';const select=document.getElementById('bottleneck');select.innerHTML=`<option value="">Choose a bottleneck</option>${Object.entries(D.bottlenecks[picked.pain]||{}).map(([v,l])=>`<option value="${v}">${escapeHtml(l)}</option>`).join('')}`}
+async function answerGrouped(entries){if(busy)return;busy=true;try{for(const [key,value] of entries){session=await api('/api/answer','POST',{session_id:session.id,answer:value});}uiStep++;picked={...picked,...Object.fromEntries(entries)};renderScreen()}catch(e){validation(e.message)}finally{busy=false}}
+async function goBack(count){if(uiStep===0)return;for(let i=0;i<count;i++)session=await api('/api/back','POST',{session_id:session.id});uiStep--;renderScreen()}
+async function showLoading(entries){if(busy)return;busy=true;const messages=['Reading your answers','Matching tasks to your business','Choosing a first step'];document.getElementById('screen').innerHTML=`<section class="loading"><div><div class="loader"></div><h2 id="loadingMessage">Reading your answers</h2></div></section>`;try{for(let i=0;i<messages.length;i++){document.getElementById('loadingMessage').textContent=messages[i];await new Promise(r=>setTimeout(r,520))}for(const [key,value] of entries)session=await api('/api/answer','POST',{session_id:session.id,answer:value});if(uploadedDocument.name&&session.plan&&!session.plan.summary.includes(uploadedDocument.name))session.plan.summary += ` An example document (${uploadedDocument.name}) was provided for review during the practical first-step test.`;renderPlan();saveCompletedAssessment(session)}catch(e){validation(e.message)}finally{busy=false}}
+function renderPlan(){document.querySelector('.progress').style.display='none';const p=session.plan;document.getElementById('screen').innerHTML=`<section class="result"><span class="eyebrow">Your recommendations</span><h2>${p.recommendations.length===1?'One clear place to start.':'Two options worth considering.'}</h2>${p.recommendations.map(r=>`<article class="recommendation"><h3>${escapeHtml(r.title)}</h3><p><strong>Why it fits</strong><br>${escapeHtml(r.why)}</p><p><strong>Your first step</strong><br>${escapeHtml(r.first_action)}</p></article>`).join('')}<div class="control"><strong>You stay in control.</strong> Review every draft and keep decisions with a person.</div><div class="plan-actions"><button class="primary" id="download" type="button">Download plan</button><button class="secondary" id="restart" type="button">Start again</button></div></section>`;document.getElementById('download').onclick=downloadPlan;document.getElementById('restart').onclick=resetCoach}
+function downloadPlan(){const p=session.plan;const chosen=p.recommendations.find(r=>r.id===p.selected)||p.recommendations[0];const lines=['ZeroFriction AI Coach — Personalised AI Plan','',p.context,p.summary,'RECOMMENDED USE CASES',...p.recommendations.flatMap(r=>[`${r.rank}. ${r.title}`,r.description,`Why: ${r.why}`,`Approach: ${r.approach}`,'']),`SELECTED: ${chosen.title}`,'','ADOPTION PLAN',...p.adoption.map((s,i)=>`${i+1}. ${s.when}: ${s.action}`),'','HUMAN CHECKS',...p.guardrails.map(x=>`- ${x}`),'',p.logic,'',p.evidence_status];const url=URL.createObjectURL(new Blob([lines.join('\\n')],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='zerofriction-ai-plan.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+async function resetCoach(){session=await api('/api/start','POST',{});uiStep=0;picked={trade:'',pain:'',bottleneck:'',tools:'',readiness:''};uploadedDocument={name:'',content:'',size:0,type:''};document.querySelector('.progress').style.display='block';renderScreen()}
+document.addEventListener('keydown',event=>{if(event.key==='Enter'&&document.getElementById('app').classList.contains('active')){if(event.target.tagName==='BUTTON')return;const continueButton=document.getElementById('continue');if(continueButton){event.preventDefault();continueButton.click()}}});
+document.getElementById('startNow').onclick=async()=>{
+  const startButton=document.getElementById('startNow');
+  startButton.disabled=true;
+  try {
+    session=await api('/api/start','POST',{});
+    document.getElementById('startScreen').style.display='none';
+    document.getElementById('app').classList.add('active');
+    renderScreen();
+  } catch (error) {
+    const message=document.createElement('p');
+    message.style.color='#9b3030';
+    message.setAttribute('role','alert');
+    message.textContent=`The coach could not start: ${error.message}`;
+    startButton.after(message);
+    startButton.disabled=false;
+  }
+};
+</script></body></html>

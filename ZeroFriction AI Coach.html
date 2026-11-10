@@ -1,7 +1,25 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ZeroFriction AI Coach</title><style>
 :root{--ink:#10293b;--navy:#10293b;--paper:#f5f7f6;--white:#fff;--teal:#147b80;--teal-soft:#e8f4f3;--muted:#607181;--line:#dde5e5;--danger:#9b3030}*{box-sizing:border-box}body{margin:0;background:linear-gradient(rgba(16,41,59,.82),rgba(16,41,59,.92)),linear-gradient(135deg,#10293b,#147b80);color:var(--ink);font-family:Arial,Helvetica,sans-serif;min-height:100vh}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #fff;outline-offset:3px}.upload-field{border-top:1px solid var(--line);padding-top:18px}.upload-field span{display:block;color:var(--muted);font-size:.85rem;margin-top:8px}.upload-field input{padding:10px!important}.back{position:fixed;z-index:10;left:24px;top:22px;color:#fff;text-decoration:none;font-weight:800}.start-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background-image:linear-gradient(rgba(16,41,59,.82),rgba(16,41,59,.92)),url('/assets/coach-bg.jpg');background-size:cover;background-position:center}.glass{width:min(680px,100%);background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.5);border-radius:18px;padding:52px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.25)}.glass label{color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.75rem}.glass h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.02;letter-spacing:-.04em;margin:18px 0 14px}.glass p{color:var(--muted);margin:0 0 26px}.start-button,.primary,.secondary,.restart{min-height:50px;border-radius:8px;padding:0 20px;border:2px solid var(--teal);font-weight:800}.start-button,.primary{background:var(--teal);color:#fff}.start-button{width:min(320px,100%)}.subnote{display:block;margin-top:16px;color:var(--muted)!important;font-size:.85rem}.app{display:none;min-height:100vh;background:var(--paper);padding:48px 22px}.app.active{display:block}.coach{width:min(760px,100%);margin:auto}.progress-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--teal);margin-bottom:10px}.progress{height:6px;background:#dce4e3;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;width:33.333%;background:var(--teal);transition:width .45s ease}.panel{background:#fff;border-radius:16px;padding:34px;margin-top:20px;box-shadow:0 16px 40px rgba(16,41,59,.08);min-height:520px}.step{animation:slide .38s ease both}.step h2{font-size:clamp(2rem,5vw,3.1rem);line-height:1.03;margin:8px 0 8px}.step-intro{color:var(--muted);margin-bottom:24px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.choice{min-height:86px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);display:flex;align-items:center;gap:12px;text-align:left;padding:16px;font-weight:800}.choice svg{width:28px;height:28px;color:var(--teal);flex:none}.choice:hover,.choice.selected{border-color:var(--teal);background:var(--teal-soft)}.fields{display:grid;gap:18px}.field label{display:block;font-weight:800;margin-bottom:7px}.field input,.field-input{width:100%;min-height:50px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font-size:1rem;background:#fff;color:var(--ink)}.actions{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.secondary{background:#fff;color:var(--ink)}.secondary:disabled{opacity:.4;cursor:not-allowed}.error{min-height:22px;color:var(--danger);margin-top:12px;font-size:.92rem}.loading{display:grid;place-items:center;text-align:center;min-height:520px;background:#fff;border-radius:16px;padding:30px}.loader{width:44px;height:44px;border:4px solid var(--teal-soft);border-top-color:var(--teal);border-radius:50%;animation:spin .9s linear infinite;margin-bottom:22px}.result{margin-top:20px}.result h2{font-size:clamp(2rem,5vw,3rem)}.recommendation{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:12px;padding:24px;margin-top:14px;animation:slide .45s ease both}.recommendation:nth-child(2){animation-delay:.12s}.recommendation h3{margin:0 0 12px;font-size:1.35rem}.recommendation p{color:var(--muted)}.recommendation strong{color:var(--ink)}.control{background:var(--teal-soft);padding:16px;border-radius:10px;margin-top:20px}.plan-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}@keyframes slide{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}@keyframes spin{to{transform:rotate(360deg)}}[aria-live]{outline:none}@media(max-width:620px){.back{left:16px}.glass{padding:36px 22px}.panel{padding:24px 18px}.cards{grid-template-columns:1fr}.app{padding:76px 14px 30px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style><style>
+.back{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;border-radius:999px;background:rgba(14,26,43,.9);color:#fff;text-decoration:none;font-weight:800;box-shadow:0 3px 12px rgba(0,0,0,.2);transition:background-color .2s ease}
+.back:hover{background:#1b3555}
+.back:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px rgba(20,123,128,.85)}
+.trade-cards .choice{position:relative;padding-right:42px}
+.trade-cards .choice:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.trade-cards .choice:hover{border-color:#0f666b;background:#fff}
+.trade-cards .choice.selected{border-color:var(--teal);background:var(--teal-soft)}
+.trade-cards .choice.selected:hover{border-color:#0f666b;background:var(--teal-soft)}
+.trade-cards .choice.selected::after{content:"✓";position:absolute;top:8px;right:8px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:var(--teal);color:#fff;font-size:14px;line-height:1}
+.trade-icon{width:28px;height:28px;flex:none;color:var(--teal)}
+.other-trade-shell{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows 250ms ease,opacity 250ms ease}
+.other-trade-shell.open{grid-template-rows:1fr;opacity:1}
+.other-trade-content{min-height:0;overflow:hidden}
+.other-trade-field{padding-top:18px}
+.other-trade-field input:focus-visible{outline-color:var(--teal)}
+.other-trade-error{min-height:22px;margin-top:8px;color:var(--danger);font-size:.92rem}
+@media(prefers-reduced-motion:reduce){.other-trade-shell{transition:none!important}}
 </style></head><body>
-<a class="back" href="/">← Back to home</a>
+<a class="back" href="/">← BACK TO HOME</a>
 <section class="start-screen" id="startScreen"><div class="glass"><label>AI task coach</label><h1>Find your first practical AI step</h1><p>Answer a few questions about the work you want to improve.</p><button class="start-button" id="startNow" type="button">Start now</button><small class="subnote">3 short steps. You stay in control.</small></div></section>
 <main class="app" id="app"><div class="coach" id="coach"><div class="progress-head"><span>AI task coach</span><span id="progressLabel">1/3</span></div><div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1"><i id="progressFill"></i></div><div id="screen" aria-live="polite"></div></div></main>
 <script>window.ZF_SUPABASE = {url:'https://zocfisqgqbqxjdgnvnoe.supabase.co', anonKey:'sb_publishable_BZjEPwjKOjsCbbopw57OQg_EQYe_QaP'};</script>
@@ -12,6 +30,7 @@ window.ZF_DATA = {"trades":{"electrical":"Electrical","plumbing":"Plumbing","car
 (() => {
   'use strict';
   const D = window.ZF_DATA;
+  const keys=['trade','size','pain','bottleneck','tools','readiness'];
   const STORE_KEY = 'zerofriction-ai-coach-standalone-v1';
   let sessions = {};
   let canPersist = false;
@@ -42,12 +61,14 @@ window.ZF_DATA = {"trades":{"electrical":"Electrical","plumbing":"Plumbing","car
       return (c === 'x' ? n : (n & 3 | 8)).toString(16);
     });
   }
-  function businessPhrase(trade) {
-    return `${trade === 'electrical' || trade === 'other' ? 'an' : 'a'} ${D.trades[trade].toLowerCase()} business`;
+  function businessPhrase(trade, custom = false) {
+    const label = custom ? trade : trade === 'other' ? D.trades.other : D.trades[trade] || trade;
+    const article = (!custom && trade === 'electrical') || /^[aeiou]/i.test(label) ? 'an' : 'a';
+    return `${article} ${label.toLowerCase()} business`;
   }
   function question(step, answers) {
     if (step === 0) return { key:'trade', kind:'choice', prompt:'What kind of construction work does your business do most?', intro:'I’ll start with your business, then focus on the work that takes your attention.', options:D.trades };
-    if (step === 1) return { key:'size', kind:'number', prompt:'How many people work in the business, including you?', intro:`Thanks. I’ll tailor the plan to ${businessPhrase(answers.trade)}.`, min:1, max:200 };
+    if (step === 1) return { key:'size', kind:'number', prompt:'How many people work in the business, including you?', intro:`Thanks. I’ll tailor the plan to ${businessPhrase(answers.trade,answers.trade_custom)}.`, min:1, max:200 };
     if (step === 2) return { key:'pain', kind:'choice', prompt:'Which admin task would you most like to improve first?', intro:'We’ll focus on one task so the first test stays manageable.', options:D.pains };
     if (step === 3) return { key:'bottleneck', kind:'choice', prompt:`Within ${D.pains[answers.pain].toLowerCase()}, where does the work get stuck?`, intro:'That detail helps me choose a use case instead of giving a broad AI suggestion.', options:D.bottlenecks[answers.pain] };
     if (step === 4) return { key:'tools', kind:'choice', prompt:'What do you mainly use for this work today?', intro:'I’ll make the trial fit your current process.', options:D.tools };
@@ -59,6 +80,8 @@ window.ZF_DATA = {"trades":{"electrical":"Electrical","plumbing":"Plumbing","car
     if (!q) throw new Error('This coaching session is already complete.');
     if (q.kind === 'number') {
       if (!Number.isInteger(value) || value < 1 || value > 200) throw new Error('Enter a whole number from 1 to 200.');
+    } else if (step === 0 && q.key === 'trade') {
+      if (typeof value !== 'string' || !value.trim() || value.trim().length > 60) throw new Error('Enter your trade using 1 to 60 characters.');
     } else if (typeof value !== 'string' || !Object.prototype.hasOwnProperty.call(q.options, value)) {
       throw new Error('Choose one of the options shown.');
     }
@@ -95,10 +118,12 @@ window.ZF_DATA = {"trades":{"electrical":"Electrical","plumbing":"Plumbing","car
     }
     scored.sort((a,b) => b.score - a.score || a.id.localeCompare(b.id));
     const picked = scored.slice(0,1).concat(scored.slice(1).filter(row => row.score >= 8).slice(0,1));
+    const tradeKey = !a.trade_custom && Object.prototype.hasOwnProperty.call(D.trades, a.trade) && a.trade !== 'other' ? a.trade : 'other';
+    const tradeName = a.trade_custom ? a.trade : a.trade === 'other' ? D.trades.other : D.trades[a.trade] || a.trade;
     const recommendations = picked.map(({id,item,score,signals}, index) => {
       const example = id === 'intake'
-        ? `For your ${D.trades[a.trade].toLowerCase()} business, consider enquiries about ${D.trade_enquiry[a.trade]}. `
-        : `For your ${D.trades[a.trade].toLowerCase()} business, a relevant sample is ${D.trade_example[a.trade]}. `;
+        ? `For your ${tradeName.toLowerCase()} business, consider enquiries about ${D.trade_enquiry[tradeKey]}. `
+        : `For your ${tradeName.toLowerCase()} business, a relevant sample is ${D.trade_example[tradeKey]}. `;
       const why = signals.join('; ');
       return { id, rank:index+1, title:item.title, description:item.description,
         why:why.charAt(0).toUpperCase()+why.slice(1)+'.', score,
@@ -108,8 +133,8 @@ window.ZF_DATA = {"trades":{"electrical":"Electrical","plumbing":"Plumbing","car
     const people = size === 1 ? 'person' : 'people';
     const plan = {
       generated_at:new Date().toISOString(),
-      context:`${D.trades[a.trade]} business · ${size} ${people} · ${D.pains[pain].toLowerCase()}`,
-      summary:`You run ${businessPhrase(a.trade)} with ${size} ${people}. Your first priority is ${D.pains[pain].toLowerCase()}, especially ${D.bottlenecks[pain][bottleneck].toLowerCase()}. You currently use ${D.tools[a.tools].toLowerCase()}.`,
+      context:`${tradeName} business · ${size} ${people} · ${D.pains[pain].toLowerCase()}`,
+      summary:`You run ${businessPhrase(a.trade,a.trade_custom)} with ${size} ${people}. Your first priority is ${D.pains[pain].toLowerCase()}, especially ${D.bottlenecks[pain][bottleneck].toLowerCase()}. You currently use ${D.tools[a.tools].toLowerCase()}.`,
       recommendations,
       recommended_first:primary.id,
       guardrails:[
@@ -157,13 +182,15 @@ window.ZF_DATA = {"trades":{"electrical":"Electrical","plumbing":"Plumbing","car
         const s = sessions[body.session_id];
         if (!s) return reply(404, {error:'Session not found.'});
         const key = validate(s.step, s.answers, body.answer);
-        s.answers[key] = body.answer; s.step++;
+        s.answers[key] = body.answer;
+        if(key==='trade')s.answers.trade_custom=body.trade_custom===true;
+        s.step++;
         if (!question(s.step, s.answers)) s.plan = buildPlan(s.answers);
         s.updated_at = new Date().toISOString(); save(); return reply(200, publicSession(s));
       }
       if (path === '/api/back' && method === 'POST') {
         const s = sessions[body.session_id]; if (!s) return reply(404, {error:'Session not found.'});
-        if (s.step > 0) { const removedKey = keys[s.step - 1]; s.step--; delete s.answers[removedKey]; keys.slice(s.step).forEach(key => delete s.answers[key]); s.plan = null; }
+        if (s.step > 0) { const removedKey = keys[s.step - 1]; s.step--; delete s.answers[removedKey]; if(removedKey==='trade')delete s.answers.trade_custom; keys.slice(s.step).forEach(key => delete s.answers[key]); s.plan = null; }
         s.updated_at = new Date().toISOString(); save(); return reply(200, publicSession(s));
       }
       if (path === '/api/select' && method === 'POST') {
@@ -184,12 +211,27 @@ async function saveCompletedAssessment(planSession){const config=window.ZF_SUPAB
 const D=window.ZF_DATA;
 const tradeLabels=D.trades,painLabels=D.pains,toolLabels=D.tools,readinessLabels=D.readiness;
 function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-let session=null,uiStep=0,picked={trade:'',pain:'',bottleneck:'',tools:'',readiness:''},busy=false;
+let session=null,uiStep=0,picked={trade:'',otherTradeText:'',pain:'',bottleneck:'',tools:'',readiness:''},busy=false;
 let uploadedDocument={name:'',content:'',size:0,type:''};
 const icon=(name)=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h16M12 4v16"/></svg>';
+const tradeIcons={
+  electrical:'<svg class="trade-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-7z"/></svg>',
+  plumbing:'<svg class="trade-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22a8 8 0 0 0 8-8c0-4-8-12-8-12S4 10 4 14a8 8 0 0 0 8 8Z"/></svg>',
+  carpentry:'<svg class="trade-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 7 3-3 4 4-3 3M5 22l11-11"/></svg>',
+  building:'<svg class="trade-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V5h14v16M9 9h2m2 0h2m-6 4h2m2 0h2m-6 8v-4h4v4"/></svg>',
+  other:'<svg class="trade-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18l3 3 5.3-5.3a5 5 0 0 0 6.4-6.4l-3.1 3.1-3-3z"/></svg>'
+};
 async function api(path,method='GET',body=null){const r=await fetch(path,{method,headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});const d=await r.json();if(!r.ok)throw new Error(d.error||'Something went wrong');return d}
 function setProgress(n){document.getElementById('progressLabel').textContent=`${n}/3`;document.getElementById('progressFill').style.width=`${n/3*100}%`;document.querySelector('.progress').setAttribute('aria-valuenow',n)}
-function choiceGrid(options,key){return `<div class="cards">${Object.entries(options).map(([v,l])=>`<button class="choice ${picked[key]===v?'selected':''}" type="button" data-key="${key}" data-value="${v}" aria-pressed="${picked[key]===v}">${icon(key)}<span>${escapeHtml(l)}</span></button>`).join('')}</div>`}
+function isOtherTrade(){return picked.trade==='other'||(Boolean(picked.trade)&&!Object.prototype.hasOwnProperty.call(tradeLabels,picked.trade))}
+function choiceGrid(options,key){
+  if(key==='trade'){
+    const cards=`<div class="cards trade-cards" role="radiogroup" aria-label="Construction trade">${Object.entries(options).map(([v,l],i)=>{const selected=v==='other'?isOtherTrade():picked.trade===v;const tabIndex=selected||(!picked.trade&&i===0)?0:-1;return `<button class="choice trade-choice ${selected?'selected':''}" type="button" role="radio" data-key="trade" data-value="${v}" aria-checked="${selected}" tabindex="${tabIndex}">${tradeIcons[v]}<span>${escapeHtml(l)}</span></button>`}).join('')}</div>`;
+    const otherText=isOtherTrade()&&picked.trade!=='other'?picked.trade:picked.otherTradeText;
+    return `${cards}<div class="other-trade-shell ${isOtherTrade()?'open':''}" id="other-trade-shell" aria-hidden="${!isOtherTrade()}" ${isOtherTrade()?'':'inert'}><div class="other-trade-content"><div class="field other-trade-field"><label for="other-trade">Tell us your trade</label><input id="other-trade" type="text" maxlength="60" autocomplete="off" tabindex="${isOtherTrade()?0:-1}" placeholder="e.g. Roofing, Tiling, Landscaping" value="${escapeHtml(otherText||'')}" ${isOtherTrade()?'autofocus':''}><div class="other-trade-error" id="other-trade-error" role="alert"></div></div></div></div>`;
+  }
+  return `<div class="cards">${Object.entries(options).map(([v,l])=>`<button class="choice ${picked[key]===v?'selected':''}" type="button" data-key="${key}" data-value="${v}" aria-pressed="${picked[key]===v}">${icon(key)}<span>${escapeHtml(l)}</span></button>`).join('')}</div>`;
+}
 function validation(msg=''){document.getElementById('validation-message').textContent=msg}
 function readDocument(event){
   const file=event.target.files && event.target.files[0];
@@ -207,14 +249,80 @@ function renderScreen(){setProgress(uiStep+1);const screen=document.getElementBy
 if(uiStep===1){screen.innerHTML=`<section class="panel step"><span class="eyebrow">Step 2 · Your work</span><h2>Which task keeps slowing you down?</h2><p class="step-intro">Choose the priority task, then the biggest bottleneck.</p>${choiceGrid(painLabels,'pain')}<div class="fields" style="margin-top:18px"><div class="field"><label for="bottleneck">Biggest bottleneck</label><select id="bottleneck" class="field-input"><option value="">Choose a bottleneck</option>${Object.entries(D.bottlenecks[picked.pain||'quoting']||{}).map(([v,l])=>`<option value="${v}" ${picked.bottleneck===v?'selected':''}>${escapeHtml(l)}</option>`).join('')}</select></div></div><div class="error" id="validation-message" role="alert"></div><div class="actions"><button class="secondary" id="back" type="button">Back</button><button class="primary" id="continue" type="button">Continue</button></div></section>`;bindChoices(()=>updateBottlenecks());document.getElementById('bottleneck').onchange=e=>picked.bottleneck=e.target.value;document.getElementById('back').onclick=()=>goBack(2);document.getElementById('continue').onclick=async()=>{if(!picked.pain)return validation('Choose a priority task.');if(!picked.bottleneck)return validation('Choose the biggest bottleneck.');await answerGrouped([['pain',picked.pain],['bottleneck',picked.bottleneck]])}}
 if(uiStep===2){screen.innerHTML=`<section class="panel step"><span class="eyebrow">Step 3 · How you work</span><h2>How do you work and review drafts?</h2><p class="step-intro">We’ll match recommendations to the tools you already use.</p>${choiceGrid(toolLabels,'tools')}<div class="fields" style="margin-top:18px">${choiceGrid(readinessLabels,'readiness')}<div class="field upload-field"><label for="document-upload">Example document <span>(optional)</span></label><input id="document-upload" type="file" accept=".txt,.md,.csv,.pdf,.doc,.docx"><span id="upload-status">${uploadedDocument.name?`Selected: ${escapeHtml(uploadedDocument.name)}`:'Add a redacted quote, invoice, job note or enquiry example.'}</span></div></div><div class="error" id="validation-message" role="alert"></div><div class="actions"><button class="secondary" id="back" type="button">Back</button><button class="primary" id="continue" type="button">Continue</button></div></section>`;bindChoices();document.getElementById('document-upload').onchange=readDocument;document.getElementById('back').onclick=()=>goBack(2);document.getElementById('continue').onclick=async()=>{if(!picked.tools)return validation('Choose your current tools.');if(!picked.readiness)return validation('Choose how you want to review AI drafts.');await showLoading([['tools',picked.tools],['readiness',picked.readiness]])}}
 }
-function bindChoices(callback){document.querySelectorAll('.choice[data-key]').forEach(b=>b.onclick=()=>{picked[b.dataset.key]=b.dataset.value;document.querySelectorAll(`[data-key="${b.dataset.key}"]`).forEach(x=>{x.classList.toggle('selected',x===b);x.setAttribute('aria-pressed',String(x===b))});validation();if(callback)callback()})}
+function bindChoices(callback){
+  const tradeRadios=[...document.querySelectorAll('.trade-choice')];
+  const tradeInput=document.getElementById('other-trade');
+  const tradeShell=document.getElementById('other-trade-shell');
+  const tradeError=document.getElementById('other-trade-error');
+  function updateTradeRadios(){
+    tradeRadios.forEach((radio,index)=>{
+      const selected=radio.dataset.value==='other'?isOtherTrade():picked.trade===radio.dataset.value;
+      radio.classList.toggle('selected',selected);
+      radio.setAttribute('aria-checked',String(selected));
+      radio.tabIndex=selected||(!picked.trade&&index===0)?0:-1;
+    });
+  }
+  tradeRadios.forEach((radio,index)=>{
+    radio.addEventListener('click',()=>{
+      const value=radio.dataset.value;
+      picked.trade=value;
+      if(value==='other'){
+        tradeShell.classList.add('open');
+        tradeShell.removeAttribute('inert');
+        tradeShell.setAttribute('aria-hidden','false');
+        tradeInput.tabIndex=0;
+        requestAnimationFrame(()=>tradeInput.focus());
+      }else{
+        picked.otherTradeText='';
+        tradeInput.value='';
+        tradeInput.tabIndex=-1;
+        tradeShell.classList.remove('open');
+        tradeShell.setAttribute('inert','');
+        tradeShell.setAttribute('aria-hidden','true');
+        tradeError.textContent='';
+      }
+      updateTradeRadios();
+    });
+    radio.addEventListener('keydown',event=>{
+      const offsets={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1};
+      if(!(event.key in offsets))return;
+      event.preventDefault();
+      tradeRadios[(index+offsets[event.key]+tradeRadios.length)%tradeRadios.length].focus();
+    });
+  });
+  if(tradeInput){
+    if(isOtherTrade())tradeInput.focus();
+    tradeInput.addEventListener('input',()=>{
+      picked.otherTradeText=tradeInput.value;
+      if(tradeInput.value.trim())tradeError.textContent='';
+    });
+    document.getElementById('continue').addEventListener('click',event=>{
+      if(!isOtherTrade())return;
+      picked.otherTradeText=tradeInput.value;
+      if(tradeInput.value.trim())return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      tradeError.textContent='Please enter your trade to continue.';
+      tradeInput.focus();
+    },true);
+  }
+  document.querySelectorAll('.choice[data-key]:not([data-key="trade"])').forEach(button=>button.onclick=()=>{
+    picked[button.dataset.key]=button.dataset.value;
+    document.querySelectorAll(`.choice[data-key="${button.dataset.key}"]`).forEach(choice=>{
+      choice.classList.toggle('selected',choice===button);
+      choice.setAttribute('aria-pressed',String(choice===button));
+    });
+    validation();
+    if(callback)callback();
+  });
+}
 function updateBottlenecks(){picked.bottleneck='';const select=document.getElementById('bottleneck');select.innerHTML=`<option value="">Choose a bottleneck</option>${Object.entries(D.bottlenecks[picked.pain]||{}).map(([v,l])=>`<option value="${v}">${escapeHtml(l)}</option>`).join('')}`}
-async function answerGrouped(entries){if(busy)return;busy=true;try{for(const [key,value] of entries){session=await api('/api/answer','POST',{session_id:session.id,answer:value});}uiStep++;picked={...picked,...Object.fromEntries(entries)};renderScreen()}catch(e){validation(e.message)}finally{busy=false}}
+async function answerGrouped(entries){if(busy)return;busy=true;try{for(const [key,value] of entries){const customTrade=key==='trade'&&value==='other';const answer=customTrade?picked.otherTradeText.trim():value;session=await api('/api/answer','POST',{session_id:session.id,answer,trade_custom:customTrade});}uiStep++;picked={...picked,...Object.fromEntries(entries)};renderScreen()}catch(e){validation(e.message)}finally{busy=false}}
 async function goBack(count){if(uiStep===0)return;for(let i=0;i<count;i++)session=await api('/api/back','POST',{session_id:session.id});uiStep--;renderScreen()}
 async function showLoading(entries){if(busy)return;busy=true;const messages=['Reading your answers','Matching tasks to your business','Choosing a first step'];document.getElementById('screen').innerHTML=`<section class="loading"><div><div class="loader"></div><h2 id="loadingMessage">Reading your answers</h2></div></section>`;try{for(let i=0;i<messages.length;i++){document.getElementById('loadingMessage').textContent=messages[i];await new Promise(r=>setTimeout(r,520))}for(const [key,value] of entries)session=await api('/api/answer','POST',{session_id:session.id,answer:value});if(uploadedDocument.name&&session.plan&&!session.plan.summary.includes(uploadedDocument.name))session.plan.summary += ` An example document (${uploadedDocument.name}) was provided for review during the practical first-step test.`;renderPlan();saveCompletedAssessment(session)}catch(e){validation(e.message)}finally{busy=false}}
 function renderPlan(){document.querySelector('.progress').style.display='none';const p=session.plan;document.getElementById('screen').innerHTML=`<section class="result"><span class="eyebrow">Your recommendations</span><h2>${p.recommendations.length===1?'One clear place to start.':'Two options worth considering.'}</h2>${p.recommendations.map(r=>`<article class="recommendation"><h3>${escapeHtml(r.title)}</h3><p><strong>Why it fits</strong><br>${escapeHtml(r.why)}</p><p><strong>Your first step</strong><br>${escapeHtml(r.first_action)}</p></article>`).join('')}<div class="control"><strong>You stay in control.</strong> Review every draft and keep decisions with a person.</div><div class="plan-actions"><button class="primary" id="download" type="button">Download plan</button><button class="secondary" id="restart" type="button">Start again</button></div></section>`;document.getElementById('download').onclick=downloadPlan;document.getElementById('restart').onclick=resetCoach}
 function downloadPlan(){const p=session.plan;const chosen=p.recommendations.find(r=>r.id===p.selected)||p.recommendations[0];const lines=['ZeroFriction AI Coach — Personalised AI Plan','',p.context,p.summary,'RECOMMENDED USE CASES',...p.recommendations.flatMap(r=>[`${r.rank}. ${r.title}`,r.description,`Why: ${r.why}`,`Approach: ${r.approach}`,'']),`SELECTED: ${chosen.title}`,'','ADOPTION PLAN',...p.adoption.map((s,i)=>`${i+1}. ${s.when}: ${s.action}`),'','HUMAN CHECKS',...p.guardrails.map(x=>`- ${x}`),'',p.logic,'',p.evidence_status];const url=URL.createObjectURL(new Blob([lines.join('\\n')],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='zerofriction-ai-plan.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-async function resetCoach(){session=await api('/api/start','POST',{});uiStep=0;picked={trade:'',pain:'',bottleneck:'',tools:'',readiness:''};uploadedDocument={name:'',content:'',size:0,type:''};document.querySelector('.progress').style.display='block';renderScreen()}
+async function resetCoach(){session=await api('/api/start','POST',{});uiStep=0;picked={trade:'',otherTradeText:'',pain:'',bottleneck:'',tools:'',readiness:''};uploadedDocument={name:'',content:'',size:0,type:''};document.querySelector('.progress').style.display='block';renderScreen()}
 document.addEventListener('keydown',event=>{if(event.key==='Enter'&&document.getElementById('app').classList.contains('active')){if(event.target.tagName==='BUTTON')return;const continueButton=document.getElementById('continue');if(continueButton){event.preventDefault();continueButton.click()}}});
 document.getElementById('startNow').onclick=async()=>{
   const startButton=document.getElementById('startNow');

@@ -203,8 +203,8 @@ html.has-scroll-sequence #problem[data-ending="true"] .problem-actions{opacity:1
 .how-icon.check{color:#7FD1BD;background:rgba(127,209,189,.15)}
 .how-icon.limit{color:#F28B82;background:rgba(242,139,130,.15)}
 .how-note{margin:18px 0 0;color:#d4dfe4;font-size:.9rem;text-align:center}
-.how-steps{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:920px;margin:32px auto 0}
-.how-steps-line{position:absolute;top:11px;right:12.5%;left:12.5%;height:2px;background:#486172;transform:scaleX(1);transform-origin:left;transition:transform .65s ease}
+.how-steps{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;max-width:920px;margin:32px auto 0}
+.how-steps-line{position:absolute;top:11px;right:10%;left:10%;height:2px;background:#486172;transform:scaleX(1);transform-origin:left;transition:transform .65s ease}
 .how-steps-line::after{position:absolute;inset:0;background:#7FD1BD;content:"";transform:scaleX(1);transform-origin:left;transition:transform .7s ease}
 .how-step{position:relative;z-index:1;display:grid;justify-items:center;gap:8px;color:#d4dfe4;font-size:.88rem;text-align:center}
 .how-step-dot{display:grid;place-items:center;width:24px;height:24px;border:2px solid #8da3af;border-radius:50%;background:#10293b;color:#10293b;font-size:.72rem;font-weight:800;transition:background-color .25s,border-color .25s,color .25s}
@@ -381,10 +381,10 @@ html.has-scroll-sequence #problem[data-ending="true"] .problem-actions{opacity:1
     <div class="how-column how-column-does">
       <h3>What ZeroFriction does</h3>
       <ul class="how-list">
-        <li class="how-row"><svg class="how-icon check" viewBox="0 0 28 28" fill="none" role="img" aria-label="Does"><path d="m7.5 14.5 4 4 9-9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Asks <strong>six quick questions</strong></span></li>
+        <li class="how-row"><svg class="how-icon check" viewBox="0 0 28 28" fill="none" role="img" aria-label="Does"><path d="m7.5 14.5 4 4 9-9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Asks <strong>a few quick questions</strong></span></li>
         <li class="how-row"><svg class="how-icon check" viewBox="0 0 28 28" fill="none" role="img" aria-label="Does"><path d="m7.5 14.5 4 4 9-9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Suggests <strong>1-2 relevant AI uses</strong></span></li>
         <li class="how-row"><svg class="how-icon check" viewBox="0 0 28 28" fill="none" role="img" aria-label="Does"><path d="m7.5 14.5 4 4 9-9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Explains <strong>why each one fits</strong></span></li>
-        <li class="how-row"><svg class="how-icon check" viewBox="0 0 28 28" fill="none" role="img" aria-label="Does"><path d="m7.5 14.5 4 4 9-9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Gives you <strong>one first step to test</strong></span></li>
+        <li class="how-row"><svg class="how-icon check" viewBox="0 0 28 28" fill="none" role="img" aria-label="Does"><path d="m7.5 14.5 4 4 9-9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Gives you <strong>a three-step first test</strong></span></li>
       </ul>
     </div>
     <div class="how-column how-column-doesnt">
@@ -397,22 +397,23 @@ html.has-scroll-sequence #problem[data-ending="true"] .problem-actions{opacity:1
       </ul>
     </div>
   </div>
-  <p class="how-note">Sessions are saved to help us improve the prototype. Please use fictional business details for now.</p>
-  <div class="how-steps" aria-label="Your business, your work, how you work, then your first step">
+  <p class="how-note">Answers are stored in this browser's local storage. Completed answers are sent to Google's Gemini service to generate suggestions, and the assessment and plan are saved in Supabase. Use fictional or redacted details, not real customer information.</p>
+  <div class="how-steps" aria-label="Five short steps: your business, your work, the slowdown, the context and how you work">
     <span class="how-steps-line" aria-hidden="true"></span>
     <div class="how-step"><span class="how-step-dot" aria-hidden="true">1</span><span class="how-step-label">Your business</span></div>
     <div class="how-step"><span class="how-step-dot" aria-hidden="true">2</span><span class="how-step-label">Your work</span></div>
-    <div class="how-step"><span class="how-step-dot" aria-hidden="true">3</span><span class="how-step-label">How you work</span></div>
-    <div class="how-step"><span class="how-step-dot" aria-hidden="true">4</span><span class="how-step-label">Your first step</span></div>
+    <div class="how-step"><span class="how-step-dot" aria-hidden="true">3</span><span class="how-step-label">The slowdown</span></div>
+    <div class="how-step"><span class="how-step-dot" aria-hidden="true">4</span><span class="how-step-label">The context</span></div>
+    <div class="how-step"><span class="how-step-dot" aria-hidden="true">5</span><span class="how-step-label">How you work</span></div>
   </div>
   <div class="how-cta"><a class="btn" href="./ZeroFriction%20AI%20Coach.html">Try it for free</a><p class="how-cta-note">You stay in control.</p></div>
 </div></section>
 <section class="story-section faq" id="faq" aria-labelledby="faq-title"><div class="inner"><span class="eyebrow">FAQ</span><h2 class="story-title" id="faq-title">Straight answers before you start.</h2><div class="faq-layout">
   <div class="faq-content">
     <article class="faq-item"><h3>Is it free to try?</h3><p>Yes. The ZeroFriction coach is free to try during this demonstration.</p></article>
-    <article class="faq-item"><h3>How much effort does it take?</h3><p>Three short steps. It only asks for what it needs to match a practical first AI step.</p></article>
+    <article class="faq-item"><h3>How much effort does it take?</h3><p>A few quick questions across five short steps. It only asks for what it needs to match a practical first AI step.</p></article>
     <article class="faq-item"><h3>Does ZeroFriction make decisions for me?</h3><p>No. You review and approve every recommendation. It does not send messages, approve financial decisions or replace professional judgement.</p></article>
-    <article class="faq-item"><h3>What data is saved?</h3><p>Completed sessions are saved to help us improve the prototype. Please use fictional business details for now, not real customer information.</p></article>
+    <article class="faq-item"><h3>What data is saved?</h3><p>Answers are stored in this browser's local storage. Completed answers are sent to Google's Gemini service to generate suggestions, and the completed assessment and plan are saved in Supabase. Use fictional or redacted details, not real customer information.</p></article>
     <div class="faq-closing"><p>Still unsure? Try one task and see.</p><a class="btn" href="./ZeroFriction%20AI%20Coach.html">Try it for free</a></div>
   </div>
   <div class="faq-photo-column"><div class="faq-photo"><img src="/assets/Green_Square_201538.jpg" alt="Tradesperson at work"></div></div>
@@ -430,7 +431,7 @@ html.has-scroll-sequence #problem[data-ending="true"] .problem-actions{opacity:1
       <li>Tradify — Tradify Pulse survey.</li>
     </ul></div>
   </div>
-  <div class="footer-bottom"><p>ZeroFriction is a student prototype built for INFS3605 at UNSW. Figures are from the sources listed above. Please use fictional business details when trying the coach.</p><a href="#hero">Back to top</a></div>
+  <div class="footer-bottom"><p>ZeroFriction is a student prototype built for INFS3605 at UNSW. Answers are stored in this browser's local storage; completed answers are sent to Google's Gemini service for suggestions and the assessment and plan are saved in Supabase. Please use fictional or redacted details, not real customer information. Figures are from the sources listed above.</p><a href="#hero">Back to top</a></div>
 </div></footer><script>
 const closingSection = document.querySelector('#close');
 if (closingSection && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {

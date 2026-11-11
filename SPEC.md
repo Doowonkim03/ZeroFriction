@@ -12,7 +12,7 @@ Owner-operators of small and medium trade businesses within the construction ind
 - Receive 1–2 personalised AI use-case recommendations.
 - See why each AI use case was recommended and its potential benefit.
 - Select the AI use case they want to explore.
-- Receive a simple action plan with a suggested approach and one clear first step.
+- Receive a simple action plan with a suggested approach and three practical first-test steps.
 
 ## Data
 
@@ -32,6 +32,8 @@ Use the existing Supabase `task_assessments` table with these fields:
 - relevance_ranking
 - selected_use_case
 - first_action
+- recommendation_plan
+- recommendation_source (`ai` or `fallback`)
 
 ## Core flow
 
@@ -43,7 +45,7 @@ Use the existing Supabase `task_assessments` table with these fields:
 6. Present the 1–2 most relevant AI use cases.
 7. Explain why each recommendation is relevant and its potential benefit.
 8. The user selects the AI use case they want to explore.
-9. Generate a simple action plan with a suggested approach and one clear first step.
+9. Generate a simple action plan with a suggested approach and three practical first-test steps.
 10. Save the assessment and recommendation to Supabase.
 
 ## Recommendation logic
@@ -56,7 +58,7 @@ Use the existing Supabase `task_assessments` table with these fields:
 - Show the potential benefit of each recommendation.
 - Do not claim exact time savings unless there is sufficient evidence.
 - If there is insufficient information, ask only for the missing information instead of returning a generic recommendation.
-- The final action plan must contain at least one practical first step.
+- The final action plan must contain exactly three practical first-test steps.
 
 ## Must-haves
 
@@ -67,7 +69,7 @@ Use the existing Supabase `task_assessments` table with these fields:
 - 1–2 personalised AI use-case recommendations
 - Explanation of recommendation relevance and potential benefit
 - Recommendation selection
-- First-step action plan
+- Three-step first-test action plan
 - Save the assessment and recommendation to Supabase
 
 ## Out of scope for now

@@ -1,5 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ZeroFriction AI Coach</title><style>
 :root{--ink:#10293b;--navy:#10293b;--paper:#f5f7f6;--white:#fff;--teal:#147b80;--teal-soft:#e8f4f3;--muted:#607181;--line:#dde5e5;--danger:#9b3030}*{box-sizing:border-box}body{margin:0;background:linear-gradient(rgba(16,41,59,.82),rgba(16,41,59,.92)),linear-gradient(135deg,#10293b,#147b80);color:var(--ink);font-family:Arial,Helvetica,sans-serif;min-height:100vh}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #fff;outline-offset:3px}.upload-field{border-top:1px solid var(--line);padding-top:18px}.upload-field span{display:block;color:var(--muted);font-size:.85rem;margin-top:8px}.upload-field input{padding:10px!important}.back{position:fixed;z-index:10;left:24px;top:22px;color:#fff;text-decoration:none;font-weight:800}.start-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background-image:linear-gradient(rgba(16,41,59,.82),rgba(16,41,59,.92)),url('/assets/coach-bg.jpg');background-size:cover;background-position:center}.glass{width:min(680px,100%);background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.5);border-radius:18px;padding:52px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.25)}.glass label{color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.75rem}.glass h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.02;letter-spacing:-.04em;margin:18px 0 14px}.glass p{color:var(--muted);margin:0 0 26px}.start-button,.primary,.secondary,.restart{min-height:50px;border-radius:8px;padding:0 20px;border:2px solid var(--teal);font-weight:800}.start-button,.primary{background:var(--teal);color:#fff}.start-button{width:min(320px,100%)}.subnote{display:block;margin-top:16px;color:var(--muted)!important;font-size:.85rem}.app{display:none;min-height:100vh;background:var(--paper);padding:48px 22px}.app.active{display:block}.coach{width:min(760px,100%);margin:auto}.progress-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--teal);margin-bottom:10px}.progress{height:6px;background:#dce4e3;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;width:33.333%;background:var(--teal);transition:width .45s ease}.panel{background:#fff;border-radius:16px;padding:34px;margin-top:20px;box-shadow:0 16px 40px rgba(16,41,59,.08);min-height:520px}.step{animation:slide .38s ease both}.step h2{font-size:clamp(2rem,5vw,3.1rem);line-height:1.03;margin:8px 0 8px}.step-intro{color:var(--muted);margin-bottom:24px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.choice{min-height:86px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);display:flex;align-items:center;gap:12px;text-align:left;padding:16px;font-weight:800}.choice svg{width:28px;height:28px;color:var(--teal);flex:none}.choice:hover,.choice.selected{border-color:var(--teal);background:var(--teal-soft)}.fields{display:grid;gap:18px}.field label{display:block;font-weight:800;margin-bottom:7px}.field input,.field-input{width:100%;min-height:50px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font-size:1rem;background:#fff;color:var(--ink)}.actions{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.secondary{background:#fff;color:var(--ink)}.secondary:disabled{opacity:.4;cursor:not-allowed}.error{min-height:22px;color:var(--danger);margin-top:12px;font-size:.92rem}.loading{display:grid;place-items:center;text-align:center;min-height:520px;background:#fff;border-radius:16px;padding:30px}.loader{width:44px;height:44px;border:4px solid var(--teal-soft);border-top-color:var(--teal);border-radius:50%;animation:spin .9s linear infinite;margin-bottom:22px}.result{margin-top:20px}.result h2{font-size:clamp(2rem,5vw,3rem)}.recommendation{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:12px;padding:24px;margin-top:14px;animation:slide .45s ease both}.recommendation:nth-child(2){animation-delay:.12s}.recommendation h3{margin:0 0 12px;font-size:1.35rem}.recommendation p{color:var(--muted)}.recommendation strong{color:var(--ink)}.control{background:var(--teal-soft);padding:16px;border-radius:10px;margin-top:20px}.plan-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}@keyframes slide{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}@keyframes spin{to{transform:rotate(360deg)}}[aria-live]{outline:none}@media(max-width:620px){.back{left:16px}.glass{padding:36px 22px}.panel{padding:24px 18px}.cards{grid-template-columns:1fr}.app{padding:76px 14px 30px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.app button:focus-visible,.app input:focus-visible{outline:3px solid var(--teal);outline-offset:3px}.upload-field{border-top:1px solid var(--line);padding-top:18px}.upload-field span{display:block;color:var(--muted);font-size:.85rem;margin-top:8px}.upload-field input{padding:10px!important}.back{position:fixed;z-index:10;left:24px;top:22px;color:#fff;text-decoration:none;font-weight:800}.start-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background-image:linear-gradient(rgba(16,41,59,.82),rgba(16,41,59,.92)),url('/assets/coach-bg.jpg');background-size:cover;background-position:center}.glass{width:min(680px,100%);background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.5);border-radius:18px;padding:52px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.25)}.glass label{color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.75rem}.glass h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.02;letter-spacing:-.04em;margin:18px 0 14px}.glass p{color:var(--muted);margin:0 0 26px}.start-button,.primary,.secondary,.restart{min-height:50px;border-radius:8px;padding:0 20px;border:2px solid var(--teal);font-weight:800}.start-button,.primary{background:var(--teal);color:#fff}.start-button{width:min(320px,100%)}.subnote{display:block;margin-top:16px;color:var(--muted)!important;font-size:.85rem}.app{display:none;min-height:100vh;background:var(--paper);padding:48px 22px}.app.active{display:block}.coach{width:min(760px,100%);margin:auto}.progress-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--teal);margin-bottom:10px}.progress{height:6px;background:#dce4e3;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;width:33.333%;background:var(--teal);transition:width .45s ease}.panel{background:#fff;border-radius:16px;padding:34px;margin-top:20px;box-shadow:0 16px 40px rgba(16,41,59,.08);min-height:520px}.step{animation:slide .38s ease both}.step h2{font-size:clamp(2rem,5vw,3.1rem);line-height:1.03;margin:8px 0 8px}.step-intro{color:var(--muted);margin-bottom:24px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.choice{min-height:86px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);display:flex;align-items:center;gap:12px;text-align:left;padding:16px;font-weight:800}.choice svg{width:28px;height:28px;color:var(--teal);flex:none}.choice:hover,.choice.selected{border-color:var(--teal);background:var(--teal-soft)}.fields{display:grid;gap:18px}.field label{display:block;font-weight:800;margin-bottom:7px}.field input,.field-input{width:100%;min-height:50px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font-size:1rem;background:#fff;color:var(--ink)}.actions{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.secondary{background:#fff;color:var(--ink)}.secondary:disabled{opacity:.4;cursor:not-allowed}.error{min-height:22px;color:var(--danger);margin-top:12px;font-size:.92rem}.loading{display:grid;place-items:center;text-align:center;min-height:520px;background:#fff;border-radius:16px;padding:30px}.loader{width:44px;height:44px;border:4px solid var(--teal-soft);border-top-color:var(--teal);border-radius:50%;animation:spin .9s linear infinite;margin-bottom:22px}.result{margin-top:20px}.result h2{font-size:clamp(2rem,5vw,3rem)}.recommendation{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:12px;padding:24px;margin-top:14px;animation:slide .45s ease both}.recommendation:nth-child(2){animation-delay:.12s}.recommendation h3{margin:0 0 12px;font-size:1.35rem}.recommendation p{color:var(--muted)}.recommendation strong{color:var(--ink)}.control{background:var(--teal-soft);padding:16px;border-radius:10px;margin-top:20px}.plan-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}@keyframes slide{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}@keyframes spin{to{transform:rotate(360deg)}}[aria-live]{outline:none}@media(max-width:620px){.back{left:16px}.glass{padding:36px 22px}.panel{padding:24px 18px}.cards{grid-template-columns:1fr}.app{padding:76px 14px 30px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style><style>
 .back{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;border-radius:999px;background:rgba(14,26,43,.9);color:#fff;text-decoration:none;font-weight:800;box-shadow:0 3px 12px rgba(0,0,0,.2);transition:background-color .2s ease}
 .back:hover{background:#1b3555}
@@ -18,10 +19,49 @@
 .other-trade-field input:focus-visible{outline-color:var(--teal)}
 .other-trade-error{min-height:22px;margin-top:8px;color:var(--danger);font-size:.92rem}
 @media(prefers-reduced-motion:reduce){.other-trade-shell{transition:none!important}}
+.app .progress i{transition:width .45s ease}
+.task-cards .choice{position:relative;min-height:68px;padding-right:48px}
+.task-cards .choice .task-icon{width:26px;height:26px;flex:none;color:var(--teal)}
+.task-cards .choice[aria-checked="true"]{border-color:var(--teal);background:var(--teal-soft)}
+.task-badge{position:absolute;top:8px;right:9px;min-width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--teal);color:#fff;font-size:.8rem}
+.choice[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
+.selection-note,.step-hint{margin:8px 0 16px;color:var(--muted);font-size:.9rem}
+.chip-group{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);padding:9px 13px;font-weight:700}
+.chip[aria-pressed="true"],.chip[aria-checked="true"],.chip.selected{border-color:var(--teal);background:var(--teal-soft);color:var(--ink)}
+.chip:disabled{opacity:.5;cursor:not-allowed}
+.task-blocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.task-block{border:1px solid var(--line);border-radius:10px;padding:14px}
+.task-block h3{margin:0 0 10px;font-size:1rem}
+.task-block label{display:block;margin:10px 0 6px;font-weight:800}
+.task-block .chip-group{gap:6px}
+.task-block .chip{padding:7px 10px;font-size:.86rem}
+.inline-field{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows 220ms ease,opacity 220ms ease}
+.inline-field.open{grid-template-rows:1fr;opacity:1;animation:fieldReveal 250ms ease both}
+.inline-field>div{min-height:0;overflow:hidden}
+.inline-field label{display:block;margin-top:8px;font-size:.88rem;font-weight:700}
+.inline-field input{margin-top:6px;width:100%;min-height:42px;border:1px solid var(--line);border-radius:8px;padding:0 11px;color:var(--ink)}
+.time-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.time-grid .choice{justify-content:center;text-align:center;min-height:62px;padding:10px;font-size:.9rem}
+.choice[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft)}
+.step .actions .primary:disabled{opacity:.45;cursor:not-allowed}
+.step-intro{margin:0 0 18px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.step{animation:slide .38s ease both}
+@media(max-width:620px){.task-blocks{grid-template-columns:1fr}.time-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.inline-field{transition:none!important}}
+@keyframes fieldReveal{from{grid-template-rows:0fr;opacity:0}to{grid-template-rows:1fr;opacity:1}}
+</style><style>
+.recommendation .headline{color:var(--ink);font-weight:800;font-size:1.05rem}
+.recommendation .effort-tag{display:inline-block;padding:5px 10px;border-radius:20px;background:var(--teal-soft);color:var(--teal);font-size:.8rem;font-weight:800}
+.recommendation .first-steps{padding-left:22px;color:var(--muted)}
+.recommendation .first-steps li{padding:3px 0}
+.result-note{color:var(--muted);font-size:.85rem}
+.fallback-note{padding:10px 12px;border-left:3px solid #b27819;background:#fff8e8}
 </style></head><body>
 <a class="back" href="/">← BACK TO HOME</a>
-<section class="start-screen" id="startScreen"><div class="glass"><label>AI task coach</label><h1>Find your first practical AI step</h1><p>Answer a few questions about the work you want to improve.</p><button class="start-button" id="startNow" type="button">Start now</button><small class="subnote">3 short steps. You stay in control.</small></div></section>
-<main class="app" id="app"><div class="coach" id="coach"><div class="progress-head"><span>AI task coach</span><span id="progressLabel">1/3</span></div><div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1"><i id="progressFill"></i></div><div id="screen" aria-live="polite"></div></div></main>
+<section class="start-screen" id="startScreen"><div class="glass"><label>AI task coach</label><h1>Find your first practical AI step</h1><p>Answer a few questions about the work you want to improve.</p><button class="start-button" id="startNow" type="button">Start now</button><small class="subnote">Answers are stored in this browser; completed answers are sent to Google's Gemini service to generate suggestions, and plans are saved in Supabase. Use fictional or redacted details.</small></div></section>
+<main class="app" id="app"><div class="coach" id="coach"><div class="progress-head"><span>AI task coach</span><span id="progressLabel">1/5</span></div><div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1"><i id="progressFill"></i></div><div id="screen" aria-live="polite"></div></div></main>
 <script>window.ZF_SUPABASE = {url:'https://zocfisqgqbqxjdgnvnoe.supabase.co', anonKey:'sb_publishable_BZjEPwjKOjsCbbopw57OQg_EQYe_QaP'};</script>
 <script>
 
@@ -222,13 +262,13 @@ const tradeIcons={
   other:'<svg class="trade-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18l3 3 5.3-5.3a5 5 0 0 0 6.4-6.4l-3.1 3.1-3-3z"/></svg>'
 };
 async function api(path,method='GET',body=null){const r=await fetch(path,{method,headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});const d=await r.json();if(!r.ok)throw new Error(d.error||'Something went wrong');return d}
-function setProgress(n){document.getElementById('progressLabel').textContent=`${n}/3`;document.getElementById('progressFill').style.width=`${n/3*100}%`;document.querySelector('.progress').setAttribute('aria-valuenow',n)}
+function setProgress(n){document.getElementById('progressLabel').textContent=`${n}/5`;document.getElementById('progressFill').style.width=`${n/5*100}%`;document.querySelector('.progress').setAttribute('aria-valuenow',n)}
 function isOtherTrade(){return picked.trade==='other'||(Boolean(picked.trade)&&!Object.prototype.hasOwnProperty.call(tradeLabels,picked.trade))}
 function choiceGrid(options,key){
   if(key==='trade'){
     const cards=`<div class="cards trade-cards" role="radiogroup" aria-label="Construction trade">${Object.entries(options).map(([v,l],i)=>{const selected=v==='other'?isOtherTrade():picked.trade===v;const tabIndex=selected||(!picked.trade&&i===0)?0:-1;return `<button class="choice trade-choice ${selected?'selected':''}" type="button" role="radio" data-key="trade" data-value="${v}" aria-checked="${selected}" tabindex="${tabIndex}">${tradeIcons[v]}<span>${escapeHtml(l)}</span></button>`}).join('')}</div>`;
     const otherText=isOtherTrade()&&picked.trade!=='other'?picked.trade:picked.otherTradeText;
-    return `${cards}<div class="other-trade-shell ${isOtherTrade()?'open':''}" id="other-trade-shell" aria-hidden="${!isOtherTrade()}" ${isOtherTrade()?'':'inert'}><div class="other-trade-content"><div class="field other-trade-field"><label for="other-trade">Tell us your trade</label><input id="other-trade" type="text" maxlength="60" autocomplete="off" tabindex="${isOtherTrade()?0:-1}" placeholder="e.g. Roofing, Tiling, Landscaping" value="${escapeHtml(otherText||'')}" ${isOtherTrade()?'autofocus':''}><div class="other-trade-error" id="other-trade-error" role="alert"></div></div></div></div>`;
+    return `${cards}<div class="other-trade-shell ${isOtherTrade()?'open':''}" id="other-trade-shell" aria-hidden="${!isOtherTrade()}" ${isOtherTrade()?'':'inert'}><div class="other-trade-content"><div class="field other-trade-field"><label for="other-trade">Tell us your trade</label><input id="other-trade" type="text" maxlength="60" autocomplete="off" tabindex="${isOtherTrade()?0:-1}" placeholder="e.g. Roofing, Tiling, Landscaping" value="${escapeHtml((otherText||'').trim())}" ${isOtherTrade()?'autofocus':''}><div class="other-trade-error" id="other-trade-error" role="alert"></div></div></div></div>`;
   }
   return `<div class="cards">${Object.entries(options).map(([v,l])=>`<button class="choice ${picked[key]===v?'selected':''}" type="button" data-key="${key}" data-value="${v}" aria-pressed="${picked[key]===v}">${icon(key)}<span>${escapeHtml(l)}</span></button>`).join('')}</div>`;
 }
@@ -341,4 +381,795 @@ document.getElementById('startNow').onclick=async()=>{
     startButton.disabled=false;
   }
 };
+</script>
+<script>
+(() => {
+  const taskOptions = [
+    ['quoting', 'Preparing quotes'],
+    ['enquiries', 'Customer enquiries'],
+    ['invoicing', 'Invoicing and follow-up'],
+    ['scheduling', 'Scheduling jobs'],
+    ['documentation', 'Job notes and paperwork'],
+    ['compliance', 'Compliance paperwork'],
+    ['other', 'Other']
+  ];
+  const slowdownOptions = {
+    quoting: ['Working out scope and materials', 'Writing up the quote', 'Rebuilding similar quotes from scratch', 'Following up on sent quotes'],
+    enquiries: ['Answering the same questions', 'Collecting missing job details', 'Replying while on site', 'Keeping track of who is waiting'],
+    invoicing: ['Preparing invoice details', 'Finding completed job details', 'Following up on unpaid invoices', 'Re-entering details across tools'],
+    scheduling: ['Juggling changes and clashes', 'Confirming times with customers', 'Passing details to the team', 'Planning travel and materials'],
+    documentation: ['Writing notes after the job', 'Finding past job details', 'Organising photos and documents', 'Re-entering details across tools'],
+    compliance: ['Remembering what is required', 'Filling in the same forms repeatedly', 'Finding licences and certificates', 'Keeping records up to date']
+  };
+  const toolOptions = [
+    'Paper and notebooks', 'Spreadsheets', 'Email and phone',
+    'Accounting software', 'Job management software', 'Other'
+  ];
+  const timingOptions = ['During the workday', 'Evenings', 'Weekends', 'Whenever I can fit it in'];
+  const ownerOptions = [
+    'Me', 'A partner or family member', 'Office admin or staff', 'A bookkeeper or outside provider'
+  ];
+  const aiExperienceOptions = ['Never', 'Tried it once or twice', 'Use it sometimes', 'Use it regularly'];
+  const worryOptions = [
+    'Accuracy of the answers', 'Customer data and privacy', 'Cost',
+    'Time to learn', 'Losing the personal touch', 'Nothing in particular'
+  ];
+  const taskIconPaths = {
+    quoting: '<path d="M7 3h8l4 4v14H7z"/><path d="M15 3v5h5M10 13h6M10 17h6"/>',
+    enquiries: '<path d="M4 5h16v12H9l-5 4z"/><path d="M8 10h8M8 13h5"/>',
+    invoicing: '<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 9h6M9 13h6"/>',
+    scheduling: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 14h3M8 17h7"/>',
+    documentation: '<path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 13h8M8 17h8"/>',
+    compliance: '<path d="m12 3 8 3v5c0 5-3 8-8 10-5-2-8-5-8-10V6z"/><path d="m8 12 3 3 5-6"/>',
+    other: '<circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/>'
+  };
+  const taskIcon = key => `<svg class="task-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${taskIconPaths[key]}</svg>`;
+  const newAnswers = () => ({
+    trade: '', otherTradeText: '', size: '',
+    tasks: [], otherTaskText: '', slowdowns: {}, timeCost: '',
+    timing: [], workOwner: '', tools: [], otherToolText: '',
+    aiExperience: '', worries: [], reviewStyle: ''
+  });
+  const displayTask = key => key === 'other'
+    ? picked.otherTaskText.trim()
+    : D.pains[key];
+  const toggle = (list, value) => list.includes(value)
+    ? list.filter(item => item !== value)
+    : [...list, value];
+  const safeValue = value => escapeHtml(String(value || '').trim());
+  const shortField = (id, label, placeholder, value, disabled = false) => `
+    <div class="inline-field ${disabled ? '' : 'open'}" aria-hidden="${disabled}">
+      <div><label for="${id}">${label}</label>
+      <input id="${id}" type="text" maxlength="60" autocomplete="off" placeholder="${placeholder}"
+        value="${safeValue(value)}" ${disabled ? 'disabled' : ''}></div>
+    </div>`;
+  const stepFrame = (number, title, heading, intro, content) => `
+    <section class="panel step" aria-labelledby="step-title">
+      <span class="eyebrow">Step ${number} · ${title}</span>
+      <h2 id="step-title" tabindex="-1">${heading}</h2>
+      ${intro ? `<p class="step-intro">${intro}</p>` : ''}
+      ${content}
+      <div class="error" id="validation-message" role="alert"></div>
+      <div class="actions">
+        <button class="secondary" id="back" type="button">Back</button>
+        <button class="primary" id="continue" type="button" disabled>Continue</button>
+      </div>
+    </section>`;
+
+  function progress() {
+    const number = uiStep + 1;
+    document.getElementById('progressLabel').textContent = `${number}/5`;
+    document.getElementById('progressFill').style.width = `${number / 5 * 100}%`;
+    const bar = document.querySelector('.progress');
+    bar.setAttribute('aria-valuenow', number);
+    bar.setAttribute('aria-valuemax', '5');
+  }
+  function errorMessage(message = '') {
+    const target = document.getElementById('validation-message');
+    if (target) target.textContent = message;
+  }
+  function activeStep() {
+    const screen = document.getElementById('screen');
+    screen.innerHTML = '';
+    progress();
+    if (uiStep === 0) renderBusiness(screen);
+    if (uiStep === 1) renderTasks(screen);
+    if (uiStep === 2) renderSlowdowns(screen);
+    if (uiStep === 3) renderContext(screen);
+    if (uiStep === 4) renderHowYouWork(screen);
+    if (uiStep > 4) renderResults();
+  }
+  function attachCommon(canContinue) {
+    const back = document.getElementById('back');
+    if (back && !back.disabled) back.onclick = () => {
+      uiStep = Math.max(0, uiStep - 1);
+      activeStep();
+    };
+    const next = document.getElementById('continue');
+    if (!next) return;
+    const refresh = () => { next.disabled = !canContinue(); };
+    next.onclick = async () => {
+      if (!canContinue()) return;
+      errorMessage('');
+      await advance();
+    };
+    refresh();
+    return refresh;
+  }
+  function renderBusiness(screen) {
+    const size = picked.size || session?.answers?.size || '';
+    screen.innerHTML = `<section class="panel step">
+      <span class="eyebrow">Step 1 · Your business</span>
+      <h2>What kind of business are you running?</h2>
+      <p class="step-intro">Choose your trade, then tell us the team size.</p>
+      ${choiceGrid(tradeLabels, 'trade')}
+      <div class="fields" style="margin-top:18px"><div class="field">
+        <label for="size">Team size</label>
+        <input id="size" type="number" min="1" max="200" inputmode="numeric" value="${escapeHtml(size)}" placeholder="Including you">
+      </div></div>
+      <div class="error" id="validation-message" role="alert"></div>
+      <div class="actions"><button class="secondary" id="back" type="button" disabled>Back</button>
+      <button class="primary" id="continue" type="button" disabled>Continue</button></div>
+    </section>`;
+    bindChoices();
+    const sizeInput = document.getElementById('size');
+    const refresh = () => {
+      picked.size = sizeInput.value;
+      const validSize = Number.isInteger(Number(picked.size)) && Number(picked.size) >= 1 && Number(picked.size) <= 200;
+      document.getElementById('continue').disabled = !picked.trade || (isOtherTrade() && !picked.otherTradeText.trim()) || !validSize;
+    };
+    sizeInput.addEventListener('input', refresh);
+    document.querySelectorAll('.trade-choice').forEach(button => button.addEventListener('click', () => setTimeout(refresh)));
+    const otherTrade = document.getElementById('other-trade');
+    if (otherTrade) otherTrade.addEventListener('input', refresh);
+    document.getElementById('continue').onclick = () => {
+      refresh();
+      if (!picked.trade) return errorMessage('Choose your trade.');
+      if (isOtherTrade() && !picked.otherTradeText.trim()) return errorMessage('Enter your trade to continue.');
+      const teamSize = Number(sizeInput.value);
+      if (!Number.isInteger(teamSize) || teamSize < 1 || teamSize > 200) return errorMessage('Enter a whole team size from 1 to 200.');
+      picked.size = teamSize;
+      advance();
+    };
+  }
+  function renderTasks(screen) {
+    const full = picked.tasks.length >= 3;
+    const cards = taskOptions.map(([key, label]) => {
+      const selected = picked.tasks.includes(key);
+      const disabled = full && !selected;
+      const rank = selected ? picked.tasks.indexOf(key) + 1 : '';
+      return `<button class="choice" type="button" role="checkbox" aria-checked="${selected}" aria-disabled="${disabled}" ${disabled ? 'disabled' : ''} data-task="${key}">
+        ${taskIcon(key)}<span>${key === 'other' && selected && picked.otherTaskText.trim() ? safeValue(picked.otherTaskText) : label}</span>
+        ${selected ? `<span class="task-badge" aria-label="Priority ${rank}">${rank}</span>` : ''}
+      </button>`;
+    }).join('');
+    screen.innerHTML = stepFrame(2, 'Your work', 'Which tasks keep slowing you down?', '',
+      `<p class="step-hint">Pick up to three. Tap them in order of importance.</p>
+      <div class="cards task-cards">${cards}</div>
+      ${picked.tasks.length >= 3 ? '<p class="selection-note">Three is plenty. Deselect one to swap.</p>' : ''}
+      ${shortField('other-task', 'Tell us the task', 'e.g. Ordering materials', picked.otherTaskText, !picked.tasks.includes('other'))}`);
+    const refresh = () => {
+      document.getElementById('continue').disabled = !picked.tasks.length ||
+        (picked.tasks.includes('other') && !picked.otherTaskText.trim());
+    };
+    document.querySelectorAll('[data-task]').forEach(button => button.addEventListener('click', () => {
+      const key = button.dataset.task;
+      picked.tasks = toggle(picked.tasks, key);
+      activeStep();
+      if (key === 'other' && picked.tasks.includes('other')) document.getElementById('other-task')?.focus();
+    }));
+    document.getElementById('other-task')?.addEventListener('input', event => {
+      picked.otherTaskText = event.target.value;
+      const label = event.target.value.trim();
+      const otherCard = document.querySelector('[data-task="other"] span:not(.task-badge)');
+      if (otherCard && picked.tasks.includes('other')) otherCard.textContent = label || 'Other';
+      refresh();
+    });
+    attachCommon(() => picked.tasks.length > 0 && (!picked.tasks.includes('other') || !!picked.otherTaskText.trim()));
+    refresh();
+  }
+  function slowdownState(key) {
+    if (!picked.slowdowns[key]) picked.slowdowns[key] = { selected: [], customSelected: false, customText: '' };
+    return picked.slowdowns[key];
+  }
+  function renderSlowdowns(screen) {
+    const blocks = picked.tasks.map(key => {
+      const state = slowdownState(key);
+      const taskTitle = displayTask(key);
+      if (key === 'other') return `<article class="task-block"><h3>${safeValue(taskTitle)}</h3>
+        <label for="slowdown-other">What slows this down?</label>
+        <input class="field-input" id="slowdown-other" maxlength="60" type="text" placeholder="What slows this down?" value="${safeValue(state.customText)}"></article>`;
+      const chips = [...slowdownOptions[key], 'Something else'];
+      return `<article class="task-block"><h3>${safeValue(taskTitle)}</h3><div class="chip-group" role="group" aria-label="Slowdowns for ${safeValue(taskTitle)}">
+        ${chips.map((label, index) => {
+          const custom = index === chips.length - 1;
+          const selected = custom ? state.customSelected : state.selected.includes(label);
+          return `<button class="chip" type="button" role="checkbox" aria-checked="${selected}" data-slow-task="${key}" data-slow-index="${index}">${label}</button>`;
+        }).join('')}</div>
+        ${shortField(`slow-custom-${key}`, 'Tell us what else slows this down', 'Tell us what else slows this down', state.customText, !state.customSelected)}
+      </article>`;
+    }).join('');
+    const timeOptions = ['Under 1 hour', '1 to 3 hours', '3 to 6 hours', 'More than 6 hours'];
+    screen.innerHTML = stepFrame(3, 'The slowdown', 'What makes this slow?', '',
+      `<div class="task-blocks">${blocks}</div>
+      <fieldset style="border:0;padding:0;margin:18px 0 0"><legend style="font-weight:800;margin-bottom:10px">How much time does this cost you each week?</legend>
+      <div class="time-grid">${timeOptions.map(value => `<button class="choice" type="button" aria-pressed="${picked.timeCost === value}" data-time="${value}">${value}</button>`).join('')}</div></fieldset>`);
+    const hasSlowdown = () => picked.tasks.some(key => {
+      const state = slowdownState(key);
+      return key === 'other'
+        ? !!state.customText.trim()
+        : state.selected.length > 0 || (state.customSelected && !!state.customText.trim());
+    });
+    document.querySelectorAll('[data-slow-task]').forEach(button => button.addEventListener('click', () => {
+      const key = button.dataset.slowTask;
+      const state = slowdownState(key);
+      const index = Number(button.dataset.slowIndex);
+      if (index === slowdownOptions[key].length) state.customSelected = !state.customSelected;
+      else state.selected = toggle(state.selected, slowdownOptions[key][index]);
+      activeStep();
+      if (index === slowdownOptions[key].length && state.customSelected) document.getElementById(`slow-custom-${key}`)?.focus();
+    }));
+    picked.tasks.filter(key => key !== 'other').forEach(key => {
+      document.getElementById(`slow-custom-${key}`)?.addEventListener('input', event => {
+        slowdownState(key).customText = event.target.value;
+        refresh();
+      });
+    });
+    document.getElementById('slowdown-other')?.addEventListener('input', event => {
+      slowdownState('other').customText = event.target.value;
+      refresh();
+    });
+    document.querySelectorAll('[data-time]').forEach(button => button.addEventListener('click', () => {
+      picked.timeCost = button.dataset.time;
+      document.querySelectorAll('[data-time]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      refresh();
+    }));
+    function refresh() {
+      document.getElementById('continue').disabled = !hasSlowdown() || !picked.timeCost;
+    }
+    attachCommon(() => hasSlowdown() && !!picked.timeCost);
+    refresh();
+  }
+  function renderContext(screen) {
+    const chips = (items, selected, dataName) => `<div class="chip-group" role="group">${items.map(value =>
+      `<button class="chip" type="button" role="checkbox" aria-checked="${selected.includes(value)}" data-${dataName}="${value}">${value}</button>`
+    ).join('')}</div>`;
+    screen.innerHTML = stepFrame(4, 'The context', 'When does this work usually get done?', '',
+      `${chips(timingOptions, picked.timing, 'timing')}
+      <fieldset style="border:0;padding:0;margin:22px 0 0"><legend style="font-weight:800;margin-bottom:10px">Who does it today?</legend>
+      <div class="cards">${ownerOptions.map(value => `<button class="choice" type="button" aria-pressed="${picked.workOwner === value}" data-owner="${value}">${value}</button>`).join('')}</div></fieldset>`);
+    document.querySelectorAll('[data-timing]').forEach(button => button.addEventListener('click', () => {
+      picked.timing = toggle(picked.timing, button.dataset.timing);
+      button.setAttribute('aria-checked', String(picked.timing.includes(button.dataset.timing)));
+      refresh();
+    }));
+    document.querySelectorAll('[data-owner]').forEach(button => button.addEventListener('click', () => {
+      picked.workOwner = button.dataset.owner;
+      document.querySelectorAll('[data-owner]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      refresh();
+    }));
+    function refresh() {
+      document.getElementById('continue').disabled = !picked.timing.length || !picked.workOwner;
+    }
+    attachCommon(() => picked.timing.length > 0 && !!picked.workOwner);
+    refresh();
+  }
+  function renderHowYouWork(screen) {
+    const multiChips = (items, selected, dataName) => `<div class="chip-group" role="group">${items.map(value =>
+      `<button class="chip" type="button" role="checkbox" aria-checked="${selected.includes(value)}" data-${dataName}="${value}">${value}</button>`
+    ).join('')}</div>`;
+    const readiness = Object.entries(readinessLabels).map(([key, label]) =>
+      `<button class="choice" type="button" aria-pressed="${picked.reviewStyle === key}" data-review="${key}">${label}</button>`
+    ).join('');
+    screen.innerHTML = stepFrame(5, 'How you work', 'What do you use now?', '',
+      `${multiChips(toolOptions, picked.tools, 'tool')}
+      ${shortField('other-tool', 'Tell us what you use', 'Tell us what you use', picked.otherToolText, !picked.tools.includes('Other'))}
+      <fieldset style="border:0;padding:0;margin:18px 0"><legend style="font-weight:800;margin-bottom:10px">Have you used AI before?</legend>
+      <div class="cards">${aiExperienceOptions.map(value => `<button class="choice" type="button" aria-pressed="${picked.aiExperience === value}" data-experience="${value}">${value}</button>`).join('')}</div></fieldset>
+      <fieldset style="border:0;padding:0;margin:18px 0"><legend style="font-weight:800;margin-bottom:10px">What worries you most about AI?</legend>${multiChips(worryOptions, picked.worries, 'worry')}</fieldset>
+      <fieldset style="border:0;padding:0;margin:18px 0"><legend style="font-weight:800;margin-bottom:10px">How would you like to review recommendations?</legend><div class="cards">${readiness}</div></fieldset>`);
+    document.querySelectorAll('[data-tool]').forEach(button => button.addEventListener('click', () => {
+      picked.tools = toggle(picked.tools, button.dataset.tool);
+      button.setAttribute('aria-checked', String(picked.tools.includes(button.dataset.tool)));
+      const field = document.getElementById('other-tool');
+      const active = picked.tools.includes('Other');
+      field.disabled = !active;
+      field.closest('.inline-field').classList.toggle('open', active);
+      field.closest('.inline-field').setAttribute('aria-hidden', String(!active));
+      refresh();
+    }));
+    document.getElementById('other-tool')?.addEventListener('input', event => {
+      picked.otherToolText = event.target.value;
+      refresh();
+    });
+    document.querySelectorAll('[data-experience]').forEach(button => button.addEventListener('click', () => {
+      picked.aiExperience = button.dataset.experience;
+      document.querySelectorAll('[data-experience]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      refresh();
+    }));
+    document.querySelectorAll('[data-worry]').forEach(button => button.addEventListener('click', () => {
+      picked.worries = toggle(picked.worries, button.dataset.worry);
+      button.setAttribute('aria-checked', String(picked.worries.includes(button.dataset.worry)));
+      refresh();
+    }));
+    document.querySelectorAll('[data-review]').forEach(button => button.addEventListener('click', () => {
+      picked.reviewStyle = button.dataset.review;
+      document.querySelectorAll('[data-review]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      refresh();
+    }));
+    function refresh() {
+      document.getElementById('continue').disabled = !picked.tools.length ||
+        (picked.tools.includes('Other') && !picked.otherToolText.trim()) ||
+        !picked.aiExperience || !picked.worries.length || !picked.reviewStyle;
+    }
+    attachCommon(() => picked.tools.length > 0 &&
+      (!picked.tools.includes('Other') || !!picked.otherToolText.trim()) &&
+      !!picked.aiExperience && picked.worries.length > 0 && !!picked.reviewStyle);
+    refresh();
+  }
+  function slowdownAnswers() {
+    return picked.tasks.flatMap(key => {
+      const state = slowdownState(key);
+      if (key === 'other') return state.customText.trim() ? [state.customText.trim()] : [];
+      return [
+        ...state.selected,
+        ...(state.customSelected && state.customText.trim() ? [state.customText.trim()] : [])
+      ];
+    });
+  }
+  function answerContext() {
+    const tasks = picked.tasks.map(displayTask).map(value => value.trim()).filter(Boolean);
+    const slowdowns = Object.fromEntries(picked.tasks.map(key => {
+      const state = slowdownState(key);
+      const values = key === 'other'
+        ? (state.customText.trim() ? [state.customText.trim()] : [])
+        : [...state.selected, ...(state.customSelected && state.customText.trim() ? [state.customText.trim()] : [])];
+      return [displayTask(key).trim(), values.map(value => value.trim())];
+    }));
+    return {
+      trade: isOtherTrade() ? picked.otherTradeText.trim() : D.trades[picked.trade] || picked.trade,
+      team_size: Number(picked.size),
+      selected_tasks: tasks,
+      task_priorities: tasks,
+      slowdowns_by_task: slowdowns,
+      time_cost_per_week: picked.timeCost,
+      work_timing: [...picked.timing],
+      work_done_by: picked.workOwner,
+      current_tools: [...picked.tools.filter(value => value !== 'Other'), ...(picked.tools.includes('Other') ? [picked.otherToolText.trim()] : [])],
+      ai_experience: picked.aiExperience,
+      ai_worries: [...picked.worries],
+      recommendation_review_style: readinessLabels[picked.reviewStyle]
+    };
+  }
+  function makePlan() {
+    const context = answerContext();
+    const priorityKeys = picked.tasks.slice(0, 2).map(key => key === 'other' ? 'documentation' : key);
+    const primaryKey = priorityKeys[0] || 'documentation';
+    const recommendationIds = [D.primary_use_case[primaryKey]];
+    const secondKey = priorityKeys[1];
+    if (secondKey) {
+      const second = D.primary_use_case[secondKey];
+      if (second && !recommendationIds.includes(second)) recommendationIds.push(second);
+    }
+    const firstSlowdowns = Object.values(context.slowdowns_by_task)[0] || [];
+    const worries = context.ai_worries.join(', ').toLowerCase();
+    const novice = context.ai_experience === 'Never';
+    const timeText = context.time_cost_per_week.toLowerCase();
+    const timingText = context.work_timing.join(' and ').toLowerCase();
+    const ownerText = context.work_done_by.toLowerCase();
+    const toolsText = context.current_tools.join(', ').toLowerCase();
+    const experienceText = context.ai_experience.toLowerCase();
+    const recommendations = recommendationIds.map((id, index) => {
+      const item = D.use_cases[id];
+      const task = context.selected_tasks[index] || context.selected_tasks[0];
+      const priorities = index === 0 ? 'your number-one priority' : 'your next priority';
+      const why = `This fits ${priorities}, ${task.toLowerCase()}${firstSlowdowns.length && index === 0 ? `, especially ${firstSlowdowns.join(', ').toLowerCase()}` : ''}. You said this costs ${timeText} each week, is usually done ${timingText} by ${ownerText}, and you currently use ${toolsText}. You have ${experienceText} with AI, so this recommendation is sized to that experience.`;
+      const beginner = novice
+        ? ' Keep it beginner-friendly: use one familiar, approved AI assistant for a single draft, with no automation or software setup.'
+        : '';
+      const concernStep = ` To address your stated concern${context.ai_worries.length > 1 ? 's' : ''} (${worries}), use a fictional or redacted example, check every detail, and do not share customer information.`;
+      return {
+        id, rank: index + 1, title: item.title, description: item.description,
+        why, score: index === 0 ? 1 : 0,
+        approach: `${item.approach} Your current tools are ${toolsText}.${beginner}`,
+        first_action: `${item.first_action}${beginner}${concernStep}`,
+        check: item.check
+      };
+    });
+    const primary = recommendations[0];
+    return {
+      generated_at: new Date().toISOString(),
+      context: `${context.selected_tasks.join(', ')} · ${context.time_cost_per_week} each week`,
+      summary: `Priority #1 is ${context.selected_tasks[0]}. The owner reports ${timeText} of weekly cost, usually handled ${timingText} by ${ownerText}, using ${toolsText}. AI experience: ${experienceText}. Stated worries: ${context.ai_worries.join(', ')}.`,
+      recommendations,
+      recommended_first: primary.id,
+      selected: primary.id,
+      adoption: [
+        { when: 'First test', action: primary.first_action },
+        { when: 'Review', action: primary.check },
+        { when: 'Decide', action: `${readinessLabels[picked.reviewStyle]} Keep the approach only if your small test is useful and accurate for your business.` }
+      ],
+      guardrails: [
+        'Use redacted or fictional examples in any AI tool unless your business has approved its data handling.',
+        'Keep pricing, safety, compliance, customer promises and final decisions with a qualified person.',
+        'This is a trial plan, not an estimate of hours saved or a claim of business impact.'
+      ],
+      logic: 'The first recommendation follows priority #1. An optional second recommendation follows priority #2. The rationale uses the owner’s reported time cost, work context, current tools, AI experience and stated worries.',
+      evidence_status: 'Recommendations are hypotheses based on your answers. Validate relevance, accuracy and usefulness with a small test.'
+    };
+  }
+  function validateGeneratedPlan(data, context) {
+    if (!data || typeof data !== 'object' || Object.keys(data).length !== 1 ||
+        !Array.isArray(data.recommendations) ||
+        data.recommendations.length < 1 || data.recommendations.length > 2) {
+      throw new Error('The AI service returned an invalid recommendation list.');
+    }
+    const catalog = new Map(Object.entries(D.use_cases));
+    const seen = new Set();
+    const usedSentences = new Set();
+    const recommendations = data.recommendations.map((item, index) => {
+      if (!item || typeof item !== 'object' || Array.isArray(item)) {
+        throw new Error(`Recommendation ${index + 1} is invalid.`);
+      }
+      const expectedKeys = [
+        'catalog_id', 'title', 'headline', 'why_it_fits', 'first_steps',
+        'possible_time_saving', 'watch_out', 'effort'
+      ];
+      if (Object.keys(item).length !== expectedKeys.length ||
+          expectedKeys.some(key => !Object.hasOwn(item, key))) {
+        throw new Error(`Recommendation ${index + 1} has an invalid shape.`);
+      }
+      const { catalog_id, title, headline, why_it_fits, first_steps, possible_time_saving, watch_out, effort } = item;
+      const catalogItem = catalog.get(catalog_id);
+      if (!catalogItem || seen.has(catalog_id) || title !== catalogItem.title ||
+          typeof headline !== 'string' || !headline.trim() || headline.trim().split(/\s+/).length >= 12 ||
+          /[\r\n]/.test(headline) ||
+          typeof why_it_fits !== 'string' || !why_it_fits.trim() ||
+          !Array.isArray(first_steps) || first_steps.length !== 3 ||
+          first_steps.some(step => typeof step !== 'string' || !step.trim() || step.trim().split(/\s+/).length >= 20) ||
+          typeof possible_time_saving !== 'string' || !possible_time_saving.trim() ||
+          typeof watch_out !== 'string' || !watch_out.trim() ||
+          !['Low', 'Medium'].includes(effort)) {
+        throw new Error(`Recommendation ${index + 1} did not match the expected format.`);
+      }
+      const sentenceCount = text => text.trim().split(/(?<=[.!?])\s+/).length;
+      if (sentenceCount(why_it_fits) < 2 || sentenceCount(why_it_fits) > 3 ||
+          !/[.!?]$/.test(why_it_fits.trim()) || sentenceCount(possible_time_saving) !== 1 ||
+          sentenceCount(watch_out) !== 1 || !/[.!?]$/.test(possible_time_saving.trim()) ||
+          !/[.!?]$/.test(watch_out.trim())) {
+        throw new Error(`Recommendation ${index + 1} did not contain complete sentences.`);
+      }
+      for (const sentence of why_it_fits.toLowerCase().trim().split(/(?<=[.!?])\s+/)) {
+        if (usedSentences.has(sentence)) throw new Error('The recommendations repeated reasoning.');
+        usedSentences.add(sentence);
+      }
+      seen.add(catalog_id);
+      return {
+        id: catalog_id,
+        catalog_id,
+        rank: index + 1,
+        title,
+        description: catalogItem.description,
+        headline: headline.trim(),
+        why_it_fits: why_it_fits.trim(),
+        why: why_it_fits.trim(),
+        first_steps: first_steps.map(step => step.trim()),
+        first_action: first_steps[0].trim(),
+        possible_time_saving: possible_time_saving.trim(),
+        watch_out: watch_out.trim(),
+        effort
+      };
+    });
+    return {
+      generated_at: new Date().toISOString(),
+      context: `${context.selected_tasks.join(', ')} · ${context.time_cost_per_week} each week`,
+      trade: context.trade,
+      team_size: context.team_size,
+      summary: 'AI-generated suggestions based on the answers provided.',
+      recommendations,
+      recommended_first: recommendations[0].id,
+      selected: recommendations[0].id,
+      source: 'ai'
+    };
+  }
+  async function requestGeneratedPlan(context) {
+    const config = window.ZF_SUPABASE;
+    if (!config?.url || !config.anonKey) throw new Error('Supabase is not configured.');
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    try {
+      const response = await window.ZF_REMOTE_FETCH(`${config.url.replace(/\/+$/, '')}/functions/v1/recommend-plan`, {
+        method: 'POST',
+        headers: {
+          apikey: config.anonKey,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          context,
+          catalog: Object.entries(D.use_cases).map(([id, item]) => ({
+            id, title: item.title, description: item.description
+          }))
+        }),
+        signal: controller.signal
+      });
+      let data;
+      try {
+        data = await response.json();
+      } catch {
+        throw new Error('The recommendation service returned unreadable data.');
+      }
+      if (!response.ok) throw new Error(data.error || 'The recommendation service could not complete the request.');
+      return validateGeneratedPlan(data, context);
+    } catch (error) {
+      if (controller.signal.aborted) throw new Error('The recommendation service timed out.');
+      throw error;
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+  function makeFallbackPlan() {
+    const context = answerContext();
+    const plan = makePlan();
+    plan.trade = context.trade;
+    plan.team_size = context.team_size;
+    plan.source = 'fallback';
+    plan.recommendations = plan.recommendations.map(item => ({
+      ...item,
+      catalog_id: item.id,
+      headline: 'A practical first test for this task',
+      why_it_fits: item.why,
+      first_steps: [
+        'Open a general AI chat assistant with no setup.',
+        `Ask for a draft of this ${item.title.toLowerCase()} using fictional job details.`,
+        'Check every detail before deciding whether the draft helps.'
+      ],
+      possible_time_saving: `Any time saving is only a possibility against the ${context.time_cost_per_week} you spend on this work each week.`,
+      watch_out: `Use fictional or redacted details and check every result. Your main worry is ${context.ai_worries[0].toLowerCase()}.`,
+      effort: 'Low'
+    }));
+    return plan;
+  }
+  async function advance() {
+    if (busy) return;
+    if (uiStep === 0) {
+      session.answers.trade = isOtherTrade() ? picked.otherTradeText.trim() : picked.trade;
+      session.answers.trade_custom = isOtherTrade();
+      session.answers.size = Number(picked.size);
+    } else if (uiStep === 1) {
+      if (!picked.tasks.length || (picked.tasks.includes('other') && !picked.otherTaskText.trim())) {
+        return errorMessage(picked.tasks.length ? 'Tell us what the other task is.' : 'Choose at least one task.');
+      }
+      session.answers.tasks = answerContext().selected_tasks;
+      session.answers.pain = picked.tasks[0] === 'other' ? 'documentation' : picked.tasks[0];
+      session.answers.bottleneck = slowdownAnswers().join(', ');
+    } else if (uiStep === 2) {
+      if (!slowdownAnswers().length || !picked.timeCost) return errorMessage('Choose at least one slowdown and a weekly time cost.');
+      session.answers.slowdowns = answerContext().slowdowns_by_task;
+      session.answers.timeCost = picked.timeCost;
+    } else if (uiStep === 3) {
+      if (!picked.timing.length || !picked.workOwner) return errorMessage('Choose when the work gets done and who does it.');
+      session.answers.timing = [...picked.timing];
+      session.answers.workOwner = picked.workOwner;
+    } else if (uiStep === 4) {
+      if (!picked.tools.length || (picked.tools.includes('Other') && !picked.otherToolText.trim()) ||
+          !picked.aiExperience || !picked.worries.length || !picked.reviewStyle) {
+        return errorMessage('Complete each section to get a recommendation tailored to you.');
+      }
+      session.answers.tools = [...picked.tools];
+      session.answers.readiness = picked.reviewStyle;
+      session.answers.context = answerContext();
+      busy = true;
+      document.getElementById('screen').innerHTML = `<section class="loading" aria-live="polite"><div><div class="loader" aria-hidden="true"></div><h2 id="loading-message">Reading your answers</h2></div></section>`;
+      const loadingMessages = [
+        'Reading your answers',
+        'Matching tasks to your business',
+        'Choosing a practical first step'
+      ];
+      let messageIndex = 0;
+      const loadingTimer = setInterval(() => {
+        messageIndex = (messageIndex + 1) % loadingMessages.length;
+        const message = document.getElementById('loading-message');
+        if (message) message.textContent = loadingMessages[messageIndex];
+      }, 1100);
+      const result = await requestGeneratedPlan(session.answers.context)
+        .then(plan => ({ plan, error: null }))
+        .catch(error => ({ plan: null, error }));
+      clearInterval(loadingTimer);
+      if (result.error) {
+        console.warn('Using the standard recommendation plan:', result.error);
+        session.plan = makeFallbackPlan();
+        session.plan.fallback_note = 'Showing a standard plan because the AI service was unavailable.';
+      } else {
+        session.plan = result.plan;
+      }
+      uiStep = 5;
+      renderResults();
+      saveAssessment().catch(error => {
+        const status = document.getElementById('save-status');
+        if (status) status.textContent = `Your plan is ready, but it could not be saved: ${error.message}`;
+      }).finally(() => { busy = false; });
+      return;
+    }
+    uiStep++;
+    activeStep();
+  }
+  function renderResults() {
+    document.querySelector('.progress').style.display = 'none';
+    const plan = session.plan;
+    const screen = document.getElementById('screen');
+    const result = document.createElement('section');
+    result.className = 'result';
+    result.setAttribute('aria-live', 'polite');
+    const eyebrow = document.createElement('span');
+    eyebrow.className = 'eyebrow';
+    eyebrow.textContent = 'Your recommendations';
+    const heading = document.createElement('h2');
+    heading.textContent = plan.recommendations.length === 1
+      ? 'One clear place to start.'
+      : 'Two options worth considering.';
+    const audience = document.createElement('p');
+    audience.className = 'result-note';
+    audience.textContent = `Written for ${plan.trade}, team of ${plan.team_size}`;
+    result.append(eyebrow, heading, audience);
+    if (plan.fallback_note) {
+      const fallbackNote = document.createElement('p');
+      fallbackNote.className = 'result-note fallback-note';
+      fallbackNote.textContent = plan.fallback_note;
+      result.append(fallbackNote);
+    }
+    const aiLabel = document.createElement('p');
+    aiLabel.className = 'result-note';
+    aiLabel.textContent = plan.source === 'ai'
+      ? 'AI-generated suggestion. You review everything before acting.'
+      : 'Standard suggestion. You review everything before acting.';
+    result.append(aiLabel);
+    for (const item of plan.recommendations) {
+      const article = document.createElement('article');
+      article.className = 'recommendation';
+      const title = document.createElement('h3');
+      title.textContent = item.title;
+      const headline = document.createElement('p');
+      headline.className = 'headline';
+      headline.textContent = item.headline;
+      const why = document.createElement('p');
+      const whyLabel = document.createElement('strong');
+      whyLabel.textContent = 'Why this fits';
+      why.append(whyLabel, document.createElement('br'), document.createTextNode(item.why_it_fits));
+      const firstStepLabel = document.createElement('strong');
+      firstStepLabel.textContent = 'Your first step';
+      const firstSteps = document.createElement('ol');
+      firstSteps.className = 'first-steps';
+      for (const step of item.first_steps) {
+        const listItem = document.createElement('li');
+        listItem.textContent = step;
+        firstSteps.append(listItem);
+      }
+      const steps = document.createElement('div');
+      steps.append(firstStepLabel, firstSteps);
+      const saving = document.createElement('p');
+      const savingLabel = document.createElement('strong');
+      savingLabel.textContent = 'Possible time saving: ';
+      saving.append(savingLabel, document.createTextNode(item.possible_time_saving));
+      const watch = document.createElement('p');
+      const watchLabel = document.createElement('strong');
+      watchLabel.textContent = 'Watch out: ';
+      watch.append(watchLabel, document.createTextNode(item.watch_out));
+      const effort = document.createElement('span');
+      effort.className = 'effort-tag';
+      effort.textContent = `${item.effort} effort`;
+      article.append(title, headline, why, steps, saving, watch, effort);
+      result.append(article);
+    }
+    const control = document.createElement('div');
+    control.className = 'control';
+    const controlLabel = document.createElement('strong');
+    controlLabel.textContent = 'You stay in control. ';
+    control.append(controlLabel, document.createTextNode('Review every recommendation and keep decisions with a person.'));
+    const saveStatus = document.createElement('p');
+    saveStatus.id = 'save-status';
+    saveStatus.className = 'selection-note';
+    saveStatus.setAttribute('role', 'status');
+    saveStatus.setAttribute('aria-live', 'polite');
+    const actions = document.createElement('div');
+    actions.className = 'plan-actions';
+    actions.innerHTML = '<button class="primary" id="download" type="button">Download plan</button><button class="secondary" id="restart" type="button">Start again</button>';
+    result.append(control, saveStatus, actions);
+    screen.replaceChildren(result);
+    document.getElementById('download').onclick = downloadCurrentPlan;
+    document.getElementById('restart').onclick = resetFlow;
+  }
+  function downloadCurrentPlan() {
+    const plan = session.plan;
+    const chosen = plan.recommendations.find(item => item.id === plan.selected) || plan.recommendations[0];
+    const lines = [
+      'ZeroFriction AI Coach — Personalised AI Plan',
+      '',
+      `Written for ${plan.trade}, team of ${plan.team_size}`,
+      plan.context,
+      '',
+      'RECOMMENDATIONS',
+      ...plan.recommendations.flatMap((item, index) => [
+        `${index + 1}. ${item.title}`,
+        item.headline,
+        `Why this fits: ${item.why_it_fits}`,
+        'Your first step:',
+        ...item.first_steps.map((step, stepIndex) => `${stepIndex + 1}. ${step}`),
+        `Possible time saving: ${item.possible_time_saving}`,
+        `Watch out: ${item.watch_out}`,
+        `Effort: ${item.effort}`,
+        ''
+      ]),
+      `SELECTED: ${chosen.title}`,
+      '',
+      plan.fallback_note || 'AI-generated suggestion. You review everything before acting.'
+    ];
+    const url = URL.createObjectURL(new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'zerofriction-ai-plan.txt';
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  async function saveAssessment() {
+    const config = window.ZF_SUPABASE;
+    if (!config?.url || !config.anonKey) throw new Error('Supabase is not configured.');
+    if (!session?.plan) throw new Error('There is no recommendation plan to save.');
+    const answers = session.answers;
+    const taskValues = answers.context.selected_tasks;
+    const bottleneckValues = slowdownAnswers();
+    const selected = session.plan.recommendations.find(item => item.id === session.plan.selected) ||
+      session.plan.recommendations[0];
+    const body = {
+      trade_type: answers.context.trade,
+      business_size: answers.size,
+      task_type: taskValues.join(', '),
+      bottleneck: bottleneckValues.join(', '),
+      uploaded_file_ref: null,
+      ai_use_case: selected.title,
+      recommendation_reason: selected.why_it_fits || selected.why,
+      potential_benefit: selected.possible_time_saving || selected.description,
+      relevance_ranking: String(selected.rank),
+      selected_use_case: selected.title,
+      first_action: (selected.first_steps || [selected.first_action]).join(' '),
+      context: answers.context,
+      recommendation_plan: session.plan,
+      recommendation_source: session.plan.source
+    };
+    const response = await window.ZF_REMOTE_FETCH(`${config.url.replace(/\/+$/, '')}/functions/v1/assessments`, {
+      method: 'POST',
+      headers: { apikey: config.anonKey, Authorization: `Bearer ${config.anonKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || 'Could not save your assessment.');
+  }
+  async function resetFlow() {
+    session = await api('/api/start', 'POST', {});
+    uiStep = 0;
+    picked = newAnswers();
+    document.querySelector('.progress').style.display = 'block';
+    activeStep();
+  }
+  window.renderScreen = activeStep;
+  window.resetCoach = resetFlow;
+  const start = document.getElementById('startNow');
+  start.onclick = async () => {
+    start.disabled = true;
+    try {
+      session = await api('/api/start', 'POST', {});
+      uiStep = 0;
+      picked = newAnswers();
+      document.getElementById('startScreen').style.display = 'none';
+      document.getElementById('app').classList.add('active');
+      activeStep();
+    } catch (error) {
+      const message = document.createElement('p');
+      message.style.color = '#9b3030';
+      message.setAttribute('role', 'alert');
+      message.textContent = `The coach could not start: ${error.message}`;
+      start.after(message);
+      start.disabled = false;
+    }
+  };
+})();
 </script></body></html>

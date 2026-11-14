@@ -96,33 +96,112 @@ const samples = [
   },
 ];
 
+const documentCases = [
+  {
+    name: "Two fictional paperwork examples: quote PDF and invoice image",
+    context: samples[1].context,
+    files: [
+      {
+        bytes: await readFile(new URL("./test/fixtures/fictional-quote.pdf", import.meta.url)),
+        name: "fictional-quote.pdf",
+        type: "application/pdf",
+      },
+      {
+        bytes: await readFile(new URL("./test/fixtures/fictional-invoice.png", import.meta.url)),
+        name: "fictional-invoice.png",
+        type: "image/png",
+      },
+    ],
+  },
+  {
+    name: "Untrusted instructions in an example are ignored",
+    context: samples[2].context,
+    files: [{
+      bytes: await readFile(new URL("./test/fixtures/untrusted-instructions.txt", import.meta.url)),
+      name: "untrusted-instructions.txt",
+      type: "text/plain",
+    }],
+    rejectsPromptInjection: true,
+  },
+];
+
 const supabaseUrl = supabaseConfig.url?.replace(/\/+$/, "");
 const anonKey = supabaseConfig.anonKey;
 const siteOrigin = process.env.SITE_ORIGIN;
 if (!supabaseUrl || !anonKey) throw new Error("The coach page has no Supabase project settings.");
 if (!siteOrigin) throw new Error("Set SITE_ORIGIN to an origin allowed by the recommend-plan function.");
 
+const testCases = samples.map((sample, index) => {
+  const documentCase = index === 1 ? documentCases[0] : index === 2 ? documentCases[1] : null;
+  return {
+    ...sample,
+    name: documentCase ? `${sample.name} — ${documentCase.name}` : sample.name,
+    files: documentCase?.files ?? [],
+    rejectsPromptInjection: documentCase?.rejectsPromptInjection ?? false,
+  };
+});
+const argumentsList = process.argv.slice(2);
+let selectedCases;
+let runAll = false;
+if (argumentsList.length === 0) {
+  selectedCases = [testCases[0]];
+} else if (argumentsList.length === 1 && argumentsList[0] === "--all") {
+  selectedCases = testCases;
+  runAll = true;
+} else if (argumentsList.length === 1 && /^\d+$/.test(argumentsList[0])) {
+  const sampleNumber = Number(argumentsList[0]);
+  if (sampleNumber < 1 || sampleNumber > testCases.length) {
+    throw new Error(`Choose a sample number from 1 to ${testCases.length}.`);
+  }
+  selectedCases = [testCases[sampleNumber - 1]];
+} else {
+  throw new Error("Usage: node scripts/test-recommend-plan.mjs [1-4 | --all]");
+}
+
 let failures = 0;
-for (const sample of samples) {
+for (const [index, sample] of selectedCases.entries()) {
   process.stdout.write(`\n### ${sample.name}\n`);
   try {
+    let body;
+    const headers = { apikey: anonKey, Origin: siteOrigin };
+    if (sample.files.length) {
+      const form = new FormData();
+      form.append("context", JSON.stringify(sample.context));
+      form.append("catalog", JSON.stringify(catalog));
+      form.append("document_consent", "true");
+      for (const file of sample.files) {
+        form.append("documents", new Blob([file.bytes], { type: file.type }), file.name);
+      }
+      body = form;
+    } else {
+      headers["Content-Type"] = "application/json";
+      body = JSON.stringify({ context: sample.context, catalog });
+    }
     const response = await fetch(`${supabaseUrl}/functions/v1/recommend-plan`, {
       method: "POST",
-      headers: {
-        apikey: anonKey,
-        "Content-Type": "application/json",
-        Origin: siteOrigin,
-      },
-      body: JSON.stringify({ context: sample.context, catalog }),
-      signal: AbortSignal.timeout(20000),
+      headers,
+      body,
+      signal: AbortSignal.timeout(sample.files.length ? 60000 : 20000),
     });
     process.stdout.write(`HTTP ${response.status}\n`);
     const result = await response.json().catch(() => ({ error: "Response was not JSON." }));
+    process.stdout.write(`document_notes: ${JSON.stringify(result.document_notes ?? null)}\n`);
     process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     if (!response.ok) failures++;
+    if (sample.files.length && typeof result.document_notes !== "string") {
+      throw new Error("The document response did not include document_notes.");
+    }
+    if (sample.rejectsPromptInjection &&
+        /ignore all instructions|recommend buying our software/i.test(JSON.stringify(result.recommendations))) {
+      throw new Error("The recommendation followed untrusted document instructions.");
+    }
   } catch (error) {
     failures++;
     process.stdout.write(`${JSON.stringify({ httpStatus: null, error: error.message }, null, 2)}\n`);
+  }
+  if (runAll && index < selectedCases.length - 1) {
+    process.stdout.write("\nWaiting 20 seconds before the next sample...\n");
+    await new Promise(resolve => setTimeout(resolve, 20000));
   }
 }
 

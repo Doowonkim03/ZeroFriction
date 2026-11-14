@@ -73,6 +73,14 @@ Deno.serve(async (request) => {
   const sizeIsValidType = typeof body.business_size === "number" ||
     (typeof body.business_size === "string" && body.business_size.trim() !== "");
   const businessSize = sizeIsValidType ? Number(body.business_size) : NaN;
+  const documentAttached = body.document_attached === undefined ? false : body.document_attached;
+  const documentFileCount = body.document_file_count === undefined ? 0 : body.document_file_count;
+  const documentMetadataIsValid = typeof documentAttached === "boolean" &&
+    typeof documentFileCount === "number" &&
+    Number.isInteger(documentFileCount) &&
+    documentFileCount >= 0 &&
+    documentFileCount <= 2 &&
+    documentAttached === (documentFileCount > 0);
 
   if (!tradeType || tradeType.length > 100 || !taskType || taskType.length > 500 ||
       !bottleneck || bottleneck.length > 1500 ||
@@ -82,6 +90,7 @@ Deno.serve(async (request) => {
         (typeof recommendationPlan !== "object" || recommendationPlan === null ||
           Array.isArray(recommendationPlan) || recommendationPlanSize > 20000 ||
           !["ai", "fallback"].includes(String(recommendationSource)))) ||
+      !documentMetadataIsValid ||
       !Number.isInteger(businessSize) ||
       businessSize < 1 || businessSize > 200) {
     return jsonResponse({ error: "Complete all fields. Business size must be a whole number from 1 to 200." }, 400);
@@ -93,6 +102,8 @@ Deno.serve(async (request) => {
     task_type: taskType,
     admin_pain_points: bottleneck,
     identified_pain_points: bottleneck,
+    document_attached: documentAttached,
+    document_file_count: documentFileCount,
     ...(hasRecommendationPlan
       ? {
         recommendation_plan: recommendationPlan,
@@ -103,7 +114,7 @@ Deno.serve(async (request) => {
   let { data, error } = await supabase
     .from("task_assessments")
     .insert(context === undefined ? originalFields : { ...originalFields, context })
-    .select("id, created_at, trade_type, business_size, task_type, admin_pain_points, recommendation_plan, recommendation_source")
+    .select("id, created_at, trade_type, business_size, task_type, admin_pain_points, recommendation_plan, recommendation_source, document_attached, document_file_count")
     .single();
   if (error) {
     if (context !== undefined) {
@@ -111,7 +122,7 @@ Deno.serve(async (request) => {
       ({ data, error } = await supabase
         .from("task_assessments")
         .insert(originalFields)
-        .select("id, created_at, trade_type, business_size, task_type, admin_pain_points, recommendation_plan, recommendation_source")
+        .select("id, created_at, trade_type, business_size, task_type, admin_pain_points, recommendation_plan, recommendation_source, document_attached, document_file_count")
         .single());
     }
     if (error) {

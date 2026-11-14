@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ZeroFriction AI Coach</title><style>
-:root{--ink:#10293b;--navy:#10293b;--paper:#f5f7f6;--white:#fff;--teal:#147b80;--teal-soft:#e8f4f3;--muted:#607181;--line:#dde5e5;--danger:#9b3030}*{box-sizing:border-box}body{margin:0;background:linear-gradient(rgba(16,41,59,.82),rgba(16,41,59,.92)),linear-gradient(135deg,#10293b,#147b80);color:var(--ink);font-family:Arial,Helvetica,sans-serif;min-height:100vh}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #fff;outline-offset:3px}.upload-field{border-top:1px solid var(--line);padding-top:18px}.upload-field span{display:block;color:var(--muted);font-size:.85rem;margin-top:8px}.upload-field input{padding:10px!important}.back{position:fixed;z-index:10;left:24px;top:22px;color:#fff;text-decoration:none;font-weight:800}.start-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background-image:linear-gradient(rgba(16,41,59,.82),rgba(16,41,59,.92)),url('/assets/coach-bg.jpg');background-size:cover;background-position:center}.glass{width:min(680px,100%);background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.5);border-radius:18px;padding:52px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.25)}.glass label{color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.75rem}.glass h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.02;letter-spacing:-.04em;margin:18px 0 14px}.glass p{color:var(--muted);margin:0 0 26px}.start-button,.primary,.secondary,.restart{min-height:50px;border-radius:8px;padding:0 20px;border:2px solid var(--teal);font-weight:800}.start-button,.primary{background:var(--teal);color:#fff}.start-button{width:min(320px,100%)}.subnote{display:block;margin-top:16px;color:var(--muted)!important;font-size:.85rem}.app{display:none;min-height:100vh;background:var(--paper);padding:48px 22px}.app.active{display:block}.coach{width:min(760px,100%);margin:auto}.progress-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--teal);margin-bottom:10px}.progress{height:6px;background:#dce4e3;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;width:33.333%;background:var(--teal);transition:width .45s ease}.panel{background:#fff;border-radius:16px;padding:34px;margin-top:20px;box-shadow:0 16px 40px rgba(16,41,59,.08);min-height:520px}.step{animation:slide .38s ease both}.step h2{font-size:clamp(2rem,5vw,3.1rem);line-height:1.03;margin:8px 0 8px}.step-intro{color:var(--muted);margin-bottom:24px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.choice{min-height:86px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);display:flex;align-items:center;gap:12px;text-align:left;padding:16px;font-weight:800}.choice svg{width:28px;height:28px;color:var(--teal);flex:none}.choice:hover,.choice.selected{border-color:var(--teal);background:var(--teal-soft)}.fields{display:grid;gap:18px}.field label{display:block;font-weight:800;margin-bottom:7px}.field input,.field-input{width:100%;min-height:50px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font-size:1rem;background:#fff;color:var(--ink)}.actions{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.secondary{background:#fff;color:var(--ink)}.secondary:disabled{opacity:.4;cursor:not-allowed}.error{min-height:22px;color:var(--danger);margin-top:12px;font-size:.92rem}.loading{display:grid;place-items:center;text-align:center;min-height:520px;background:#fff;border-radius:16px;padding:30px}.loader{width:44px;height:44px;border:4px solid var(--teal-soft);border-top-color:var(--teal);border-radius:50%;animation:spin .9s linear infinite;margin-bottom:22px}.result{margin-top:20px}.result h2{font-size:clamp(2rem,5vw,3rem)}.recommendation{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:12px;padding:24px;margin-top:14px;animation:slide .45s ease both}.recommendation:nth-child(2){animation-delay:.12s}.recommendation h3{margin:0 0 12px;font-size:1.35rem}.recommendation p{color:var(--muted)}.recommendation strong{color:var(--ink)}.control{background:var(--teal-soft);padding:16px;border-radius:10px;margin-top:20px}.plan-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}@keyframes slide{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}@keyframes spin{to{transform:rotate(360deg)}}[aria-live]{outline:none}@media(max-width:620px){.back{left:16px}.glass{padding:36px 22px}.panel{padding:24px 18px}.cards{grid-template-columns:1fr}.app{padding:76px 14px 30px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-.app button:focus-visible,.app input:focus-visible{outline:3px solid var(--teal);outline-offset:3px}.upload-field{border-top:1px solid var(--line);padding-top:18px}.upload-field span{display:block;color:var(--muted);font-size:.85rem;margin-top:8px}.upload-field input{padding:10px!important}.back{position:fixed;z-index:10;left:24px;top:22px;color:#fff;text-decoration:none;font-weight:800}.start-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background-image:linear-gradient(rgba(16,41,59,.82),rgba(16,41,59,.92)),url('/assets/coach-bg.jpg');background-size:cover;background-position:center}.glass{width:min(680px,100%);background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.5);border-radius:18px;padding:52px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.25)}.glass label{color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.75rem}.glass h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.02;letter-spacing:-.04em;margin:18px 0 14px}.glass p{color:var(--muted);margin:0 0 26px}.start-button,.primary,.secondary,.restart{min-height:50px;border-radius:8px;padding:0 20px;border:2px solid var(--teal);font-weight:800}.start-button,.primary{background:var(--teal);color:#fff}.start-button{width:min(320px,100%)}.subnote{display:block;margin-top:16px;color:var(--muted)!important;font-size:.85rem}.app{display:none;min-height:100vh;background:var(--paper);padding:48px 22px}.app.active{display:block}.coach{width:min(760px,100%);margin:auto}.progress-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--teal);margin-bottom:10px}.progress{height:6px;background:#dce4e3;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;width:33.333%;background:var(--teal);transition:width .45s ease}.panel{background:#fff;border-radius:16px;padding:34px;margin-top:20px;box-shadow:0 16px 40px rgba(16,41,59,.08);min-height:520px}.step{animation:slide .38s ease both}.step h2{font-size:clamp(2rem,5vw,3.1rem);line-height:1.03;margin:8px 0 8px}.step-intro{color:var(--muted);margin-bottom:24px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.choice{min-height:86px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);display:flex;align-items:center;gap:12px;text-align:left;padding:16px;font-weight:800}.choice svg{width:28px;height:28px;color:var(--teal);flex:none}.choice:hover,.choice.selected{border-color:var(--teal);background:var(--teal-soft)}.fields{display:grid;gap:18px}.field label{display:block;font-weight:800;margin-bottom:7px}.field input,.field-input{width:100%;min-height:50px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font-size:1rem;background:#fff;color:var(--ink)}.actions{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.secondary{background:#fff;color:var(--ink)}.secondary:disabled{opacity:.4;cursor:not-allowed}.error{min-height:22px;color:var(--danger);margin-top:12px;font-size:.92rem}.loading{display:grid;place-items:center;text-align:center;min-height:520px;background:#fff;border-radius:16px;padding:30px}.loader{width:44px;height:44px;border:4px solid var(--teal-soft);border-top-color:var(--teal);border-radius:50%;animation:spin .9s linear infinite;margin-bottom:22px}.result{margin-top:20px}.result h2{font-size:clamp(2rem,5vw,3rem)}.recommendation{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:12px;padding:24px;margin-top:14px;animation:slide .45s ease both}.recommendation:nth-child(2){animation-delay:.12s}.recommendation h3{margin:0 0 12px;font-size:1.35rem}.recommendation p{color:var(--muted)}.recommendation strong{color:var(--ink)}.control{background:var(--teal-soft);padding:16px;border-radius:10px;margin-top:20px}.plan-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}@keyframes slide{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}@keyframes spin{to{transform:rotate(360deg)}}[aria-live]{outline:none}@media(max-width:620px){.back{left:16px}.glass{padding:36px 22px}.panel{padding:24px 18px}.cards{grid-template-columns:1fr}.app{padding:76px 14px 30px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+:root{--ink:#10293b;--navy:#10293b;--paper:#f5f7f6;--white:#fff;--teal:#147b80;--teal-soft:#e8f4f3;--muted:#607181;--line:#dde5e5;--danger:#9b3030}*{box-sizing:border-box}body{margin:0;background:linear-gradient(rgba(16,41,59,.82),rgba(16,41,59,.92)),linear-gradient(135deg,#10293b,#147b80);color:var(--ink);font-family:Arial,Helvetica,sans-serif;min-height:100vh}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #fff;outline-offset:3px}.upload-field{border-top:1px solid var(--line);padding-top:18px}.upload-field span{display:block;color:var(--muted);margin-top:8px}.upload-field input{padding:10px!important}.back{position:fixed;z-index:10;left:24px;top:22px;color:#fff;text-decoration:none;font-weight:800}.start-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background-image:linear-gradient(rgba(16,41,59,.82),rgba(16,41,59,.92)),url('/assets/coach-bg.jpg');background-size:cover;background-position:center}.glass{width:min(680px,100%);background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.5);border-radius:18px;padding:52px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.25)}.glass label{color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.12em;}.glass h1{line-height:1.02;letter-spacing:-.04em;margin:18px 0 14px}.glass p{color:var(--muted);margin:0 0 26px}.start-button,.primary,.secondary,.restart{min-height:50px;border-radius:8px;padding:0 20px;border:2px solid var(--teal);font-weight:800}.start-button,.primary{background:var(--teal);color:#fff}.start-button{width:min(320px,100%)}.subnote{display:block;margin-top:16px;color:var(--muted)!important;}.app{display:none;min-height:100vh;background:var(--paper);padding:48px 22px}.app.active{display:block}.coach{width:min(760px,100%);margin:auto}.progress-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--teal);margin-bottom:10px}.progress{height:6px;background:#dce4e3;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;width:33.333%;background:var(--teal);transition:width .45s ease}.panel{background:#fff;border-radius:16px;padding:34px;margin-top:20px;box-shadow:0 16px 40px rgba(16,41,59,.08);min-height:520px}.step{animation:slide .38s ease both}.step h2{line-height:1.03;margin:8px 0 8px}.step-intro{color:var(--muted);margin-bottom:24px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.choice{min-height:86px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);display:flex;align-items:center;gap:12px;text-align:left;padding:16px;font-weight:800}.choice svg{width:28px;height:28px;color:var(--teal);flex:none}.choice:hover,.choice.selected{border-color:var(--teal);background:var(--teal-soft)}.fields{display:grid;gap:18px}.field label{display:block;font-weight:800;margin-bottom:7px}.field input,.field-input{width:100%;min-height:50px;border:1px solid var(--line);border-radius:8px;padding:0 14px;background:#fff;color:var(--ink)}.actions{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.secondary{background:#fff;color:var(--ink)}.secondary:disabled{opacity:.4;cursor:not-allowed}.error{min-height:22px;color:var(--danger);margin-top:12px;}.loading{display:grid;place-items:center;text-align:center;min-height:520px;background:#fff;border-radius:16px;padding:30px}.loader{width:44px;height:44px;border:4px solid var(--teal-soft);border-top-color:var(--teal);border-radius:50%;animation:spin .9s linear infinite;margin-bottom:22px}.result{margin-top:20px}.result h2{}.recommendation{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:12px;padding:24px;margin-top:14px;animation:slide .45s ease both}.recommendation:nth-child(2){animation-delay:.12s}.recommendation h3{margin:0 0 12px;}.recommendation p{color:var(--muted)}.recommendation strong{color:var(--ink)}.control{background:var(--teal-soft);padding:16px;border-radius:10px;margin-top:20px}.plan-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}@keyframes slide{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}@keyframes spin{to{transform:rotate(360deg)}}[aria-live]{outline:none}@media(max-width:620px){.back{left:16px}.glass{padding:36px 22px}.panel{padding:24px 18px}.cards{grid-template-columns:1fr}.app{padding:76px 14px 30px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.app button:focus-visible,.app input:focus-visible{outline:3px solid var(--teal);outline-offset:3px}.upload-field{border-top:1px solid var(--line);padding-top:18px}.upload-field span{display:block;color:var(--muted);margin-top:8px}.upload-field input{padding:10px!important}.back{position:fixed;z-index:10;left:24px;top:22px;color:#fff;text-decoration:none;font-weight:800}.start-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background-image:linear-gradient(rgba(16,41,59,.82),rgba(16,41,59,.92)),url('/assets/coach-bg.jpg');background-size:cover;background-position:center}.glass{width:min(680px,100%);background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.5);border-radius:18px;padding:52px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.25)}.glass label{color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.12em;}.glass h1{line-height:1.02;letter-spacing:-.04em;margin:18px 0 14px}.glass p{color:var(--muted);margin:0 0 26px}.start-button,.primary,.secondary,.restart{min-height:50px;border-radius:8px;padding:0 20px;border:2px solid var(--teal);font-weight:800}.start-button,.primary{background:var(--teal);color:#fff}.start-button{width:min(320px,100%)}.subnote{display:block;margin-top:16px;color:var(--muted)!important;}.app{display:none;min-height:100vh;background:var(--paper);padding:48px 22px}.app.active{display:block}.coach{width:min(760px,100%);margin:auto}.progress-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--teal);margin-bottom:10px}.progress{height:6px;background:#dce4e3;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;width:33.333%;background:var(--teal);transition:width .45s ease}.panel{background:#fff;border-radius:16px;padding:34px;margin-top:20px;box-shadow:0 16px 40px rgba(16,41,59,.08);min-height:520px}.step{animation:slide .38s ease both}.step h2{line-height:1.03;margin:8px 0 8px}.step-intro{color:var(--muted);margin-bottom:24px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.choice{min-height:86px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);display:flex;align-items:center;gap:12px;text-align:left;padding:16px;font-weight:800}.choice svg{width:28px;height:28px;color:var(--teal);flex:none}.choice:hover,.choice.selected{border-color:var(--teal);background:var(--teal-soft)}.fields{display:grid;gap:18px}.field label{display:block;font-weight:800;margin-bottom:7px}.field input,.field-input{width:100%;min-height:50px;border:1px solid var(--line);border-radius:8px;padding:0 14px;background:#fff;color:var(--ink)}.actions{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.secondary{background:#fff;color:var(--ink)}.secondary:disabled{opacity:.4;cursor:not-allowed}.error{min-height:22px;color:var(--danger);margin-top:12px;}.loading{display:grid;place-items:center;text-align:center;min-height:520px;background:#fff;border-radius:16px;padding:30px}.loader{width:44px;height:44px;border:4px solid var(--teal-soft);border-top-color:var(--teal);border-radius:50%;animation:spin .9s linear infinite;margin-bottom:22px}.result{margin-top:20px}.result h2{}.recommendation{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:12px;padding:24px;margin-top:14px;animation:slide .45s ease both}.recommendation:nth-child(2){animation-delay:.12s}.recommendation h3{margin:0 0 12px;}.recommendation p{color:var(--muted)}.recommendation strong{color:var(--ink)}.control{background:var(--teal-soft);padding:16px;border-radius:10px;margin-top:20px}.plan-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}@keyframes slide{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}@keyframes spin{to{transform:rotate(360deg)}}[aria-live]{outline:none}@media(max-width:620px){.back{left:16px}.glass{padding:36px 22px}.panel{padding:24px 18px}.cards{grid-template-columns:1fr}.app{padding:76px 14px 30px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style><style>
 .back{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;border-radius:999px;background:rgba(14,26,43,.9);color:#fff;text-decoration:none;font-weight:800;box-shadow:0 3px 12px rgba(0,0,0,.2);transition:background-color .2s ease}
 .back:hover{background:#1b3555}
@@ -10,39 +10,38 @@
 .trade-cards .choice:hover{border-color:#0f666b;background:#fff}
 .trade-cards .choice.selected{border-color:var(--teal);background:var(--teal-soft)}
 .trade-cards .choice.selected:hover{border-color:#0f666b;background:var(--teal-soft)}
-.trade-cards .choice.selected::after{content:"✓";position:absolute;top:8px;right:8px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;background:var(--teal);color:#fff;font-size:14px;line-height:1}
 .trade-icon{width:28px;height:28px;flex:none;color:var(--teal)}
 .other-trade-shell{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows 250ms ease,opacity 250ms ease}
 .other-trade-shell.open{grid-template-rows:1fr;opacity:1}
 .other-trade-content{min-height:0;overflow:hidden}
 .other-trade-field{padding-top:18px}
 .other-trade-field input:focus-visible{outline-color:var(--teal)}
-.other-trade-error{min-height:22px;margin-top:8px;color:var(--danger);font-size:.92rem}
+.other-trade-error{min-height:22px;margin-top:8px;color:var(--danger);}
 @media(prefers-reduced-motion:reduce){.other-trade-shell{transition:none!important}}
 .app .progress i{transition:width .45s ease}
 .task-cards .choice{position:relative;min-height:68px;padding-right:48px}
 .task-cards .choice .task-icon{width:26px;height:26px;flex:none;color:var(--teal)}
 .task-cards .choice[aria-checked="true"]{border-color:var(--teal);background:var(--teal-soft)}
-.task-badge{position:absolute;top:8px;right:9px;min-width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--teal);color:#fff;font-size:.8rem}
+.task-badge{position:absolute;top:8px;right:9px;min-width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--teal);color:#fff;}
 .choice[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
-.selection-note,.step-hint{margin:8px 0 16px;color:var(--muted);font-size:.9rem}
+.selection-note,.step-hint{margin:8px 0 16px;color:var(--muted);}
 .chip-group{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);padding:9px 13px;font-weight:700}
 .chip[aria-pressed="true"],.chip[aria-checked="true"],.chip.selected{border-color:var(--teal);background:var(--teal-soft);color:var(--ink)}
 .chip:disabled{opacity:.5;cursor:not-allowed}
 .task-blocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .task-block{border:1px solid var(--line);border-radius:10px;padding:14px}
-.task-block h3{margin:0 0 10px;font-size:1rem}
+.task-block h3{margin:0 0 10px;}
 .task-block label{display:block;margin:10px 0 6px;font-weight:800}
 .task-block .chip-group{gap:6px}
-.task-block .chip{padding:7px 10px;font-size:.86rem}
+.task-block .chip{padding:7px 10px;}
 .inline-field{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows 220ms ease,opacity 220ms ease}
 .inline-field.open{grid-template-rows:1fr;opacity:1;animation:fieldReveal 250ms ease both}
 .inline-field>div{min-height:0;overflow:hidden}
-.inline-field label{display:block;margin-top:8px;font-size:.88rem;font-weight:700}
+.inline-field label{display:block;margin-top:8px;font-weight:700}
 .inline-field input{margin-top:6px;width:100%;min-height:42px;border:1px solid var(--line);border-radius:8px;padding:0 11px;color:var(--ink)}
 .time-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.time-grid .choice{justify-content:center;text-align:center;min-height:62px;padding:10px;font-size:.9rem}
+.time-grid .choice{justify-content:center;text-align:center;min-height:62px;padding:10px;}
 .choice[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft)}
 .step .actions .primary:disabled{opacity:.45;cursor:not-allowed}
 .step-intro{margin:0 0 18px}
@@ -52,16 +51,315 @@
 @media(prefers-reduced-motion:reduce){.inline-field{transition:none!important}}
 @keyframes fieldReveal{from{grid-template-rows:0fr;opacity:0}to{grid-template-rows:1fr;opacity:1}}
 </style><style>
-.recommendation .headline{color:var(--ink);font-weight:800;font-size:1.05rem}
-.recommendation .effort-tag{display:inline-block;padding:5px 10px;border-radius:20px;background:var(--teal-soft);color:var(--teal);font-size:.8rem;font-weight:800}
+.recommendation .headline{color:var(--ink);font-weight:800;}
+.recommendation .effort-tag{display:inline-block;padding:5px 10px;border-radius:20px;background:var(--teal-soft);color:var(--teal);font-weight:800}
 .recommendation .first-steps{padding-left:22px;color:var(--muted)}
 .recommendation .first-steps li{padding:3px 0}
-.result-note{color:var(--muted);font-size:.85rem}
-.fallback-note{padding:10px 12px;border-left:3px solid #b27819;background:#fff8e8}
+.result-note{color:var(--muted);}
+
+</style><style>
+:root{
+  --type-eyebrow:.875rem;
+  --type-step-heading:clamp(1.75rem,3vw,2.25rem);
+  --type-intro:1.0625rem;
+  --type-question:1.25rem;
+  --type-helper:.95rem;
+  --type-option:1.0625rem;
+  --type-task-title:1.125rem;
+  --type-tag:.8125rem;
+  --type-body:1rem;
+  --type-result:1.0625rem;
+  --surface-question:#F6F8F7;
+  --space-1:8px;
+  --space-1-5:12px;
+  --space-2:16px;
+  --space-3:24px;
+  --space-4:32px;
+  --space-5:40px;
+}
+body{font-size:var(--type-body)}
+.back{left:16px;top:16px;min-height:44px;font-size:var(--type-body)}
+.start-screen{padding:var(--space-3)}
+.glass{width:min(680px,100%);padding:var(--space-4)}
+.glass label,.eyebrow{display:block;color:var(--teal);font-size:var(--type-eyebrow);font-weight:600;letter-spacing:.04em;text-transform:none}
+.glass h1,.step h2,.loading h2,.result h2{margin:var(--space-1) 0 0;color:var(--ink);font-size:var(--type-step-heading);font-weight:700;line-height:1.15;letter-spacing:normal}
+.glass p,.step-intro{max-width:60ch;margin:var(--space-1-5) 0 0;color:var(--muted);font-size:var(--type-intro);line-height:1.5}
+.glass .start-button{margin-top:var(--space-3)}
+.subnote,.upload-field span,.selection-note,.step-hint,.error,.other-trade-error,.result-note,.effort-tag{font-size:var(--type-helper)}
+.subnote{margin-top:var(--space-2);line-height:1.5}
+.app{padding:80px var(--space-2) var(--space-3);background:var(--paper)}
+.coach{width:min(720px,100%);margin:0 auto}
+.progress-head{margin:0 0 var(--space-1);font-size:var(--type-body);line-height:1.5}
+.progress{height:6px;margin-bottom:var(--space-2)}
+.panel{min-height:0;margin-top:0;padding:var(--space-4);border-radius:16px;background:var(--white)}
+.step{animation:slide .38s ease both}
+.step-header h2{margin-top:var(--space-1);font-size:var(--type-step-heading);font-weight:700;line-height:1.15}
+.step-intro{margin-top:var(--space-1-5)}
+.question-group{
+  display:grid;
+  min-width:0;
+  gap:var(--space-1-5);
+  margin:0;
+  padding:var(--space-3);
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--surface-question);
+}
+.step-content>.question-group:first-child{margin-top:var(--space-4)}
+.step-content>.question-group+.question-group{margin-top:var(--space-2)}
+.question-label,.field label,.inline-field label,.task-block h3{
+  display:block;
+  margin:0;
+  padding:0;
+  color:var(--ink);
+  font-size:var(--type-question);
+  font-weight:600;
+  line-height:1.3;
+}
+.question-label{width:100%}
+.step-content{min-width:0}
+.step-hint,.selection-note{margin:0;color:var(--muted);line-height:1.5}
+.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-1-5)}
+.choice,.chip{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:var(--space-1-5);
+  min-width:0;
+  min-height:60px;
+  height:80px;
+  max-height:80px;
+  padding:var(--space-1) var(--space-2);
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff;
+  color:var(--ink);
+  font-size:var(--type-option);
+  font-weight:600;
+  line-height:1.35;
+  text-align:left;
+  overflow-wrap:anywhere;
+}
+.choice>span:first-of-type{min-width:0}
+.choice svg{width:24px;height:24px;flex:none;color:var(--teal)}
+.app .choice:hover,.app .chip:hover{border-color:var(--teal);background:#fff}
+.app .choice[aria-checked="true"]:hover,.app .chip[aria-checked="true"]:hover,
+.app .choice.selected:hover,.app .chip.selected:hover{background:var(--teal-soft)}
+.app .trade-cards .choice{padding-right:var(--space-2)}
+.app .trade-cards .choice:hover,.app .trade-cards .choice.selected:hover{border-color:var(--teal)}
+.app .choice[aria-pressed="true"],.app .choice[aria-checked="true"],.app .choice.selected,
+.app .chip[aria-pressed="true"],.app .chip[aria-checked="true"],.app .chip.selected{
+  border-color:var(--teal);
+  background:var(--teal-soft);
+  color:var(--ink);
+}
+.choice::after,.chip::after{
+  content:"";
+  display:grid;
+  width:20px;
+  height:20px;
+  flex:0 0 20px;
+  margin-left:auto;
+  place-items:center;
+  border:2px solid var(--muted);
+  border-radius:4px;
+  background:#fff;
+  color:#fff;
+  font-size:var(--type-helper);
+  line-height:1;
+  opacity:1;
+}
+.choice[role="checkbox"][aria-checked="true"]::after,.chip[role="checkbox"][aria-checked="true"]::after{
+  content:"✓";
+  border-color:var(--teal);
+  background:var(--teal);
+}
+.choice[role="radio"]::after{border-radius:50%}
+.choice[role="radio"][aria-checked="true"]::after{
+  border-color:var(--teal);
+  background:radial-gradient(circle,var(--teal) 0 4px,#fff 4.5px);
+}
+.app .choice:focus-visible,.app .chip:focus-visible,.app input:focus-visible,.app select:focus-visible{
+  outline:3px solid var(--teal);
+  outline-offset:3px;
+}
+.choice:disabled,.chip:disabled,.choice[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
+.chip-group{display:flex;flex-wrap:wrap;gap:var(--space-1-5)}
+.chip{
+  flex:0 1 auto;
+  width:auto;
+  max-width:100%;
+  min-height:44px;
+  height:44px;
+  max-height:44px;
+  padding:0 var(--space-2);
+  border-radius:999px;
+  gap:var(--space-1);
+  line-height:1.2;
+  overflow-wrap:anywhere;
+}
+.task-chip{padding-right:var(--space-2)}
+.task-badge{
+  position:static;
+  display:inline-grid;
+  min-width:18px;
+  height:18px;
+  place-items:center;
+  border-radius:50%;
+  background:var(--teal);
+  color:#fff;
+  font-size:var(--type-helper);
+  line-height:1;
+}
+.fields{display:grid;gap:var(--space-1-5)}
+.field input,.field-input,.inline-field input{
+  width:100%;
+  height:52px;
+  min-height:52px;
+  margin:0;
+  padding:0 var(--space-2);
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff;
+  color:var(--ink);
+  font-size:var(--type-body);
+  line-height:1.5;
+}
+.field input[type=file]{height:auto;min-height:44px;padding:var(--space-1)}
+.inline-field{margin:0}
+.inline-field>div{display:grid;gap:var(--space-1-5)}
+.upload-field{padding-top:var(--space-2);border-top:1px solid var(--line)}
+.upload-field span{display:block;margin-top:var(--space-1);color:var(--muted);line-height:1.5}
+.task-blocks{display:block}
+.task-block{padding:0;border:0;border-radius:0}
+.task-block+.task-block{margin-top:var(--space-5);padding-top:var(--space-5);border-top:1px solid var(--line)}
+.task-block h3{margin:0}
+.task-block .chip-group{gap:var(--space-1-5)}
+.task-block .chip{padding:0 var(--space-2);font-size:var(--type-option)}
+.task-block label.question-label{margin:0}
+.time-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-1-5)}
+.time-grid .choice{justify-content:center;text-align:center;min-height:60px;height:80px;padding:var(--space-1) var(--space-2);font-size:var(--type-option)}
+.slowdown-blocks{display:grid;gap:var(--space-2)}
+.step-content>.slowdown-blocks{margin-top:var(--space-4)}
+.slowdown-task{padding:var(--space-3);border:1px solid var(--line);border-radius:16px;background:var(--surface-question)}
+.slowdown-task-header{display:flex;align-items:center;gap:var(--space-1-5);min-width:0}
+.slowdown-priority{
+  display:grid;
+  width:32px;
+  height:32px;
+  flex:0 0 32px;
+  place-items:center;
+  border-radius:50%;
+  background:var(--teal);
+  color:#fff;
+  font-size:var(--type-body);
+  font-weight:700;
+}
+.slowdown-task-title{flex:1;min-width:0;margin:0;color:var(--ink);font-size:var(--type-task-title);font-weight:700;line-height:1.3;overflow-wrap:anywhere}
+.slowdown-priority-tag{flex:none;margin-left:auto;padding:4px 8px;border-radius:999px;background:var(--teal-soft);color:#0f666b;font-size:var(--type-tag);line-height:1.4;white-space:nowrap}
+.slowdown-helper{margin:var(--space-1-5) 0 0;color:var(--muted);font-size:var(--type-helper);line-height:1.5}
+.slowdown-task .chip-group{margin-top:var(--space-2);gap:var(--space-1-5)}
+.slowdown-task .chip{display:inline-flex;flex:0 0 auto;min-width:unset;width:auto;max-width:100%;height:44px;min-height:44px;max-height:44px;padding:0 var(--space-2);text-align:left}
+.slowdown-task .field{display:grid;gap:var(--space-1-5);margin-top:var(--space-2)}
+.slowdown-task .inline-field{margin-top:var(--space-1-5)}
+.slowdown-time-section{margin-top:var(--space-5);padding-top:var(--space-5);border-top:1px solid var(--line)}
+.slowdown-time{margin:0}
+.slowdown-time .step-hint{margin:0}
+.slowdown-time .time-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-1-5)}
+.slowdown-time .time-grid .choice{justify-content:space-between;text-align:left}
+.routine-question{gap:0}
+.routine-question .step-hint{margin-top:var(--space-1)}
+.routine-question .routine-options{margin-top:var(--space-2)}
+.routine-question .error{margin-top:var(--space-1)}
+.routine-question .error:empty{display:none}
+.routine-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-1-5)}
+.routine-choice{height:auto;min-height:64px;max-height:none;gap:var(--space-1-5);padding:var(--space-1) var(--space-2)}
+.routine-choice .option-label{flex:1;min-width:0}
+.routine-choice .option-icon{width:24px;height:24px;flex:none;color:var(--teal)}
+.redaction-consent{display:flex;align-items:flex-start;gap:var(--space-1);color:var(--ink);font-size:var(--type-body);line-height:1.5}
+.redaction-consent input{width:20px;height:20px;flex:none;margin:2px 0 0;accent-color:var(--teal)}
+.example-dropzone{display:grid;justify-items:center;gap:var(--space-1);padding:var(--space-3);border:2px dashed var(--line);border-radius:16px;background:#fff;text-align:center}
+.example-dropzone[aria-disabled="true"]{opacity:.55}
+.example-dropzone.dragging{border-color:var(--teal);background:var(--teal-soft)}
+.example-dropzone p{margin:0;color:var(--muted);font-size:var(--type-body);line-height:1.5}
+.example-dropzone button{min-width:160px}
+.example-file-list{display:grid;gap:var(--space-1);margin:0;padding:0;list-style:none}
+.example-file{display:flex;align-items:center;gap:var(--space-1-5);min-width:0;padding:var(--space-1-5);border:1px solid var(--line);border-radius:10px;background:#fff}
+.example-file-icon{width:24px;height:24px;flex:none;color:var(--teal)}
+.example-file-details{display:grid;flex:1;min-width:0;gap:2px}
+.example-file-name{overflow-wrap:anywhere;color:var(--ink);font-size:var(--type-body);font-weight:600}
+.example-file-size{color:var(--muted);font-size:var(--type-helper)}
+.example-file-remove{min-width:44px;min-height:44px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font-size:var(--type-body);font-weight:600}
+.example-file-remove:hover{border-color:var(--teal)}
+.example-continue-actions{display:flex;gap:var(--space-1-5)}
+.example-notes{margin:0 0 var(--space-3);padding:var(--space-2);border:1px solid var(--line);border-radius:12px;background:var(--surface-question)}
+.example-notes h3{margin:0 0 var(--space-1);color:var(--ink);font-size:var(--type-body);font-weight:700}
+.example-notes p{margin:0;color:var(--muted);font-size:var(--type-body);line-height:1.6;overflow-wrap:anywhere}
+.actions{display:flex;justify-content:space-between;gap:var(--space-1-5);margin-top:var(--space-5)}
+.actions button,.primary,.secondary,.restart,.plan-actions button{
+  min-width:132px;
+  min-height:52px;
+  height:52px;
+  border-radius:8px;
+  padding:0 var(--space-2);
+  font-size:var(--type-body);
+  font-weight:700;
+  line-height:1.4;
+}
+.actions .primary:disabled{opacity:.45;cursor:not-allowed}
+.error{min-height:22px;margin-top:var(--space-1);color:var(--danger);line-height:1.5}
+.start-error{margin:var(--space-2) 0 0;color:var(--danger);font-size:var(--type-body);line-height:1.5}
+.loading{
+  display:grid;
+  min-height:240px;
+  place-items:center;
+  padding:var(--space-4);
+  text-align:center;
+}
+.loading h2{margin-top:0}
+.loader{margin:0 auto var(--space-3)}
+.result{margin-top:0;font-size:var(--type-result);line-height:1.6;overflow-wrap:anywhere}
+.result h2{margin-top:var(--space-1)}
+.result-note{margin:var(--space-1-5) 0 0;color:var(--muted);font-size:var(--type-result);line-height:1.6}
+.recommendation{margin-top:var(--space-3);padding:var(--space-3);border-radius:12px;overflow-wrap:anywhere}
+.recommendation h3{margin:0 0 var(--space-1-5);color:var(--ink);font-size:var(--type-question);font-weight:600;line-height:1.3}
+.recommendation p,.recommendation li,.recommendation .headline{color:var(--muted);font-size:var(--type-result);line-height:1.6}
+.recommendation .headline{color:var(--ink);font-weight:600}
+.recommendation .effort-tag{color:var(--ink);font-size:var(--type-helper)}
+.recommendation .first-steps{padding-left:var(--space-3);color:var(--muted)}
+.recommendation .first-steps li{padding:4px 0}
+.control{margin-top:var(--space-3);padding:var(--space-2);border-radius:10px;background:var(--teal-soft);font-size:var(--type-result);line-height:1.6}
+.plan-actions{display:flex;flex-wrap:wrap;gap:var(--space-1-5);margin-top:var(--space-5)}
+.fallback-note{padding:var(--space-2);border-left:3px solid var(--teal);background:var(--teal-soft);color:var(--ink)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:620px){
+  .back{left:var(--space-2);top:var(--space-2)}
+  .start-screen{padding:var(--space-2)}
+  .glass{padding:var(--space-3)}
+  .app{padding:80px var(--space-2) var(--space-3)}
+  .panel{padding:var(--space-3) var(--space-2)}
+  .cards,.time-grid{grid-template-columns:minmax(0,1fr)}
+  .slowdown-time .time-grid{grid-template-columns:minmax(0,1fr)}
+  .routine-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .actions button,.plan-actions button{min-width:0;flex:1}
+  .example-actions{gap:var(--space-1)}
+  .example-actions>button{min-width:0;flex:.65;padding:0 6px}
+  .example-continue-actions{flex:2.35;gap:var(--space-1)}
+  .example-continue-actions button{min-width:0;flex:1;padding:0 8px}
+  .recommendation{padding:var(--space-2)}
+}
+@media(max-width:560px){
+  .routine-options{grid-template-columns:minmax(0,1fr)}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .other-trade-shell,.inline-field{transition:none!important}
+}
 </style></head><body>
 <a class="back" href="/">← BACK TO HOME</a>
-<section class="start-screen" id="startScreen"><div class="glass"><label>AI task coach</label><h1>Find your first practical AI step</h1><p>Answer a few questions about the work you want to improve.</p><button class="start-button" id="startNow" type="button">Start now</button><small class="subnote">Answers are stored in this browser; completed answers are sent to Google's Gemini service to generate suggestions, and plans are saved in Supabase. Use fictional or redacted details.</small></div></section>
-<main class="app" id="app"><div class="coach" id="coach"><div class="progress-head"><span>AI task coach</span><span id="progressLabel">1/5</span></div><div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1"><i id="progressFill"></i></div><div id="screen" aria-live="polite"></div></div></main>
+<section class="start-screen" id="startScreen"><div class="glass"><label>AI task coach</label><h1>Find your first practical AI step</h1><p>Answer five questions and optionally add one redacted example.</p><button class="start-button" id="startNow" type="button">Start now</button><small class="subnote">Answers are stored in this browser. If you attach files, they are processed by Google's Gemini service to write your plan and deleted afterwards. Only whether a document was attached and the file count are saved; the assessment and plan are saved in Supabase. Use fictional or redacted documents, not real customer information.</small></div></section>
+<main class="app" id="app"><div class="coach" id="coach"><div class="progress-head"><span>AI task coach</span><span id="progressLabel">1/6</span></div><div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"><i id="progressFill"></i></div><div id="screen" aria-live="polite"></div></div></main>
 <script>window.ZF_SUPABASE = {url:'https://zocfisqgqbqxjdgnvnoe.supabase.co', anonKey:'sb_publishable_BZjEPwjKOjsCbbopw57OQg_EQYe_QaP'};</script>
 <script>
 
@@ -247,12 +545,11 @@ window.ZF_DATA = {"trades":{"electrical":"Electrical","plumbing":"Plumbing","car
 
 
 function supabaseRequestHeaders(){return {apikey:window.ZF_SUPABASE.anonKey,Authorization:`Bearer ${window.ZF_SUPABASE.anonKey}`,'Content-Type':'application/json'};}
-async function saveCompletedAssessment(planSession){const config=window.ZF_SUPABASE;if(!config||!config.url||!planSession?.plan)return;const a=planSession.answers;const selected=planSession.plan.recommendations.find(r=>r.id===planSession.plan.selected)||planSession.plan.recommendations[0];try{await window.ZF_REMOTE_FETCH(`${config.url.replace(/\/+$/, '')}/functions/v1/assessments`,{method:'POST',headers:supabaseRequestHeaders(),body:JSON.stringify({trade_type:a.trade,business_size:a.size,task_type:a.pain,admin_pain_points:a.bottleneck,uploaded_file_ref:uploadedDocument.name||null,ai_use_case:selected?.title||'',recommendation_reason:selected?.why||'',potential_benefit:selected?.description||'',relevance_ranking:selected?String(selected.rank):'',selected_use_case:selected?.title||'',first_action:selected?.first_action||''})});}catch(_){} }
+async function saveCompletedAssessment(planSession){const config=window.ZF_SUPABASE;if(!config||!config.url||!planSession?.plan)return;const a=planSession.answers;const selected=planSession.plan.recommendations.find(r=>r.id===planSession.plan.selected)||planSession.plan.recommendations[0];try{await window.ZF_REMOTE_FETCH(`${config.url.replace(/\/+$/, '')}/functions/v1/assessments`,{method:'POST',headers:supabaseRequestHeaders(),body:JSON.stringify({trade_type:a.trade,business_size:a.size,task_type:a.pain,admin_pain_points:a.bottleneck,ai_use_case:selected?.title||'',recommendation_reason:selected?.why||'',potential_benefit:selected?.description||'',relevance_ranking:selected?String(selected.rank):'',selected_use_case:selected?.title||'',first_action:selected?.first_action||''})});}catch(_){} }
 const D=window.ZF_DATA;
 const tradeLabels=D.trades,painLabels=D.pains,toolLabels=D.tools,readinessLabels=D.readiness;
 function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 let session=null,uiStep=0,picked={trade:'',otherTradeText:'',pain:'',bottleneck:'',tools:'',readiness:''},busy=false;
-let uploadedDocument={name:'',content:'',size:0,type:''};
 const icon=(name)=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h16M12 4v16"/></svg>';
 const tradeIcons={
   electrical:'<svg class="trade-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-7z"/></svg>',
@@ -262,7 +559,7 @@ const tradeIcons={
   other:'<svg class="trade-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18l3 3 5.3-5.3a5 5 0 0 0 6.4-6.4l-3.1 3.1-3-3z"/></svg>'
 };
 async function api(path,method='GET',body=null){const r=await fetch(path,{method,headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});const d=await r.json();if(!r.ok)throw new Error(d.error||'Something went wrong');return d}
-function setProgress(n){document.getElementById('progressLabel').textContent=`${n}/5`;document.getElementById('progressFill').style.width=`${n/5*100}%`;document.querySelector('.progress').setAttribute('aria-valuenow',n)}
+function setProgress(n){document.getElementById('progressLabel').textContent=`${n}/6`;document.getElementById('progressFill').style.width=`${n/6*100}%`;document.querySelector('.progress').setAttribute('aria-valuenow',n)}
 function isOtherTrade(){return picked.trade==='other'||(Boolean(picked.trade)&&!Object.prototype.hasOwnProperty.call(tradeLabels,picked.trade))}
 function choiceGrid(options,key){
   if(key==='trade'){
@@ -273,23 +570,12 @@ function choiceGrid(options,key){
   return `<div class="cards">${Object.entries(options).map(([v,l])=>`<button class="choice ${picked[key]===v?'selected':''}" type="button" data-key="${key}" data-value="${v}" aria-pressed="${picked[key]===v}">${icon(key)}<span>${escapeHtml(l)}</span></button>`).join('')}</div>`;
 }
 function validation(msg=''){document.getElementById('validation-message').textContent=msg}
-function readDocument(event){
-  const file=event.target.files && event.target.files[0];
-  if(!file){return;}
-  uploadedDocument={name:file.name,content:'',size:file.size,type:file.type};
-  const status=document.getElementById('upload-status');
-  if(file.type.startsWith('text/') || /\.(txt|md|csv)$/i.test(file.name)){
-    const reader=new FileReader();
-    reader.onload=()=>{uploadedDocument.content=String(reader.result||'').slice(0,12000);if(status)status.textContent=`Selected: ${file.name}`};
-    reader.onerror=()=>{if(status)status.textContent='The document could not be read. Try a text file.'};
-    reader.readAsText(file);
-  }else if(status){status.textContent=`Selected: ${file.name}`;}
-}
-function renderScreen(){setProgress(uiStep+1);const screen=document.getElementById('screen');if(uiStep===0){screen.innerHTML=`<section class="panel step"><span class="eyebrow">Step 1 · Your business</span><h2>What kind of business are you running?</h2><p class="step-intro">Choose your trade, then tell us the team size.</p>${choiceGrid(tradeLabels,'trade')}<div class="fields" style="margin-top:18px"><div class="field"><label for="size">Team size</label><input id="size" type="number" min="1" max="200" inputmode="numeric" value="${session.answers?.size||''}" placeholder="Including you"></div></div><div class="error" id="validation-message" role="alert"></div><div class="actions"><button class="secondary" type="button" disabled>Back</button><button class="primary" id="continue" type="button">Continue</button></div></section>`;bindChoices();document.getElementById('continue').onclick=async()=>{const size=Number(document.getElementById('size').value);if(!picked.trade) return validation('Choose your trade.');if(!Number.isInteger(size)||size<1||size>200)return validation('Enter a whole team size from 1 to 200.');await answerGrouped([['trade',picked.trade],['size',size]])}}
-if(uiStep===1){screen.innerHTML=`<section class="panel step"><span class="eyebrow">Step 2 · Your work</span><h2>Which task keeps slowing you down?</h2><p class="step-intro">Choose the priority task, then the biggest bottleneck.</p>${choiceGrid(painLabels,'pain')}<div class="fields" style="margin-top:18px"><div class="field"><label for="bottleneck">Biggest bottleneck</label><select id="bottleneck" class="field-input"><option value="">Choose a bottleneck</option>${Object.entries(D.bottlenecks[picked.pain||'quoting']||{}).map(([v,l])=>`<option value="${v}" ${picked.bottleneck===v?'selected':''}>${escapeHtml(l)}</option>`).join('')}</select></div></div><div class="error" id="validation-message" role="alert"></div><div class="actions"><button class="secondary" id="back" type="button">Back</button><button class="primary" id="continue" type="button">Continue</button></div></section>`;bindChoices(()=>updateBottlenecks());document.getElementById('bottleneck').onchange=e=>picked.bottleneck=e.target.value;document.getElementById('back').onclick=()=>goBack(2);document.getElementById('continue').onclick=async()=>{if(!picked.pain)return validation('Choose a priority task.');if(!picked.bottleneck)return validation('Choose the biggest bottleneck.');await answerGrouped([['pain',picked.pain],['bottleneck',picked.bottleneck]])}}
-if(uiStep===2){screen.innerHTML=`<section class="panel step"><span class="eyebrow">Step 3 · How you work</span><h2>How do you work and review drafts?</h2><p class="step-intro">We’ll match recommendations to the tools you already use.</p>${choiceGrid(toolLabels,'tools')}<div class="fields" style="margin-top:18px">${choiceGrid(readinessLabels,'readiness')}<div class="field upload-field"><label for="document-upload">Example document <span>(optional)</span></label><input id="document-upload" type="file" accept=".txt,.md,.csv,.pdf,.doc,.docx"><span id="upload-status">${uploadedDocument.name?`Selected: ${escapeHtml(uploadedDocument.name)}`:'Add a redacted quote, invoice, job note or enquiry example.'}</span></div></div><div class="error" id="validation-message" role="alert"></div><div class="actions"><button class="secondary" id="back" type="button">Back</button><button class="primary" id="continue" type="button">Continue</button></div></section>`;bindChoices();document.getElementById('document-upload').onchange=readDocument;document.getElementById('back').onclick=()=>goBack(2);document.getElementById('continue').onclick=async()=>{if(!picked.tools)return validation('Choose your current tools.');if(!picked.readiness)return validation('Choose how you want to review AI drafts.');await showLoading([['tools',picked.tools],['readiness',picked.readiness]])}}
+function renderScreen(){setProgress(uiStep+1);const screen=document.getElementById('screen');if(uiStep===0){screen.innerHTML=`<section class="panel step"><span class="eyebrow">Step 1 of 6 · Your business</span><h2>What kind of business are you running?</h2><p class="step-intro">Choose your trade, then tell us the team size.</p>${choiceGrid(tradeLabels,'trade')}<div class="fields"><div class="field"><label for="size">Team size</label><input id="size" type="number" min="1" max="200" inputmode="numeric" value="${session.answers?.size||''}" placeholder="Including you"></div></div><div class="error" id="validation-message" role="alert"></div><div class="actions"><button class="secondary" type="button" disabled>Back</button><button class="primary" id="continue" type="button">Continue</button></div></section>`;bindChoices();document.getElementById('continue').onclick=async()=>{const size=Number(document.getElementById('size').value);if(!picked.trade) return validation('Choose your trade.');if(!Number.isInteger(size)||size<1||size>200)return validation('Enter a whole team size from 1 to 200.');await answerGrouped([['trade',picked.trade],['size',size]])}}
+if(uiStep===1){screen.innerHTML=`<section class="panel step"><span class="eyebrow">Step 2 of 6 · Your work</span><h2>Which task keeps slowing you down?</h2><p class="step-intro">Choose the priority task, then the biggest bottleneck.</p>${choiceGrid(painLabels,'pain')}<div class="fields"><div class="field"><label for="bottleneck">Biggest bottleneck</label><select id="bottleneck" class="field-input"><option value="">Choose a bottleneck</option>${Object.entries(D.bottlenecks[picked.pain||'quoting']||{}).map(([v,l])=>`<option value="${v}" ${picked.bottleneck===v?'selected':''}>${escapeHtml(l)}</option>`).join('')}</select></div></div><div class="error" id="validation-message" role="alert"></div><div class="actions"><button class="secondary" id="back" type="button">Back</button><button class="primary" id="continue" type="button">Continue</button></div></section>`;bindChoices(()=>updateBottlenecks());document.getElementById('bottleneck').onchange=e=>picked.bottleneck=e.target.value;document.getElementById('back').onclick=()=>goBack(2);document.getElementById('continue').onclick=async()=>{if(!picked.pain)return validation('Choose a priority task.');if(!picked.bottleneck)return validation('Choose the biggest bottleneck.');await answerGrouped([['pain',picked.pain],['bottleneck',picked.bottleneck]])}}
+if(uiStep===2){screen.innerHTML=`<section class="panel step"><span class="eyebrow">Step 3 of 6 · How you work</span><h2>How do you work and review drafts?</h2><p class="step-intro">We’ll match recommendations to the tools you already use.</p>${choiceGrid(toolLabels,'tools')}<div class="fields">${choiceGrid(readinessLabels,'readiness')}</div><div class="error" id="validation-message" role="alert"></div><div class="actions"><button class="secondary" id="back" type="button">Back</button><button class="primary" id="continue" type="button">Continue</button></div></section>`;bindChoices();document.getElementById('back').onclick=()=>goBack(2);document.getElementById('continue').onclick=async()=>{if(!picked.tools)return validation('Choose your current tools.');if(!picked.readiness)return validation('Choose how you want to review AI drafts.');await showLoading([['tools',picked.tools],['readiness',picked.readiness]])}}
 }
 function bindChoices(callback){
+  let arrowNavigating=false;
   const tradeRadios=[...document.querySelectorAll('.trade-choice')];
   const tradeInput=document.getElementById('other-trade');
   const tradeShell=document.getElementById('other-trade-shell');
@@ -311,7 +597,7 @@ function bindChoices(callback){
         tradeShell.removeAttribute('inert');
         tradeShell.setAttribute('aria-hidden','false');
         tradeInput.tabIndex=0;
-        requestAnimationFrame(()=>tradeInput.focus());
+        if(!arrowNavigating)requestAnimationFrame(()=>tradeInput.focus());
       }else{
         picked.otherTradeText='';
         tradeInput.value='';
@@ -327,7 +613,11 @@ function bindChoices(callback){
       const offsets={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1};
       if(!(event.key in offsets))return;
       event.preventDefault();
-      tradeRadios[(index+offsets[event.key]+tradeRadios.length)%tradeRadios.length].focus();
+      const next=tradeRadios[(index+offsets[event.key]+tradeRadios.length)%tradeRadios.length];
+      next.focus();
+      arrowNavigating=true;
+      next.click();
+      arrowNavigating=false;
     });
   });
   if(tradeInput){
@@ -359,10 +649,10 @@ function bindChoices(callback){
 function updateBottlenecks(){picked.bottleneck='';const select=document.getElementById('bottleneck');select.innerHTML=`<option value="">Choose a bottleneck</option>${Object.entries(D.bottlenecks[picked.pain]||{}).map(([v,l])=>`<option value="${v}">${escapeHtml(l)}</option>`).join('')}`}
 async function answerGrouped(entries){if(busy)return;busy=true;try{for(const [key,value] of entries){const customTrade=key==='trade'&&value==='other';const answer=customTrade?picked.otherTradeText.trim():value;session=await api('/api/answer','POST',{session_id:session.id,answer,trade_custom:customTrade});}uiStep++;picked={...picked,...Object.fromEntries(entries)};renderScreen()}catch(e){validation(e.message)}finally{busy=false}}
 async function goBack(count){if(uiStep===0)return;for(let i=0;i<count;i++)session=await api('/api/back','POST',{session_id:session.id});uiStep--;renderScreen()}
-async function showLoading(entries){if(busy)return;busy=true;const messages=['Reading your answers','Matching tasks to your business','Choosing a first step'];document.getElementById('screen').innerHTML=`<section class="loading"><div><div class="loader"></div><h2 id="loadingMessage">Reading your answers</h2></div></section>`;try{for(let i=0;i<messages.length;i++){document.getElementById('loadingMessage').textContent=messages[i];await new Promise(r=>setTimeout(r,520))}for(const [key,value] of entries)session=await api('/api/answer','POST',{session_id:session.id,answer:value});if(uploadedDocument.name&&session.plan&&!session.plan.summary.includes(uploadedDocument.name))session.plan.summary += ` An example document (${uploadedDocument.name}) was provided for review during the practical first-step test.`;renderPlan();saveCompletedAssessment(session)}catch(e){validation(e.message)}finally{busy=false}}
+async function showLoading(entries){if(busy)return;busy=true;const messages=['Reading your answers','Matching tasks to your business','Choosing a first step'];document.getElementById('screen').innerHTML=`<section class="loading"><div><div class="loader"></div><h2 id="loadingMessage">Reading your answers</h2></div></section>`;try{for(let i=0;i<messages.length;i++){document.getElementById('loadingMessage').textContent=messages[i];await new Promise(r=>setTimeout(r,520))}for(const [key,value] of entries)session=await api('/api/answer','POST',{session_id:session.id,answer:value});renderPlan();saveCompletedAssessment(session)}catch(e){validation(e.message)}finally{busy=false}}
 function renderPlan(){document.querySelector('.progress').style.display='none';const p=session.plan;document.getElementById('screen').innerHTML=`<section class="result"><span class="eyebrow">Your recommendations</span><h2>${p.recommendations.length===1?'One clear place to start.':'Two options worth considering.'}</h2>${p.recommendations.map(r=>`<article class="recommendation"><h3>${escapeHtml(r.title)}</h3><p><strong>Why it fits</strong><br>${escapeHtml(r.why)}</p><p><strong>Your first step</strong><br>${escapeHtml(r.first_action)}</p></article>`).join('')}<div class="control"><strong>You stay in control.</strong> Review every draft and keep decisions with a person.</div><div class="plan-actions"><button class="primary" id="download" type="button">Download plan</button><button class="secondary" id="restart" type="button">Start again</button></div></section>`;document.getElementById('download').onclick=downloadPlan;document.getElementById('restart').onclick=resetCoach}
 function downloadPlan(){const p=session.plan;const chosen=p.recommendations.find(r=>r.id===p.selected)||p.recommendations[0];const lines=['ZeroFriction AI Coach — Personalised AI Plan','',p.context,p.summary,'RECOMMENDED USE CASES',...p.recommendations.flatMap(r=>[`${r.rank}. ${r.title}`,r.description,`Why: ${r.why}`,`Approach: ${r.approach}`,'']),`SELECTED: ${chosen.title}`,'','ADOPTION PLAN',...p.adoption.map((s,i)=>`${i+1}. ${s.when}: ${s.action}`),'','HUMAN CHECKS',...p.guardrails.map(x=>`- ${x}`),'',p.logic,'',p.evidence_status];const url=URL.createObjectURL(new Blob([lines.join('\\n')],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='zerofriction-ai-plan.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-async function resetCoach(){session=await api('/api/start','POST',{});uiStep=0;picked={trade:'',otherTradeText:'',pain:'',bottleneck:'',tools:'',readiness:''};uploadedDocument={name:'',content:'',size:0,type:''};document.querySelector('.progress').style.display='block';renderScreen()}
+async function resetCoach(){session=await api('/api/start','POST',{});uiStep=0;picked={trade:'',otherTradeText:'',pain:'',bottleneck:'',tools:'',readiness:''};document.querySelector('.progress').style.display='block';renderScreen()}
 document.addEventListener('keydown',event=>{if(event.key==='Enter'&&document.getElementById('app').classList.contains('active')){if(event.target.tagName==='BUTTON')return;const continueButton=document.getElementById('continue');if(continueButton){event.preventDefault();continueButton.click()}}});
 document.getElementById('startNow').onclick=async()=>{
   const startButton=document.getElementById('startNow');
@@ -374,7 +664,7 @@ document.getElementById('startNow').onclick=async()=>{
     renderScreen();
   } catch (error) {
     const message=document.createElement('p');
-    message.style.color='#9b3030';
+    message.className='start-error';
     message.setAttribute('role','alert');
     message.textContent=`The coach could not start: ${error.message}`;
     startButton.after(message);
@@ -428,8 +718,63 @@ document.getElementById('startNow').onclick=async()=>{
     trade: '', otherTradeText: '', size: '',
     tasks: [], otherTaskText: '', slowdowns: {}, timeCost: '',
     timing: [], workOwner: '', tools: [], otherToolText: '',
-    aiExperience: '', worries: [], reviewStyle: ''
+    aiExperience: '', worries: [], reviewStyle: '',
+    document_attached: false, document_file_count: 0
   });
+  let selectedExampleFiles = [];
+  let documentConsent = false;
+  let generatedPlanCache = null;
+  const AI_PLAN_USAGE_KEY = 'zerofriction-ai-plan-requests-v1';
+  const AI_PLAN_LIMIT = 5;
+  const AI_PLAN_WINDOW_MS = 60 * 60 * 1000;
+  function reserveAIPlanRequest() {
+    const now = Date.now();
+    try {
+      const stored = window.localStorage.getItem(AI_PLAN_USAGE_KEY);
+      const timestamps = stored === null ? [] : JSON.parse(stored);
+      if (!Array.isArray(timestamps) || timestamps.some(value => !Number.isSafeInteger(value))) {
+        throw new Error('Stored AI usage data is invalid.');
+      }
+      const recent = timestamps.filter(value => value > now - AI_PLAN_WINDOW_MS && value <= now);
+      if (recent.length >= AI_PLAN_LIMIT) {
+        window.localStorage.setItem(AI_PLAN_USAGE_KEY, JSON.stringify(recent));
+        return { allowed: false, reason: 'limit' };
+      }
+      recent.push(now);
+      window.localStorage.setItem(AI_PLAN_USAGE_KEY, JSON.stringify(recent));
+      return { allowed: true };
+    } catch (error) {
+      console.error('Could not enforce the local AI usage limit.', error);
+      return { allowed: false, reason: 'unavailable' };
+    }
+  }
+  function planCacheMatches(context, documents) {
+    return generatedPlanCache &&
+      generatedPlanCache.contextKey === JSON.stringify(context) &&
+      generatedPlanCache.documents.length === documents.length &&
+      generatedPlanCache.documents.every((file, index) => file === documents[index]);
+  }
+  function cachePlan(context, documents, plan) {
+    generatedPlanCache = {
+      contextKey: JSON.stringify(context),
+      documents: [...documents],
+      plan
+    };
+  }
+  function displayPlanAndSave(plan, context, documents) {
+    session.plan = plan;
+    cachePlan(context, documents, plan);
+    uiStep = 6;
+    renderResults();
+    saveAssessment().catch(error => {
+      const status = document.getElementById('save-status');
+      if (status) status.textContent = `Your plan is ready, but it could not be saved: ${error.message}`;
+    }).finally(() => {
+      busy = false;
+      const backToAnswers = document.getElementById('back-to-answers');
+      if (backToAnswers) backToAnswers.disabled = false;
+    });
+  }
   const displayTask = key => key === 'other'
     ? picked.otherTaskText.trim()
     : D.pains[key];
@@ -443,26 +788,30 @@ document.getElementById('startNow').onclick=async()=>{
       <input id="${id}" type="text" maxlength="60" autocomplete="off" placeholder="${placeholder}"
         value="${safeValue(value)}" ${disabled ? 'disabled' : ''}></div>
     </div>`;
-  const stepFrame = (number, title, heading, intro, content) => `
+  const stepFrame = (number, title, heading, intro, content, extraAction = '') => `
     <section class="panel step" aria-labelledby="step-title">
-      <span class="eyebrow">Step ${number} · ${title}</span>
-      <h2 id="step-title" tabindex="-1">${heading}</h2>
-      ${intro ? `<p class="step-intro">${intro}</p>` : ''}
-      ${content}
+      <header class="step-header">
+        <span class="eyebrow">Step ${number} of 6 · ${title}</span>
+        <h2 id="step-title" tabindex="-1">${heading}</h2>
+        ${intro ? `<p class="step-intro">${intro}</p>` : ''}
+      </header>
+      <div class="step-content">${content}</div>
       <div class="error" id="validation-message" role="alert"></div>
-      <div class="actions">
+      <div class="actions ${extraAction ? 'example-actions' : ''}">
         <button class="secondary" id="back" type="button">Back</button>
-        <button class="primary" id="continue" type="button" disabled>Continue</button>
+        ${extraAction
+          ? `<div class="example-continue-actions">${extraAction}<button class="primary" id="continue" type="button">Continue</button></div>`
+          : '<button class="primary" id="continue" type="button" disabled>Continue</button>'}
       </div>
     </section>`;
 
   function progress() {
     const number = uiStep + 1;
-    document.getElementById('progressLabel').textContent = `${number}/5`;
-    document.getElementById('progressFill').style.width = `${number / 5 * 100}%`;
+    document.getElementById('progressLabel').textContent = `${number}/6`;
+    document.getElementById('progressFill').style.width = `${number / 6 * 100}%`;
     const bar = document.querySelector('.progress');
     bar.setAttribute('aria-valuenow', number);
-    bar.setAttribute('aria-valuemax', '5');
+    bar.setAttribute('aria-valuemax', '6');
   }
   function errorMessage(message = '') {
     const target = document.getElementById('validation-message');
@@ -476,8 +825,9 @@ document.getElementById('startNow').onclick=async()=>{
     if (uiStep === 1) renderTasks(screen);
     if (uiStep === 2) renderSlowdowns(screen);
     if (uiStep === 3) renderContext(screen);
-    if (uiStep === 4) renderHowYouWork(screen);
-    if (uiStep > 4) renderResults();
+    if (uiStep === 4) renderExample(screen);
+    if (uiStep === 5) renderHowYouWork(screen);
+    if (uiStep > 5) renderResults();
   }
   function attachCommon(canContinue) {
     const back = document.getElementById('back');
@@ -496,21 +846,46 @@ document.getElementById('startNow').onclick=async()=>{
     refresh();
     return refresh;
   }
+  function bindRadioGroup(selector, getValue, isSelected, onSelect, onChange) {
+    const radios = [...document.querySelectorAll(selector)];
+    const update = () => {
+      const hasSelection = radios.some(isSelected);
+      radios.forEach((radio, index) => {
+        const selected = isSelected(radio);
+        radio.setAttribute('aria-checked', String(selected));
+        radio.tabIndex = selected || (!hasSelection && index === 0) ? 0 : -1;
+      });
+    };
+    radios.forEach((radio, index) => {
+      radio.addEventListener('click', () => {
+        onSelect(getValue(radio));
+        update();
+        onChange();
+      });
+      radio.addEventListener('keydown', event => {
+        const directions = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+        if (!(event.key in directions)) return;
+        event.preventDefault();
+        const next = radios[(index + directions[event.key] + radios.length) % radios.length];
+        next.focus();
+        next.click();
+      });
+    });
+    update();
+  }
   function renderBusiness(screen) {
     const size = picked.size || session?.answers?.size || '';
-    screen.innerHTML = `<section class="panel step">
-      <span class="eyebrow">Step 1 · Your business</span>
-      <h2>What kind of business are you running?</h2>
-      <p class="step-intro">Choose your trade, then tell us the team size.</p>
-      ${choiceGrid(tradeLabels, 'trade')}
-      <div class="fields" style="margin-top:18px"><div class="field">
-        <label for="size">Team size</label>
-        <input id="size" type="number" min="1" max="200" inputmode="numeric" value="${escapeHtml(size)}" placeholder="Including you">
-      </div></div>
-      <div class="error" id="validation-message" role="alert"></div>
-      <div class="actions"><button class="secondary" id="back" type="button" disabled>Back</button>
-      <button class="primary" id="continue" type="button" disabled>Continue</button></div>
-    </section>`;
+    screen.innerHTML = stepFrame(1, 'About your business', 'About your business', 'Choose your trade, then tell us the team size.',
+      `<fieldset class="question-group">
+        <legend class="question-label">What kind of business are you running?</legend>
+        ${choiceGrid(tradeLabels, 'trade')}
+      </fieldset>
+      <div class="question-group">
+        <div class="field">
+          <label for="size">Team size</label>
+          <input id="size" type="number" min="1" max="200" inputmode="numeric" value="${escapeHtml(size)}" placeholder="Including you">
+        </div>
+      </div>`);
     bindChoices();
     const sizeInput = document.getElementById('size');
     const refresh = () => {
@@ -538,16 +913,18 @@ document.getElementById('startNow').onclick=async()=>{
       const selected = picked.tasks.includes(key);
       const disabled = full && !selected;
       const rank = selected ? picked.tasks.indexOf(key) + 1 : '';
-      return `<button class="choice" type="button" role="checkbox" aria-checked="${selected}" aria-disabled="${disabled}" ${disabled ? 'disabled' : ''} data-task="${key}">
-        ${taskIcon(key)}<span>${key === 'other' && selected && picked.otherTaskText.trim() ? safeValue(picked.otherTaskText) : label}</span>
+      return `<button class="chip task-chip" type="button" role="checkbox" aria-checked="${selected}" aria-disabled="${disabled}" ${disabled ? 'disabled' : ''} data-task="${key}">
+        <span>${key === 'other' && selected && picked.otherTaskText.trim() ? safeValue(picked.otherTaskText) : label}</span>
         ${selected ? `<span class="task-badge" aria-label="Priority ${rank}">${rank}</span>` : ''}
       </button>`;
     }).join('');
     screen.innerHTML = stepFrame(2, 'Your work', 'Which tasks keep slowing you down?', '',
-      `<p class="step-hint">Pick up to three. Tap them in order of importance.</p>
-      <div class="cards task-cards">${cards}</div>
-      ${picked.tasks.length >= 3 ? '<p class="selection-note">Three is plenty. Deselect one to swap.</p>' : ''}
-      ${shortField('other-task', 'Tell us the task', 'e.g. Ordering materials', picked.otherTaskText, !picked.tasks.includes('other'))}`);
+      `<div class="question-group task-question">
+        <p class="step-hint">Pick up to three. Tap them in order of importance.</p>
+        <div class="chip-group task-chips">${cards}</div>
+        ${picked.tasks.length >= 3 ? '<p class="selection-note">Three is plenty. Deselect one to swap.</p>' : ''}
+        ${shortField('other-task', 'Tell us the task', 'e.g. Ordering materials', picked.otherTaskText, !picked.tasks.includes('other'))}
+      </div>`);
     const refresh = () => {
       document.getElementById('continue').disabled = !picked.tasks.length ||
         (picked.tasks.includes('other') && !picked.otherTaskText.trim());
@@ -573,27 +950,41 @@ document.getElementById('startNow').onclick=async()=>{
     return picked.slowdowns[key];
   }
   function renderSlowdowns(screen) {
-    const blocks = picked.tasks.map(key => {
+    const blocks = picked.tasks.map((key, index) => {
       const state = slowdownState(key);
       const taskTitle = displayTask(key);
-      if (key === 'other') return `<article class="task-block"><h3>${safeValue(taskTitle)}</h3>
-        <label for="slowdown-other">What slows this down?</label>
-        <input class="field-input" id="slowdown-other" maxlength="60" type="text" placeholder="What slows this down?" value="${safeValue(state.customText)}"></article>`;
+      const priority = index + 1;
+      const priorityLabel = priority === 1 ? 'Top priority' : `Priority ${priority}`;
+      const header = `<div class="slowdown-task-header">
+        <span class="slowdown-priority" aria-label="Priority ${priority}">${priority}</span>
+        <h3 class="slowdown-task-title">${safeValue(taskTitle)}</h3>
+        <span class="slowdown-priority-tag">${priorityLabel}</span>
+      </div>
+      <p class="slowdown-helper">Choose all that apply.</p>`;
+      if (key === 'other') return `<article class="slowdown-task">${header}
+        <div class="field">
+          <label for="slowdown-other">Tell us what slows this down</label>
+          <input class="field-input" id="slowdown-other" maxlength="60" type="text" placeholder="What slows this down?" value="${safeValue(state.customText)}">
+        </div></article>`;
       const chips = [...slowdownOptions[key], 'Something else'];
-      return `<article class="task-block"><h3>${safeValue(taskTitle)}</h3><div class="chip-group" role="group" aria-label="Slowdowns for ${safeValue(taskTitle)}">
+      return `<article class="slowdown-task">${header}
+        <div class="chip-group" role="group" aria-label="Slowdowns for ${safeValue(taskTitle)}">
         ${chips.map((label, index) => {
           const custom = index === chips.length - 1;
           const selected = custom ? state.customSelected : state.selected.includes(label);
           return `<button class="chip" type="button" role="checkbox" aria-checked="${selected}" data-slow-task="${key}" data-slow-index="${index}">${label}</button>`;
         }).join('')}</div>
-        ${shortField(`slow-custom-${key}`, 'Tell us what else slows this down', 'Tell us what else slows this down', state.customText, !state.customSelected)}
+        ${shortField(`slow-custom-${key}`, 'Tell us what slows this down', 'Tell us what slows this down', state.customText, !state.customSelected)}
       </article>`;
     }).join('');
     const timeOptions = ['Under 1 hour', '1 to 3 hours', '3 to 6 hours', 'More than 6 hours'];
-    screen.innerHTML = stepFrame(3, 'The slowdown', 'What makes this slow?', '',
-      `<div class="task-blocks">${blocks}</div>
-      <fieldset style="border:0;padding:0;margin:18px 0 0"><legend style="font-weight:800;margin-bottom:10px">How much time does this cost you each week?</legend>
-      <div class="time-grid">${timeOptions.map(value => `<button class="choice" type="button" aria-pressed="${picked.timeCost === value}" data-time="${value}">${value}</button>`).join('')}</div></fieldset>`);
+    screen.innerHTML = stepFrame(3, 'The slowdown', 'What makes this slow?', 'Choose everything that applies to each task you picked.',
+      `<div class="slowdown-blocks">${blocks}</div>
+      <div class="slowdown-time-section"><fieldset class="question-group slowdown-time" role="radiogroup" aria-labelledby="time-cost-label">
+        <legend class="question-label" id="time-cost-label">How much time does this cost you each week?</legend>
+        <p class="step-hint">Think about all the tasks above together.</p>
+        <div class="cards time-grid">${timeOptions.map(value => `<button class="choice" type="button" role="radio" aria-checked="${picked.timeCost === value}" data-time="${value}">${value}</button>`).join('')}</div>
+      </fieldset></div>`);
     const hasSlowdown = () => picked.tasks.some(key => {
       const state = slowdownState(key);
       return key === 'other'
@@ -619,11 +1010,9 @@ document.getElementById('startNow').onclick=async()=>{
       slowdownState('other').customText = event.target.value;
       refresh();
     });
-    document.querySelectorAll('[data-time]').forEach(button => button.addEventListener('click', () => {
-      picked.timeCost = button.dataset.time;
-      document.querySelectorAll('[data-time]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-      refresh();
-    }));
+    bindRadioGroup('[data-time]', button => button.dataset.time,
+      button => picked.timeCost === button.dataset.time,
+      value => { picked.timeCost = value; }, refresh);
     function refresh() {
       document.getElementById('continue').disabled = !hasSlowdown() || !picked.timeCost;
     }
@@ -631,43 +1020,235 @@ document.getElementById('startNow').onclick=async()=>{
     refresh();
   }
   function renderContext(screen) {
-    const chips = (items, selected, dataName) => `<div class="chip-group" role="group">${items.map(value =>
-      `<button class="chip" type="button" role="checkbox" aria-checked="${selected.includes(value)}" data-${dataName}="${value}">${value}</button>`
-    ).join('')}</div>`;
-    screen.innerHTML = stepFrame(4, 'The context', 'When does this work usually get done?', '',
-      `${chips(timingOptions, picked.timing, 'timing')}
-      <fieldset style="border:0;padding:0;margin:22px 0 0"><legend style="font-weight:800;margin-bottom:10px">Who does it today?</legend>
-      <div class="cards">${ownerOptions.map(value => `<button class="choice" type="button" aria-pressed="${picked.workOwner === value}" data-owner="${value}">${value}</button>`).join('')}</div></fieldset>`);
+    const icons = {
+      sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>',
+      moon: '<path d="M20.2 15.3A8.6 8.6 0 0 1 8.7 3.8 8.7 8.7 0 1 0 20.2 15.3Z"/>',
+      calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"/>',
+      clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+      person: '<circle cx="12" cy="7" r="3"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>',
+      people: '<circle cx="9" cy="7" r="3"/><path d="M3 21v-2a6 6 0 0 1 12 0v2"/><path d="M16 4.5a3 3 0 0 1 0 5.8M18 14a5 5 0 0 1 3 4.6V21"/>',
+      briefcase: '<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 12h18M10 12v2h4v-2"/>',
+      calculator: '<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8v3H8zM8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01M16 17h.01"/>'
+    };
+    const icon = name => `<svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]}</svg>`;
+    const timingIcons = ['sun', 'moon', 'calendar', 'clock'];
+    const ownerIcons = ['person', 'people', 'briefcase', 'calculator'];
+    const timingCards = timingOptions.map((value, index) =>
+      `<button class="choice routine-choice" type="button" role="checkbox" aria-checked="${picked.timing.includes(value)}" data-timing="${value}">${icon(timingIcons[index])}<span class="option-label">${value}</span></button>`
+    ).join('');
+    const ownerCards = ownerOptions.map((value, index) =>
+      `<button class="choice routine-choice" type="button" role="radio" aria-checked="${picked.workOwner === value}" data-owner="${value}">${icon(ownerIcons[index])}<span class="option-label">${value}</span></button>`
+    ).join('');
+    screen.innerHTML = stepFrame(4, 'Your routine', 'How does the work get done?', 'Two quick questions about your routine.',
+      `<fieldset class="question-group routine-question" data-routine-question="timing">
+        <legend class="question-label" id="routine-timing-label">When does this work usually get done?</legend>
+        <p class="step-hint">Choose all that apply.</p>
+        <div class="cards routine-options" role="group" aria-labelledby="routine-timing-label">${timingCards}</div>
+        <div class="error" id="routine-timing-error" role="alert" aria-live="polite"></div>
+      </fieldset>
+      <fieldset class="question-group routine-question" data-routine-question="owner">
+        <legend class="question-label" id="routine-owner-label">Who does it today?</legend>
+        <p class="step-hint">Choose one.</p>
+        <div class="cards routine-options" role="radiogroup" aria-labelledby="routine-owner-label">${ownerCards}</div>
+        <div class="error" id="routine-owner-error" role="alert" aria-live="polite"></div>
+      </fieldset>`);
+    const attempted = new Set();
+    screen.querySelectorAll('[data-routine-question]').forEach(group => {
+      group.addEventListener('focusout', event => {
+        if (event.relatedTarget && group.contains(event.relatedTarget)) return;
+        attempted.add(group.dataset.routineQuestion);
+        refresh();
+      });
+    });
     document.querySelectorAll('[data-timing]').forEach(button => button.addEventListener('click', () => {
       picked.timing = toggle(picked.timing, button.dataset.timing);
       button.setAttribute('aria-checked', String(picked.timing.includes(button.dataset.timing)));
       refresh();
     }));
-    document.querySelectorAll('[data-owner]').forEach(button => button.addEventListener('click', () => {
-      picked.workOwner = button.dataset.owner;
-      document.querySelectorAll('[data-owner]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-      refresh();
-    }));
+    bindRadioGroup('[data-owner]', button => button.dataset.owner,
+      button => picked.workOwner === button.dataset.owner,
+      value => { picked.workOwner = value; }, refresh);
     function refresh() {
       document.getElementById('continue').disabled = !picked.timing.length || !picked.workOwner;
+      const hasAnyAnswer = picked.timing.length > 0 || !!picked.workOwner;
+      document.getElementById('routine-timing-error').textContent =
+        !picked.timing.length && (attempted.has('timing') || hasAnyAnswer) ? 'Please choose at least one.' : '';
+      document.getElementById('routine-owner-error').textContent =
+        !picked.workOwner && (attempted.has('owner') || hasAnyAnswer) ? 'Please choose at least one.' : '';
     }
     attachCommon(() => picked.timing.length > 0 && !!picked.workOwner);
     refresh();
+  }
+  function renderExample(screen) {
+    const examplePrompts = {
+      quoting: 'a past quote',
+      invoicing: 'a recent invoice or your invoice template',
+      enquiries: 'a typical customer enquiry (email or form)',
+      scheduling: 'a screenshot of your weekly schedule',
+      documentation: 'a job note or checklist',
+      compliance: 'a checklist or form you fill in often',
+      other: 'an example of the paperwork involved'
+    };
+    const extensionIcons = {
+      pdf: '<path d="M6 2h8l4 4v16H6z"/><path d="M14 2v5h5M8 14h8M8 17h6"/>',
+      png: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="m4 18 5-5 4 4 3-3 4 4"/>',
+      jpg: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="m4 18 5-5 4 4 3-3 4 4"/>',
+      jpeg: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="m4 18 5-5 4 4 3-3 4 4"/>',
+      txt: '<path d="M6 2h8l4 4v16H6z"/><path d="M14 2v5h5M8 13h8M8 17h8"/>'
+    };
+    const primaryTask = picked.tasks[0] || 'other';
+    const prompt = `For your top-priority task, show us ${examplePrompts[primaryTask] || examplePrompts.other}.`;
+    screen.innerHTML = stepFrame(5, 'Show us an example (optional)', 'Want a more specific answer?',
+      'Add one redacted example of your own paperwork and the suggestions will be built around it. This step is optional.',
+      `<fieldset class="question-group example-question">
+        <legend class="question-label">${prompt}</legend>
+        <label class="redaction-consent" for="example-consent">
+          <input id="example-consent" type="checkbox" required ${documentConsent ? 'checked' : ''}>
+          <span>I have removed customer names, addresses and contact details.</span>
+        </label>
+        <div class="example-dropzone" id="example-dropzone" role="group" aria-describedby="example-drop-instructions example-file-status" aria-disabled="${!documentConsent}">
+          <p id="example-drop-instructions">Drop up to two files here. PDF, PNG, JPG or TXT; 5 MB maximum per file.</p>
+          <button class="secondary" id="choose-example-file" type="button" ${documentConsent ? '' : 'disabled'}>Choose a file</button>
+          <input class="sr-only" id="example-file-input" type="file" accept=".pdf,.png,.jpg,.jpeg,.txt,application/pdf,image/png,image/jpeg,text/plain" multiple tabindex="-1" ${documentConsent ? '' : 'disabled'}>
+        </div>
+        <ul class="example-file-list" id="example-file-list" aria-label="Selected files"></ul>
+        <p class="error" id="example-file-status" role="status" aria-live="polite"></p>
+        <p class="step-hint">Your file is used only to write your plan, then deleted.</p>
+      </fieldset>`,
+      '<button class="secondary" id="skip-example" type="button">Skip this step</button>');
+
+    const fileInput = document.getElementById('example-file-input');
+    const chooseButton = document.getElementById('choose-example-file');
+    const dropzone = document.getElementById('example-dropzone');
+    const consent = document.getElementById('example-consent');
+    const fileStatus = document.getElementById('example-file-status');
+    const fileList = document.getElementById('example-file-list');
+    const maximumFileSize = 5 * 1024 * 1024;
+    const mimeTypes = {
+      pdf: 'application/pdf',
+      png: 'image/png',
+      jpg: 'image/jpeg',
+      jpeg: 'image/jpeg',
+      txt: 'text/plain'
+    };
+    const renderFiles = () => {
+      fileList.replaceChildren();
+      selectedExampleFiles.forEach((file, index) => {
+        const extension = file.name.split('.').pop().toLowerCase();
+        const item = document.createElement('li');
+        item.className = 'example-file';
+        const icon = document.createElement('span');
+        icon.className = 'example-file-icon';
+        icon.setAttribute('aria-hidden', 'true');
+        icon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${extensionIcons[extension] || extensionIcons.txt}</svg>`;
+        const details = document.createElement('span');
+        details.className = 'example-file-details';
+        const name = document.createElement('span');
+        name.className = 'example-file-name';
+        name.textContent = file.name;
+        const size = document.createElement('span');
+        size.className = 'example-file-size';
+        size.textContent = file.size >= 1024 * 1024
+          ? `${(file.size / (1024 * 1024)).toFixed(1)} MB`
+          : `${Math.ceil(file.size / 1024)} KB`;
+        details.append(name, size);
+        const remove = document.createElement('button');
+        remove.className = 'example-file-remove';
+        remove.type = 'button';
+        remove.textContent = 'Remove';
+        remove.setAttribute('aria-label', `Remove ${file.name}`);
+        remove.addEventListener('click', () => {
+          selectedExampleFiles = selectedExampleFiles.filter((_, fileIndex) => fileIndex !== index);
+          fileStatus.textContent = '';
+          renderFiles();
+        });
+        item.append(icon, details, remove);
+        fileList.append(item);
+      });
+    };
+    const addFiles = files => {
+      let message = '';
+      for (const file of files) {
+        const extension = file.name.split('.').pop().toLowerCase();
+        const expectedType = mimeTypes[extension];
+        if (selectedExampleFiles.length >= 2) {
+          message = 'You can attach up to two files.';
+          break;
+        }
+        if (!expectedType || file.type && file.type !== expectedType && file.type !== 'application/octet-stream') {
+          message = 'Choose a PDF, PNG, JPG or TXT file.';
+          continue;
+        }
+        if (file.size > maximumFileSize) {
+          message = 'Each file must be 5 MB or smaller.';
+          continue;
+        }
+        selectedExampleFiles.push(file);
+      }
+      fileStatus.textContent = message;
+      renderFiles();
+    };
+    const syncConsent = () => {
+      documentConsent = consent.checked;
+      fileInput.disabled = !documentConsent;
+      chooseButton.disabled = !documentConsent;
+      dropzone.setAttribute('aria-disabled', String(!documentConsent));
+      if (!documentConsent) {
+        selectedExampleFiles = [];
+        fileStatus.textContent = '';
+        renderFiles();
+      }
+    };
+
+    consent.addEventListener('change', syncConsent);
+    chooseButton.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', () => {
+      addFiles([...fileInput.files]);
+      fileInput.value = '';
+    });
+    dropzone.addEventListener('dragover', event => {
+      event.preventDefault();
+      if (documentConsent) dropzone.classList.add('dragging');
+    });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragging'));
+    dropzone.addEventListener('drop', event => {
+      event.preventDefault();
+      dropzone.classList.remove('dragging');
+      if (!documentConsent) {
+        fileStatus.textContent = 'Tick the redaction checkbox before adding a file.';
+        return;
+      }
+      addFiles([...event.dataTransfer.files]);
+    });
+    renderFiles();
+    attachCommon(() => true);
+    document.getElementById('skip-example').addEventListener('click', () => {
+      selectedExampleFiles = [];
+      documentConsent = false;
+      session.answers.document_attached = false;
+      session.answers.document_file_count = 0;
+      uiStep++;
+      activeStep();
+    });
   }
   function renderHowYouWork(screen) {
     const multiChips = (items, selected, dataName) => `<div class="chip-group" role="group">${items.map(value =>
       `<button class="chip" type="button" role="checkbox" aria-checked="${selected.includes(value)}" data-${dataName}="${value}">${value}</button>`
     ).join('')}</div>`;
     const readiness = Object.entries(readinessLabels).map(([key, label]) =>
-      `<button class="choice" type="button" aria-pressed="${picked.reviewStyle === key}" data-review="${key}">${label}</button>`
+      `<button class="choice" type="button" role="radio" aria-checked="${picked.reviewStyle === key}" data-review="${key}">${label}</button>`
     ).join('');
-    screen.innerHTML = stepFrame(5, 'How you work', 'What do you use now?', '',
-      `${multiChips(toolOptions, picked.tools, 'tool')}
+    screen.innerHTML = stepFrame(6, 'How you work', 'How you work', '',
+      `<fieldset class="question-group">
+        <legend class="question-label" id="tools-label">What do you use now?</legend>
+        ${multiChips(toolOptions, picked.tools, 'tool')}
       ${shortField('other-tool', 'Tell us what you use', 'Tell us what you use', picked.otherToolText, !picked.tools.includes('Other'))}
-      <fieldset style="border:0;padding:0;margin:18px 0"><legend style="font-weight:800;margin-bottom:10px">Have you used AI before?</legend>
-      <div class="cards">${aiExperienceOptions.map(value => `<button class="choice" type="button" aria-pressed="${picked.aiExperience === value}" data-experience="${value}">${value}</button>`).join('')}</div></fieldset>
-      <fieldset style="border:0;padding:0;margin:18px 0"><legend style="font-weight:800;margin-bottom:10px">What worries you most about AI?</legend>${multiChips(worryOptions, picked.worries, 'worry')}</fieldset>
-      <fieldset style="border:0;padding:0;margin:18px 0"><legend style="font-weight:800;margin-bottom:10px">How would you like to review recommendations?</legend><div class="cards">${readiness}</div></fieldset>`);
+      </fieldset>
+      <fieldset class="question-group"><legend class="question-label" id="experience-label">Have you used AI before?</legend>
+        <div class="cards" role="radiogroup" aria-labelledby="experience-label">${aiExperienceOptions.map(value => `<button class="choice" type="button" role="radio" aria-checked="${picked.aiExperience === value}" data-experience="${value}">${value}</button>`).join('')}</div>
+      </fieldset>
+      <fieldset class="question-group"><legend class="question-label">What worries you most about AI?</legend>${multiChips(worryOptions, picked.worries, 'worry')}</fieldset>
+      <fieldset class="question-group"><legend class="question-label" id="review-label">How would you like to review recommendations?</legend><div class="cards" role="radiogroup" aria-labelledby="review-label">${readiness}</div></fieldset>`);
     document.querySelectorAll('[data-tool]').forEach(button => button.addEventListener('click', () => {
       picked.tools = toggle(picked.tools, button.dataset.tool);
       button.setAttribute('aria-checked', String(picked.tools.includes(button.dataset.tool)));
@@ -682,21 +1263,17 @@ document.getElementById('startNow').onclick=async()=>{
       picked.otherToolText = event.target.value;
       refresh();
     });
-    document.querySelectorAll('[data-experience]').forEach(button => button.addEventListener('click', () => {
-      picked.aiExperience = button.dataset.experience;
-      document.querySelectorAll('[data-experience]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-      refresh();
-    }));
+    bindRadioGroup('[data-experience]', button => button.dataset.experience,
+      button => picked.aiExperience === button.dataset.experience,
+      value => { picked.aiExperience = value; }, refresh);
     document.querySelectorAll('[data-worry]').forEach(button => button.addEventListener('click', () => {
       picked.worries = toggle(picked.worries, button.dataset.worry);
       button.setAttribute('aria-checked', String(picked.worries.includes(button.dataset.worry)));
       refresh();
     }));
-    document.querySelectorAll('[data-review]').forEach(button => button.addEventListener('click', () => {
-      picked.reviewStyle = button.dataset.review;
-      document.querySelectorAll('[data-review]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-      refresh();
-    }));
+    bindRadioGroup('[data-review]', button => button.dataset.review,
+      button => picked.reviewStyle === button.dataset.review,
+      value => { picked.reviewStyle = value; }, refresh);
     function refresh() {
       document.getElementById('continue').disabled = !picked.tools.length ||
         (picked.tools.includes('Other') && !picked.otherToolText.trim()) ||
@@ -798,11 +1375,22 @@ document.getElementById('startNow').onclick=async()=>{
       evidence_status: 'Recommendations are hypotheses based on your answers. Validate relevance, accuracy and usefulness with a small test.'
     };
   }
-  function validateGeneratedPlan(data, context) {
-    if (!data || typeof data !== 'object' || Object.keys(data).length !== 1 ||
+  function validateGeneratedPlan(data, context, hasDocuments) {
+    if (!data || typeof data !== 'object' || Array.isArray(data) ||
+        Object.keys(data).some(key => !['recommendations', 'document_notes'].includes(key)) ||
+        !Object.hasOwn(data, 'recommendations') ||
+        (hasDocuments && typeof data.document_notes !== 'string') ||
         !Array.isArray(data.recommendations) ||
         data.recommendations.length < 1 || data.recommendations.length > 2) {
       throw new Error('The AI service returned an invalid recommendation list.');
+    }
+    if (data.document_notes !== undefined) {
+      const notes = data.document_notes.trim();
+      const sentences = notes.split(/(?<=[.!?])\s+/).length;
+      if (!notes || notes !== 'We couldn\'t read your file, so this plan uses your answers only.' &&
+          (sentences < 2 || sentences > 3 || !/[.!?]$/.test(notes))) {
+        throw new Error('The AI service returned invalid document notes.');
+      }
     }
     const catalog = new Map(Object.entries(D.use_cases));
     const seen = new Set();
@@ -869,27 +1457,38 @@ document.getElementById('startNow').onclick=async()=>{
       recommendations,
       recommended_first: recommendations[0].id,
       selected: recommendations[0].id,
-      source: 'ai'
+      source: 'ai',
+      ...(typeof data.document_notes === 'string' ? { document_notes: data.document_notes.trim() } : {})
     };
   }
-  async function requestGeneratedPlan(context) {
+  async function requestGeneratedPlan(context, documents = []) {
     const config = window.ZF_SUPABASE;
     if (!config?.url || !config.anonKey) throw new Error('Supabase is not configured.');
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
+    const timeout = setTimeout(() => controller.abort(), documents.length ? 45000 : 15000);
     try {
+      const payload = {
+        context,
+        catalog: Object.entries(D.use_cases).map(([id, item]) => ({
+          id, title: item.title, description: item.description
+        }))
+      };
+      let body;
+      const headers = { apikey: config.anonKey };
+      if (documents.length) {
+        body = new FormData();
+        body.append('context', JSON.stringify(payload.context));
+        body.append('catalog', JSON.stringify(payload.catalog));
+        body.append('document_consent', String(documentConsent));
+        documents.forEach(file => body.append('documents', file, file.name));
+      } else {
+        headers['Content-Type'] = 'application/json';
+        body = JSON.stringify(payload);
+      }
       const response = await window.ZF_REMOTE_FETCH(`${config.url.replace(/\/+$/, '')}/functions/v1/recommend-plan`, {
         method: 'POST',
-        headers: {
-          apikey: config.anonKey,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          context,
-          catalog: Object.entries(D.use_cases).map(([id, item]) => ({
-            id, title: item.title, description: item.description
-          }))
-        }),
+        headers,
+        body,
         signal: controller.signal
       });
       let data;
@@ -898,8 +1497,12 @@ document.getElementById('startNow').onclick=async()=>{
       } catch {
         throw new Error('The recommendation service returned unreadable data.');
       }
-      if (!response.ok) throw new Error(data.error || 'The recommendation service could not complete the request.');
-      return validateGeneratedPlan(data, context);
+      if (!response.ok) {
+        const error = new Error(data.error || 'The recommendation service could not complete the request.');
+        if (typeof data.code === 'string') error.code = data.code;
+        throw error;
+      }
+      return validateGeneratedPlan(data, context, documents.length > 0);
     } catch (error) {
       if (controller.signal.aborted) throw new Error('The recommendation service timed out.');
       throw error;
@@ -951,6 +1554,12 @@ document.getElementById('startNow').onclick=async()=>{
       session.answers.timing = [...picked.timing];
       session.answers.workOwner = picked.workOwner;
     } else if (uiStep === 4) {
+      if (selectedExampleFiles.length && !documentConsent) {
+        return errorMessage('Confirm that the file is redacted before continuing.');
+      }
+      session.answers.document_attached = selectedExampleFiles.length > 0;
+      session.answers.document_file_count = selectedExampleFiles.length;
+    } else if (uiStep === 5) {
       if (!picked.tools.length || (picked.tools.includes('Other') && !picked.otherToolText.trim()) ||
           !picked.aiExperience || !picked.worries.length || !picked.reviewStyle) {
         return errorMessage('Complete each section to get a recommendation tailored to you.');
@@ -958,8 +1567,30 @@ document.getElementById('startNow').onclick=async()=>{
       session.answers.tools = [...picked.tools];
       session.answers.readiness = picked.reviewStyle;
       session.answers.context = answerContext();
+      const context = session.answers.context;
+      const documents = [...selectedExampleFiles];
+      if (planCacheMatches(context, documents)) {
+        session.plan = generatedPlanCache.plan;
+        uiStep = 6;
+        renderResults();
+        return;
+      }
       busy = true;
-      document.getElementById('screen').innerHTML = `<section class="loading" aria-live="polite"><div><div class="loader" aria-hidden="true"></div><h2 id="loading-message">Reading your answers</h2></div></section>`;
+      const submitButton = document.getElementById('continue');
+      if (submitButton) submitButton.disabled = true;
+      const usage = reserveAIPlanRequest();
+      if (!usage.allowed) {
+        session.plan = makeFallbackPlan();
+        session.plan.fallback_note = usage.reason === 'limit'
+          ? 'You have reached the limit of five AI plans per hour, so this is a standard plan.'
+          : 'We could not check the AI usage limit, so this is a standard plan.';
+        if (documents.length) {
+          session.plan.document_notes = 'We couldn\'t read your file, so this plan uses your answers only.';
+        }
+        displayPlanAndSave(session.plan, context, documents);
+        return;
+      }
+      document.getElementById('screen').innerHTML = `<section class="panel loading" aria-live="polite"><div><div class="loader" aria-hidden="true"></div><h2 id="loading-message">Reading your answers</h2></div></section>`;
       const loadingMessages = [
         'Reading your answers',
         'Matching tasks to your business',
@@ -971,23 +1602,27 @@ document.getElementById('startNow').onclick=async()=>{
         const message = document.getElementById('loading-message');
         if (message) message.textContent = loadingMessages[messageIndex];
       }, 1100);
-      const result = await requestGeneratedPlan(session.answers.context)
+      const result = await requestGeneratedPlan(context, documents)
         .then(plan => ({ plan, error: null }))
         .catch(error => ({ plan: null, error }));
       clearInterval(loadingTimer);
       if (result.error) {
-        console.warn('Using the standard recommendation plan:', result.error);
+        console.warn('Using the standard recommendation plan after the recommendation request failed.');
         session.plan = makeFallbackPlan();
-        session.plan.fallback_note = 'Showing a standard plan because the AI service was unavailable.';
+        session.plan.fallback_note = result.error.code === 'ai_busy'
+          ? 'Our AI service is busy, so this is a standard plan.'
+          : 'Showing a standard plan because the AI service was unavailable.';
+        if (documents.length) {
+          if (result.error.code === 'document_cleanup_failed') {
+            session.plan.fallback_note = result.error.message;
+          } else {
+            session.plan.document_notes = 'We couldn\'t read your file, so this plan uses your answers only.';
+          }
+        }
       } else {
         session.plan = result.plan;
       }
-      uiStep = 5;
-      renderResults();
-      saveAssessment().catch(error => {
-        const status = document.getElementById('save-status');
-        if (status) status.textContent = `Your plan is ready, but it could not be saved: ${error.message}`;
-      }).finally(() => { busy = false; });
+      displayPlanAndSave(session.plan, context, documents);
       return;
     }
     uiStep++;
@@ -998,7 +1633,7 @@ document.getElementById('startNow').onclick=async()=>{
     const plan = session.plan;
     const screen = document.getElementById('screen');
     const result = document.createElement('section');
-    result.className = 'result';
+    result.className = 'panel result';
     result.setAttribute('aria-live', 'polite');
     const eyebrow = document.createElement('span');
     eyebrow.className = 'eyebrow';
@@ -1023,6 +1658,16 @@ document.getElementById('startNow').onclick=async()=>{
       ? 'AI-generated suggestion. You review everything before acting.'
       : 'Standard suggestion. You review everything before acting.';
     result.append(aiLabel);
+    if (typeof plan.document_notes === 'string' && plan.document_notes) {
+      const documentNotes = document.createElement('article');
+      documentNotes.className = 'example-notes';
+      const documentNotesTitle = document.createElement('h3');
+      documentNotesTitle.textContent = 'What we noticed in your example';
+      const documentNotesText = document.createElement('p');
+      documentNotesText.textContent = plan.document_notes;
+      documentNotes.append(documentNotesTitle, documentNotesText);
+      result.append(documentNotes);
+    }
     for (const item of plan.recommendations) {
       const article = document.createElement('article');
       article.className = 'recommendation';
@@ -1072,9 +1717,14 @@ document.getElementById('startNow').onclick=async()=>{
     saveStatus.setAttribute('aria-live', 'polite');
     const actions = document.createElement('div');
     actions.className = 'plan-actions';
-    actions.innerHTML = '<button class="primary" id="download" type="button">Download plan</button><button class="secondary" id="restart" type="button">Start again</button>';
+    actions.innerHTML = `<button class="secondary" id="back-to-answers" type="button" ${busy ? 'disabled' : ''}>Back to answers</button><button class="primary" id="download" type="button">Download plan</button><button class="secondary" id="restart" type="button">Start again</button>`;
     result.append(control, saveStatus, actions);
     screen.replaceChildren(result);
+    document.getElementById('back-to-answers').onclick = () => {
+      document.querySelector('.progress').style.display = 'block';
+      uiStep = 5;
+      activeStep();
+    };
     document.getElementById('download').onclick = downloadCurrentPlan;
     document.getElementById('restart').onclick = resetFlow;
   }
@@ -1124,7 +1774,8 @@ document.getElementById('startNow').onclick=async()=>{
       business_size: answers.size,
       task_type: taskValues.join(', '),
       bottleneck: bottleneckValues.join(', '),
-      uploaded_file_ref: null,
+      document_attached: answers.document_attached === true,
+      document_file_count: Number(answers.document_file_count) || 0,
       ai_use_case: selected.title,
       recommendation_reason: selected.why_it_fits || selected.why,
       potential_benefit: selected.possible_time_saving || selected.description,
@@ -1147,6 +1798,9 @@ document.getElementById('startNow').onclick=async()=>{
     session = await api('/api/start', 'POST', {});
     uiStep = 0;
     picked = newAnswers();
+    selectedExampleFiles = [];
+    documentConsent = false;
+    generatedPlanCache = null;
     document.querySelector('.progress').style.display = 'block';
     activeStep();
   }
@@ -1159,12 +1813,15 @@ document.getElementById('startNow').onclick=async()=>{
       session = await api('/api/start', 'POST', {});
       uiStep = 0;
       picked = newAnswers();
+      selectedExampleFiles = [];
+      documentConsent = false;
+      generatedPlanCache = null;
       document.getElementById('startScreen').style.display = 'none';
       document.getElementById('app').classList.add('active');
       activeStep();
     } catch (error) {
       const message = document.createElement('p');
-      message.style.color = '#9b3030';
+      message.className = 'start-error';
       message.setAttribute('role', 'alert');
       message.textContent = `The coach could not start: ${error.message}`;
       start.after(message);

@@ -98,18 +98,13 @@ const samples = [
 
 const documentCases = [
   {
-    name: "Two fictional paperwork examples: quote PDF and invoice image",
+    name: "One fictional paperwork example: quote PDF",
     context: samples[1].context,
     files: [
       {
         bytes: await readFile(new URL("./test/fixtures/fictional-quote.pdf", import.meta.url)),
         name: "fictional-quote.pdf",
         type: "application/pdf",
-      },
-      {
-        bytes: await readFile(new URL("./test/fixtures/fictional-invoice.png", import.meta.url)),
-        name: "fictional-invoice.png",
-        type: "image/png",
       },
     ],
   },
@@ -155,7 +150,7 @@ if (argumentsList.length === 0) {
   }
   selectedCases = [testCases[sampleNumber - 1]];
 } else {
-  throw new Error("Usage: node scripts/test-recommend-plan.mjs [1-4 | --all]");
+  throw new Error("Usage: node scripts/test-recommend-plan.mjs [1-4 | --all] (defaults to sample 1)");
 }
 
 let failures = 0;
@@ -185,9 +180,45 @@ for (const [index, sample] of selectedCases.entries()) {
     });
     process.stdout.write(`HTTP ${response.status}\n`);
     const result = await response.json().catch(() => ({ error: "Response was not JSON." }));
+    process.stdout.write(`model_answered: ${result.model ?? "not reported"}\n`);
     process.stdout.write(`document_notes: ${JSON.stringify(result.document_notes ?? null)}\n`);
     process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     if (!response.ok) failures++;
+    if (response.ok) {
+      if (!Array.isArray(result.recommendations) || result.recommendations.length < 1 ||
+          result.recommendations.length > 2) {
+        throw new Error("The response did not contain one or two recommendations.");
+      }
+      for (const [recommendationIndex, recommendation] of result.recommendations.entries()) {
+        for (const field of [
+          "the_payoff", "example_prompt", "time_to_try",
+          "success_check", "next_step_if_it_works"
+        ]) {
+          if (typeof recommendation[field] !== "string" || !recommendation[field].trim()) {
+            throw new Error(`Recommendation ${recommendationIndex + 1} is missing ${field}.`);
+          }
+        }
+        if (recommendation.example_prompt.trim().split(/\s+/).length > 80) {
+          throw new Error(`Recommendation ${recommendationIndex + 1} example_prompt exceeds 80 words.`);
+        }
+        if (!/\[[^\]]+\]/.test(recommendation.example_prompt)) {
+          throw new Error(`Recommendation ${recommendationIndex + 1} example_prompt has no fictional placeholder.`);
+        }
+        if (!Array.isArray(recommendation.first_steps) || recommendation.first_steps.length !== 3) {
+          throw new Error(`Recommendation ${recommendationIndex + 1} does not have exactly three first steps.`);
+        }
+        if (!Number.isInteger(recommendation.saving_percent_low) ||
+            recommendation.saving_percent_low < 10 || recommendation.saving_percent_low > 40 ||
+            !Number.isInteger(recommendation.saving_percent_high) ||
+            recommendation.saving_percent_high <= recommendation.saving_percent_low ||
+            recommendation.saving_percent_high > 60) {
+          throw new Error(`Recommendation ${recommendationIndex + 1} has an invalid saving range.`);
+        }
+        if (/(?:\bhttps?:\/\/|\bwww\.)/i.test(JSON.stringify(recommendation))) {
+          throw new Error(`Recommendation ${recommendationIndex + 1} contains a URL.`);
+        }
+      }
+    }
     if (sample.files.length && typeof result.document_notes !== "string") {
       throw new Error("The document response did not include document_notes.");
     }

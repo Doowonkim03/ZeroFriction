@@ -333,6 +333,54 @@ body{font-size:var(--type-body)}
 .plan-actions{display:flex;flex-wrap:wrap;gap:var(--space-1-5);margin-top:var(--space-5)}
 .fallback-note{padding:var(--space-2);border-left:3px solid var(--teal);background:var(--teal-soft);color:var(--ink)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.recommendation{position:relative}
+.recommendation.is-selected{border-color:#2E7D6B;box-shadow:0 0 0 2px rgba(46,125,107,.14)}
+.selected-badge{display:inline-block;margin:0 0 12px;padding:4px 10px;border-radius:999px;background:#2E7D6B;color:#fff;font-size:var(--type-helper);font-weight:700}
+.selected-badge[hidden]{display:none}
+.recommendation .payoff{color:#0E1A2B;font-weight:600}
+.plan-charts{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(200px,.7fr);gap:18px;margin:20px 0;padding:18px;border:1px solid #D9E1DE;border-radius:12px;background:#F7F9F8;color:#0E1A2B}
+.chart-figure{min-width:0;margin:0}
+.chart-figure h4{margin:0 0 12px;color:#0E1A2B;font-size:1rem}
+.week-bar-svg{display:block;width:100%;height:auto;overflow:visible}
+.week-bar-segment{transform-box:fill-box;transform-origin:left center;transition:transform 850ms cubic-bezier(.2,.7,.2,1)}
+.week-bar-svg:not(.chart-visible) .week-bar-segment{transform:scaleX(0)}
+.week-bar-tick{fill:#0E1A2B;font-size:12px;font-weight:700}
+.week-legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px}
+.week-legend-item{display:flex;align-items:flex-start;gap:6px;color:#0E1A2B;font-size:.8rem;line-height:1.35}
+.week-legend-item strong{display:block}
+.legend-swatch{width:12px;height:12px;flex:none;margin-top:2px;border-radius:2px;background:#2E7D6B}
+.legend-swatch.extra{background:repeating-linear-gradient(135deg,#2E7D6B 0 2px,#7FD1BD 2px 6px)}
+.legend-swatch.remaining{background:#D9E1DE}
+.donut-content{display:grid;grid-template-columns:116px 1fr;align-items:center;gap:12px}
+.donut-wrap{position:relative;width:116px;height:116px}
+.donut-svg{display:block;width:100%;height:100%;overflow:visible}
+.donut-track{fill:none;stroke:#D9E1DE;stroke-width:11}
+.donut-high,.donut-low{fill:none;stroke-linecap:round;transform:rotate(-90deg);transform-origin:60px 60px;transition:stroke-dasharray 900ms ease}
+.donut-high{stroke:#7FD1BD;stroke-width:11}
+.donut-low{stroke:#2E7D6B;stroke-width:11}
+.donut-svg:not(.chart-visible) .donut-high,.donut-svg:not(.chart-visible) .donut-low{stroke-dasharray:0 314.16!important}
+.donut-center{position:absolute;inset:0;display:grid;place-content:center;text-align:center;color:#0E1A2B}
+.donut-center strong{font-size:1.1rem;line-height:1.2}
+.donut-center span{font-size:.72rem;color:#52615D}
+.donut-range{margin:0;color:#0E1A2B;font-size:.9rem;font-weight:700}
+.annual-tile{margin-top:10px;padding:10px;border-radius:8px;background:#E9EFEC;color:#0E1A2B;font-size:.82rem}
+.annual-tile strong{display:block;font-size:.95rem}
+.chart-caption{grid-column:1/-1;margin:0;color:#52615D;font-size:.78rem;line-height:1.4}
+.both-plans{margin:18px 0 8px;padding:14px 18px;border-left:4px solid #2E7D6B;border-radius:8px;background:#E9EFEC;color:#0E1A2B;font-weight:700}
+.try-box{margin:18px 0;padding:18px;border:1px solid #D9E1DE;border-radius:10px;background:#F7F9F8;color:#0E1A2B}
+.try-box h4{margin:0 0 10px;color:#0E1A2B}
+.example-prompt{white-space:pre-wrap;overflow-wrap:anywhere;padding:12px;border-radius:8px;background:#fff;border:1px solid #D9E1DE;color:#0E1A2B}
+.try-meta{display:grid;gap:8px;margin:10px 0;color:#33433F}
+.copy-prompt{min-height:40px;padding:0 14px;border:1px solid #2E7D6B;border-radius:7px;background:#fff;color:#0E1A2B;font-weight:700}
+.recommendation-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.recommendation-actions button{flex:1}
+.recommendation-actions button:disabled{opacity:.55;cursor:default}
+@media(max-width:620px){
+  .plan-charts{grid-template-columns:minmax(0,1fr)}
+  .chart-caption{grid-column:auto}
+  .week-legend{grid-template-columns:minmax(0,1fr)}
+  .donut-content{grid-template-columns:116px minmax(0,1fr)}
+}
 @media(max-width:620px){
   .back{left:var(--space-2);top:var(--space-2)}
   .start-screen{padding:var(--space-2)}
@@ -358,8 +406,9 @@ body{font-size:var(--type-body)}
 }
 </style></head><body>
 <a class="back" href="/">← BACK TO HOME</a>
-<section class="start-screen" id="startScreen"><div class="glass"><label>AI task coach</label><h1>Find your first practical AI step</h1><p>Answer five questions and optionally add one redacted example.</p><button class="start-button" id="startNow" type="button">Start now</button><small class="subnote">Answers are stored in this browser. If you attach files, they are processed by Google's Gemini service to write your plan and deleted afterwards. Only whether a document was attached and the file count are saved; the assessment and plan are saved in Supabase. Use fictional or redacted documents, not real customer information.</small></div></section>
+<section class="start-screen" id="startScreen"><div class="glass"><label>AI task coach</label><h1>Find your first practical AI step</h1><p>Answer five questions and optionally add one redacted example.</p><button class="start-button" id="startNow" type="button">Start now</button><small class="subnote">Answers are stored in this browser and sent to Google's Gemini service on a free plan; they may be used to improve Google's products and could be seen by reviewers. Uploaded examples are also processed by Gemini and deleted afterwards. Use fictional or fully redacted details only. Only whether a document was attached and the file count are saved; the assessment and plan are saved in Supabase.</small></div></section>
 <main class="app" id="app"><div class="coach" id="coach"><div class="progress-head"><span>AI task coach</span><span id="progressLabel">1/6</span></div><div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"><i id="progressFill"></i></div><div id="screen" aria-live="polite"></div></div></main>
+<script src="./scripts/plan-math.js"></script>
 <script>window.ZF_SUPABASE = {url:'https://zocfisqgqbqxjdgnvnoe.supabase.co', anonKey:'sb_publishable_BZjEPwjKOjsCbbopw57OQg_EQYe_QaP'};</script>
 <script>
 
@@ -368,6 +417,7 @@ window.ZF_DATA = {"trades":{"electrical":"Electrical","plumbing":"Plumbing","car
 (() => {
   'use strict';
   const D = window.ZF_DATA;
+  const planMath = window.ZF_PLAN_MATH;
   const keys=['trade','size','pain','bottleneck','tools','readiness'];
   const STORE_KEY = 'zerofriction-ai-coach-standalone-v1';
   let sessions = {};
@@ -550,6 +600,7 @@ const D=window.ZF_DATA;
 const tradeLabels=D.trades,painLabels=D.pains,toolLabels=D.tools,readinessLabels=D.readiness;
 function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 let session=null,uiStep=0,picked={trade:'',otherTradeText:'',pain:'',bottleneck:'',tools:'',readiness:''},busy=false;
+let selectionSavePending=false,selectionSavedSessionId=null;
 const icon=(name)=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 12h16M12 4v16"/></svg>';
 const tradeIcons={
   electrical:'<svg class="trade-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-7z"/></svg>',
@@ -755,25 +806,44 @@ document.getElementById('startNow').onclick=async()=>{
       generatedPlanCache.documents.every((file, index) => file === documents[index]);
   }
   function cachePlan(context, documents, plan) {
+    if (plan.source !== 'ai') return;
     generatedPlanCache = {
       contextKey: JSON.stringify(context),
       documents: [...documents],
       plan
     };
   }
+  function assessmentSnapshot(plan) {
+    return {
+      sessionId: session.id,
+      answers: session.answers,
+      plan: {
+        ...plan,
+        recommendations: plan.recommendations.map(item => ({ ...item }))
+      }
+    };
+  }
   function displayPlanAndSave(plan, context, documents) {
     session.plan = plan;
     cachePlan(context, documents, plan);
     uiStep = 6;
-    renderResults();
-    saveAssessment().catch(error => {
-      const status = document.getElementById('save-status');
-      if (status) status.textContent = `Your plan is ready, but it could not be saved: ${error.message}`;
-    }).finally(() => {
-      busy = false;
-      const backToAnswers = document.getElementById('back-to-answers');
-      if (backToAnswers) backToAnswers.disabled = false;
-    });
+    try {
+      renderResults();
+    } catch (error) {
+      if (plan.source !== 'ai') throw error;
+      const reason = `render error: ${error instanceof Error ? error.name : 'unknown error'}`;
+      console.error(reason);
+      generatedPlanCache = null;
+      session.plan = makeFallbackPlan();
+      session.plan.fallback_note = 'Showing a standard plan because the AI result could not be displayed.';
+      session.plan.reference_code = 'render_error';
+      renderResults();
+    }
+    const status = document.getElementById('save-status');
+    if (status) status.textContent = 'Choose a plan to save it with your assessment.';
+    busy = false;
+    const backToAnswers = document.getElementById('back-to-answers');
+    if (backToAnswers) backToAnswers.disabled = false;
   }
   const displayTask = key => key === 'other'
     ? picked.otherTaskText.trim()
@@ -1099,7 +1169,7 @@ document.getElementById('startNow').onclick=async()=>{
     const primaryTask = picked.tasks[0] || 'other';
     const prompt = `For your top-priority task, show us ${examplePrompts[primaryTask] || examplePrompts.other}.`;
     screen.innerHTML = stepFrame(5, 'Show us an example (optional)', 'Want a more specific answer?',
-      'Add one redacted example of your own paperwork and the suggestions will be built around it. This step is optional.',
+      "Your answers and uploaded examples are sent to Google Gemini on a free plan and may be used to improve Google's products or reviewed by humans. Use fictional or fully redacted details only. This step is optional.",
       `<fieldset class="question-group example-question">
         <legend class="question-label">${prompt}</legend>
         <label class="redaction-consent" for="example-consent">
@@ -1113,7 +1183,7 @@ document.getElementById('startNow').onclick=async()=>{
         </div>
         <ul class="example-file-list" id="example-file-list" aria-label="Selected files"></ul>
         <p class="error" id="example-file-status" role="status" aria-live="polite"></p>
-        <p class="step-hint">Your file is used only to write your plan, then deleted.</p>
+        <p class="step-hint">Your file is sent to Google's Gemini service on a free plan, so it may be used to improve Google's products and could be seen by reviewers. Use fictional or fully redacted details only. The file is deleted after processing.</p>
       </fieldset>`,
       '<button class="secondary" id="skip-example" type="button">Skip this step</button>');
 
@@ -1376,76 +1446,116 @@ document.getElementById('startNow').onclick=async()=>{
     };
   }
   function validateGeneratedPlan(data, context, hasDocuments) {
-    if (!data || typeof data !== 'object' || Array.isArray(data) ||
-        Object.keys(data).some(key => !['recommendations', 'document_notes'].includes(key)) ||
-        !Object.hasOwn(data, 'recommendations') ||
-        (hasDocuments && typeof data.document_notes !== 'string') ||
-        !Array.isArray(data.recommendations) ||
+    const invalid = (reason, referenceCode) => {
+      const error = new Error(reason);
+      error.referenceCode = referenceCode;
+      throw error;
+    };
+    if (!data || typeof data !== 'object' || Array.isArray(data)) {
+      invalid('validation: invalid response object', 'validation_invalid_response');
+    }
+    const hasUnexpectedField = Object.keys(data).some(key =>
+      !['recommendations', 'document_notes', 'model'].includes(key));
+    if (hasUnexpectedField) {
+      invalid('validation: unexpected response field', 'validation_unexpected_field');
+    }
+    if (!Object.hasOwn(data, 'recommendations')) {
+      invalid('validation: missing recommendations', 'validation_missing_recommendations');
+    }
+    if (data.model !== undefined && typeof data.model !== 'string') {
+      invalid('validation: invalid model', 'validation_invalid_model');
+    }
+    if (hasDocuments && typeof data.document_notes !== 'string') {
+      invalid('validation: missing document_notes', 'validation_missing_document_notes');
+    }
+    if (!Array.isArray(data.recommendations) ||
         data.recommendations.length < 1 || data.recommendations.length > 2) {
-      throw new Error('The AI service returned an invalid recommendation list.');
+      invalid('validation: expected one or two recommendations', 'validation_recommendation_count');
     }
     if (data.document_notes !== undefined) {
+      if (typeof data.document_notes !== 'string') {
+        invalid('validation: invalid document_notes', 'validation_invalid_document_notes');
+      }
       const notes = data.document_notes.trim();
       const sentences = notes.split(/(?<=[.!?])\s+/).length;
-      if (!notes || notes !== 'We couldn\'t read your file, so this plan uses your answers only.' &&
-          (sentences < 2 || sentences > 3 || !/[.!?]$/.test(notes))) {
-        throw new Error('The AI service returned invalid document notes.');
+      if (!notes || (sentences < 2 || sentences > 3 || !/[.!?]$/.test(notes)) ||
+          containsPlanUrl(notes)) {
+        invalid('validation: invalid document_notes', 'validation_invalid_document_notes');
       }
     }
+    const weeklyTime = planMath.weeklyTime(context.time_cost_per_week);
     const catalog = new Map(Object.entries(D.use_cases));
     const seen = new Set();
-    const usedSentences = new Set();
     const recommendations = data.recommendations.map((item, index) => {
       if (!item || typeof item !== 'object' || Array.isArray(item)) {
-        throw new Error(`Recommendation ${index + 1} is invalid.`);
+        invalid(`validation: recommendation ${index + 1} is invalid`, 'validation_invalid_recommendation');
       }
       const expectedKeys = [
         'catalog_id', 'title', 'headline', 'why_it_fits', 'first_steps',
-        'possible_time_saving', 'watch_out', 'effort'
+        'possible_time_saving', 'watch_out', 'effort', 'the_payoff',
+        'example_prompt', 'time_to_try', 'success_check', 'next_step_if_it_works'
       ];
-      if (Object.keys(item).length !== expectedKeys.length ||
-          expectedKeys.some(key => !Object.hasOwn(item, key))) {
-        throw new Error(`Recommendation ${index + 1} has an invalid shape.`);
+      const missingKey = expectedKeys.find(key => !Object.hasOwn(item, key));
+      if (missingKey) {
+        invalid(`validation: missing ${missingKey}`, `validation_missing_${missingKey}`);
       }
-      const { catalog_id, title, headline, why_it_fits, first_steps, possible_time_saving, watch_out, effort } = item;
+      const {
+        catalog_id, title, headline, why_it_fits, first_steps,
+        possible_time_saving, watch_out, effort, the_payoff,
+        example_prompt, time_to_try, success_check, next_step_if_it_works
+      } = item;
       const catalogItem = catalog.get(catalog_id);
-      if (!catalogItem || seen.has(catalog_id) || title !== catalogItem.title ||
-          typeof headline !== 'string' || !headline.trim() || headline.trim().split(/\s+/).length >= 12 ||
-          /[\r\n]/.test(headline) ||
+      if (typeof catalog_id !== 'string' || !catalog_id.trim() ||
+          typeof title !== 'string' || !title.trim() ||
+          typeof headline !== 'string' || !headline.trim() ||
           typeof why_it_fits !== 'string' || !why_it_fits.trim() ||
           !Array.isArray(first_steps) || first_steps.length !== 3 ||
-          first_steps.some(step => typeof step !== 'string' || !step.trim() || step.trim().split(/\s+/).length >= 20) ||
+          first_steps.some(step => typeof step !== 'string' || !step.trim()) ||
           typeof possible_time_saving !== 'string' || !possible_time_saving.trim() ||
           typeof watch_out !== 'string' || !watch_out.trim() ||
-          !['Low', 'Medium'].includes(effort)) {
-        throw new Error(`Recommendation ${index + 1} did not match the expected format.`);
+          typeof the_payoff !== 'string' || !the_payoff.trim() ||
+          typeof example_prompt !== 'string' || !example_prompt.trim() ||
+          example_prompt.trim().split(/\s+/).length > 80 ||
+          !/\[[^\]]+\]/.test(example_prompt.trim()) ||
+          typeof time_to_try !== 'string' || !time_to_try.trim() ||
+          typeof success_check !== 'string' || !success_check.trim() ||
+          typeof next_step_if_it_works !== 'string' || !next_step_if_it_works.trim() ||
+          !['Low', 'Medium'].includes(effort) || seen.has(catalog_id)) {
+        invalid(`validation: recommendation ${index + 1} has invalid fields`, 'validation_invalid_recommendation_fields');
       }
-      const sentenceCount = text => text.trim().split(/(?<=[.!?])\s+/).length;
-      if (sentenceCount(why_it_fits) < 2 || sentenceCount(why_it_fits) > 3 ||
-          !/[.!?]$/.test(why_it_fits.trim()) || sentenceCount(possible_time_saving) !== 1 ||
-          sentenceCount(watch_out) !== 1 || !/[.!?]$/.test(possible_time_saving.trim()) ||
-          !/[.!?]$/.test(watch_out.trim())) {
-        throw new Error(`Recommendation ${index + 1} did not contain complete sentences.`);
-      }
-      for (const sentence of why_it_fits.toLowerCase().trim().split(/(?<=[.!?])\s+/)) {
-        if (usedSentences.has(sentence)) throw new Error('The recommendations repeated reasoning.');
-        usedSentences.add(sentence);
+      const textValues = [
+        title, headline, why_it_fits, ...first_steps, possible_time_saving,
+        watch_out, the_payoff, example_prompt, time_to_try, success_check,
+        next_step_if_it_works
+      ];
+      if (textValues.some(value => containsPlanUrl(value))) {
+        invalid(`validation: recommendation ${index + 1} contains a URL`, 'validation_url_not_allowed');
       }
       seen.add(catalog_id);
+      const id = catalogItem ? catalog_id : `ai_recommendation_${index + 1}`;
+      const percentages = planMath.savingRange(item.saving_percent_low, item.saving_percent_high);
+      const estimate = planMath.savings(weeklyTime.hours, percentages.low, percentages.high);
       return {
-        id: catalog_id,
+        id,
         catalog_id,
         rank: index + 1,
-        title,
-        description: catalogItem.description,
+        title: title.trim(),
+        description: catalogItem?.description || title.trim(),
         headline: headline.trim(),
         why_it_fits: why_it_fits.trim(),
         why: why_it_fits.trim(),
         first_steps: first_steps.map(step => step.trim()),
         first_action: first_steps[0].trim(),
-        possible_time_saving: possible_time_saving.trim(),
+        possible_time_saving: estimate.sentence,
         watch_out: watch_out.trim(),
-        effort
+        effort,
+        the_payoff: the_payoff.trim(),
+        example_prompt: example_prompt.trim(),
+        time_to_try: time_to_try.trim(),
+        success_check: success_check.trim(),
+        next_step_if_it_works: next_step_if_it_works.trim(),
+        saving_percent_low: estimate.low,
+        saving_percent_high: estimate.high
       };
     });
     return {
@@ -1458,14 +1568,20 @@ document.getElementById('startNow').onclick=async()=>{
       recommended_first: recommendations[0].id,
       selected: recommendations[0].id,
       source: 'ai',
-      ...(typeof data.document_notes === 'string' ? { document_notes: data.document_notes.trim() } : {})
+      ...(typeof data.document_notes === 'string' ? { document_notes: data.document_notes.trim() } : {}),
+      ...(typeof data.model === 'string' ? { model: data.model } : {})
     };
+  }
+  function containsPlanUrl(value) {
+    return /(?:\bhttps?:\/\/|\bwww\.)[^\s]+|\b(?:[a-z0-9-]+\.)+(?:com|net|org|edu|gov|au|co|io|app|ai)\b/i
+      .test(value);
   }
   async function requestGeneratedPlan(context, documents = []) {
     const config = window.ZF_SUPABASE;
     if (!config?.url || !config.anonKey) throw new Error('Supabase is not configured.');
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), documents.length ? 45000 : 15000);
+    const timeoutMs = documents.length ? 45000 : 25000;
+    let timeout = setTimeout(() => controller.abort(), timeoutMs);
     try {
       const payload = {
         context,
@@ -1491,23 +1607,43 @@ document.getElementById('startNow').onclick=async()=>{
         body,
         signal: controller.signal
       });
+      clearTimeout(timeout);
+      timeout = undefined;
       let data;
       try {
         data = await response.json();
       } catch {
-        throw new Error('The recommendation service returned unreadable data.');
+        const error = new Error('request: invalid JSON response');
+        error.referenceCode = 'response_invalid_json';
+        throw error;
       }
       if (!response.ok) {
-        const error = new Error(data.error || 'The recommendation service could not complete the request.');
+        const error = new Error(`request: HTTP ${response.status}`);
+        error.referenceCode = typeof data.code === 'string'
+          ? `api_${data.code}`
+          : `http_${response.status}`;
         if (typeof data.code === 'string') error.code = data.code;
         throw error;
       }
       return validateGeneratedPlan(data, context, documents.length > 0);
     } catch (error) {
-      if (controller.signal.aborted) throw new Error('The recommendation service timed out.');
+      if (controller.signal.aborted) {
+        const timeoutError = new Error(`timeout after ${timeoutMs}ms`);
+        timeoutError.referenceCode = `timeout_${timeoutMs}ms`;
+        throw timeoutError;
+      }
+      if (!(error instanceof Error)) {
+        const requestError = new Error('request: failed');
+        requestError.referenceCode = 'request_error';
+        throw requestError;
+      }
+      if (!error.referenceCode) {
+        error.referenceCode = error instanceof TypeError ? 'network_error' : 'request_error';
+        error.message = error instanceof TypeError ? 'request: network error' : 'request: failed';
+      }
       throw error;
     } finally {
-      clearTimeout(timeout);
+      if (timeout !== undefined) clearTimeout(timeout);
     }
   }
   function makeFallbackPlan() {
@@ -1516,6 +1652,7 @@ document.getElementById('startNow').onclick=async()=>{
     plan.trade = context.trade;
     plan.team_size = context.team_size;
     plan.source = 'fallback';
+    const weeklyTime = planMath.weeklyTime(context.time_cost_per_week);
     plan.recommendations = plan.recommendations.map(item => ({
       ...item,
       catalog_id: item.id,
@@ -1526,9 +1663,16 @@ document.getElementById('startNow').onclick=async()=>{
         `Ask for a draft of this ${item.title.toLowerCase()} using fictional job details.`,
         'Check every detail before deciding whether the draft helps.'
       ],
-      possible_time_saving: `Any time saving is only a possibility against the ${context.time_cost_per_week} you spend on this work each week.`,
+      possible_time_saving: planMath.savings(weeklyTime.hours, 20, 40).sentence,
       watch_out: `Use fictional or redacted details and check every result. Your main worry is ${context.ai_worries[0].toLowerCase()}.`,
-      effort: 'Low'
+      effort: 'Low',
+      the_payoff: `A clearer first draft could make ${context.selected_tasks[0].toLowerCase()} less of a last-minute task.`,
+      example_prompt: `Using fictional [trade job] details and [site condition], draft a ${item.title.toLowerCase()}. List missing information and assumptions, and flag anything a person must verify. Do not invent prices, dates, or commitments.`,
+      time_to_try: 'About 20 minutes',
+      success_check: item.check,
+      next_step_if_it_works: 'Try the same approach on one more fictional or fully redacted example before using it routinely.',
+      saving_percent_low: 20,
+      saving_percent_high: 40
     }));
     return plan;
   }
@@ -1580,13 +1724,16 @@ document.getElementById('startNow').onclick=async()=>{
       if (submitButton) submitButton.disabled = true;
       const usage = reserveAIPlanRequest();
       if (!usage.allowed) {
+        const reason = usage.reason === 'limit'
+          ? 'local: hourly plan limit reached'
+          : 'local: AI usage limit unavailable';
+        const referenceCode = usage.reason === 'limit' ? 'local_limit_reached' : 'local_limit_unavailable';
+        console.error(reason);
         session.plan = makeFallbackPlan();
         session.plan.fallback_note = usage.reason === 'limit'
           ? 'You have reached the limit of five AI plans per hour, so this is a standard plan.'
           : 'We could not check the AI usage limit, so this is a standard plan.';
-        if (documents.length) {
-          session.plan.document_notes = 'We couldn\'t read your file, so this plan uses your answers only.';
-        }
+        session.plan.reference_code = referenceCode;
         displayPlanAndSave(session.plan, context, documents);
         return;
       }
@@ -1607,18 +1754,19 @@ document.getElementById('startNow').onclick=async()=>{
         .catch(error => ({ plan: null, error }));
       clearInterval(loadingTimer);
       if (result.error) {
-        console.warn('Using the standard recommendation plan after the recommendation request failed.');
+        const reason = result.error.message || 'request: failed';
+        const referenceCode = result.error.referenceCode || 'request_error';
+        console.error(reason);
         session.plan = makeFallbackPlan();
         session.plan.fallback_note = result.error.code === 'ai_busy'
           ? 'Our AI service is busy, so this is a standard plan.'
           : 'Showing a standard plan because the AI service was unavailable.';
-        if (documents.length) {
-          if (result.error.code === 'document_cleanup_failed') {
-            session.plan.fallback_note = result.error.message;
-          } else {
-            session.plan.document_notes = 'We couldn\'t read your file, so this plan uses your answers only.';
-          }
+        if (result.error.code === 'document_cleanup_failed') {
+          session.plan.fallback_note = 'We could not confirm deletion of your uploaded example, so the plan was not generated.';
+        } else if (result.error.code === 'file_unreadable') {
+          session.plan.fallback_note = 'The uploaded file could not be read, so this is a standard plan.';
         }
+        session.plan.reference_code = referenceCode;
       } else {
         session.plan = result.plan;
       }
@@ -1628,10 +1776,283 @@ document.getElementById('startNow').onclick=async()=>{
     uiStep++;
     activeStep();
   }
+  function createSvgElement(name, attributes = {}) {
+    const element = document.createElementNS('http://www.w3.org/2000/svg', name);
+    for (const [key, value] of Object.entries(attributes)) element.setAttribute(key, String(value));
+    return element;
+  }
+  function addChartDescription(figure, description) {
+    figure.setAttribute('role', 'img');
+    figure.setAttribute('aria-label', description);
+    const hiddenText = document.createElement('figcaption');
+    hiddenText.className = 'sr-only';
+    hiddenText.textContent = description;
+    figure.append(hiddenText);
+  }
+  function createRecommendationCharts(item, weeklyTime) {
+    const estimate = planMath.savings(
+      weeklyTime.hours,
+      item.saving_percent_low,
+      item.saving_percent_high
+    );
+    const wrapper = document.createElement('section');
+    wrapper.className = 'plan-charts';
+    wrapper.setAttribute('aria-label', 'Illustrative weekly time savings');
+
+    const weekFigure = document.createElement('figure');
+    weekFigure.className = 'chart-figure week-figure';
+    const weekTitle = document.createElement('h4');
+    weekTitle.textContent = 'Your week';
+    const weekDescription = `Your week is ${weeklyTime.label} today. Likely saving: ${planMath.formatHours(estimate.lowHours)} hours (${estimate.low}%). Possible extra: ${planMath.formatHours(estimate.extraHours)} hours, for up to ${planMath.formatHours(estimate.highHours)} hours total (${estimate.high}%). Still your time: ${planMath.formatHours(estimate.remainingHours)} hours.`;
+    addChartDescription(weekFigure, weekDescription);
+    const bar = createSvgElement('svg', {
+      class: 'week-bar-svg',
+      viewBox: '0 0 400 66',
+      preserveAspectRatio: 'none',
+      'aria-hidden': 'true',
+      focusable: 'false'
+    });
+    const defs = createSvgElement('defs');
+    const patternId = `saving-pattern-${item.rank}`;
+    const pattern = createSvgElement('pattern', {
+      id: patternId,
+      width: 8,
+      height: 8,
+      patternUnits: 'userSpaceOnUse'
+    });
+    pattern.append(
+      createSvgElement('rect', { width: 8, height: 8, fill: '#7FD1BD' }),
+      createSvgElement('path', { d: 'M-2 2L2 -2M0 8L8 0M6 10L10 6', stroke: '#2E7D6B', 'stroke-width': 2 })
+    );
+    defs.append(pattern);
+    bar.append(defs);
+    const width = 400;
+    const likelyWidth = width * estimate.low / 100;
+    const upperWidth = width * (estimate.high - estimate.low) / 100;
+    const remainingWidth = width - likelyWidth - upperWidth;
+    const segments = [
+      { x: 0, width: likelyWidth, fill: '#2E7D6B' },
+      { x: likelyWidth, width: upperWidth, fill: `url(#${patternId})` },
+      { x: likelyWidth + upperWidth, width: remainingWidth, fill: '#D9E1DE' }
+    ];
+    for (const segment of segments) {
+      bar.append(createSvgElement('rect', {
+        class: 'week-bar-segment',
+        x: segment.x,
+        y: 8,
+        width: segment.width,
+        height: 20,
+        rx: 2,
+        fill: segment.fill
+      }));
+    }
+    const ticks = [
+      { x: likelyWidth, y: 48, value: `${planMath.formatHours(estimate.lowHours)}h` },
+      { x: likelyWidth + upperWidth, y: 62, value: `${planMath.formatHours(estimate.highHours)}h` },
+      { x: width, y: 48, value: weeklyTime.label }
+    ];
+    for (const tick of ticks) {
+      const label = createSvgElement('text', {
+        class: 'week-bar-tick',
+        x: tick.x,
+        y: tick.y,
+        'text-anchor': tick.x === width ? 'end' : 'middle'
+      });
+      label.textContent = tick.value;
+      bar.append(label);
+    }
+    const weekLegend = document.createElement('div');
+    weekLegend.className = 'week-legend';
+    for (const entry of [
+      { style: '', title: 'Likely saving', value: `${planMath.formatHours(estimate.lowHours)} h` },
+      { style: 'extra', title: 'Possible extra', value: `${planMath.formatHours(estimate.extraHours)} h` },
+      { style: 'remaining', title: 'Still your time', value: `${planMath.formatHours(estimate.remainingHours)} h` }
+    ]) {
+      const legendItem = document.createElement('div');
+      legendItem.className = 'week-legend-item';
+      const swatch = document.createElement('span');
+      swatch.className = `legend-swatch ${entry.style}`.trim();
+      swatch.setAttribute('aria-hidden', 'true');
+      const copy = document.createElement('span');
+      const label = document.createElement('strong');
+      label.textContent = entry.title;
+      copy.append(label, document.createTextNode(entry.value));
+      legendItem.append(swatch, copy);
+      weekLegend.append(legendItem);
+    }
+    weekFigure.append(weekTitle, bar, weekLegend);
+
+    const shareFigure = document.createElement('figure');
+    shareFigure.className = 'chart-figure share-figure';
+    const shareTitle = document.createElement('h4');
+    shareTitle.textContent = 'Share of your weekly admin time';
+    const shareDescription = `The plan could win back ${estimate.low}% to ${estimate.high}% of your weekly admin time. The midpoint is about ${estimate.midpointPercent}%. That is ${estimate.annualLow} to ${estimate.annualHigh} hours back per year.`;
+    addChartDescription(shareFigure, shareDescription);
+    const donutContent = document.createElement('div');
+    donutContent.className = 'donut-content';
+    const donutWrap = document.createElement('div');
+    donutWrap.className = 'donut-wrap';
+    const donut = createSvgElement('svg', {
+      class: 'donut-svg',
+      viewBox: '0 0 120 120',
+      'aria-hidden': 'true',
+      focusable: 'false'
+    });
+    const highCircumference = 2 * Math.PI * 50;
+    const lowCircumference = 2 * Math.PI * 38;
+    const highArc = highCircumference * estimate.high / 100;
+    const lowArc = lowCircumference * estimate.low / 100;
+    donut.append(
+      createSvgElement('circle', { class: 'donut-track', cx: 60, cy: 60, r: 50 }),
+      createSvgElement('circle', {
+        class: 'donut-high',
+        cx: 60,
+        cy: 60,
+        r: 50,
+        'stroke-dasharray': `${highArc} ${highCircumference}`
+      }),
+      createSvgElement('circle', {
+        class: 'donut-low',
+        cx: 60,
+        cy: 60,
+        r: 38,
+        'stroke-dasharray': `${lowArc} ${lowCircumference}`
+      })
+    );
+    const donutCenter = document.createElement('div');
+    donutCenter.className = 'donut-center';
+    const midpoint = document.createElement('strong');
+    midpoint.textContent = `about ${estimate.midpointPercent}%`;
+    const midpointLabel = document.createElement('span');
+    midpointLabel.textContent = 'midpoint';
+    donutCenter.append(midpoint, midpointLabel);
+    donutWrap.append(donut, donutCenter);
+    const shareDetails = document.createElement('div');
+    const range = document.createElement('p');
+    range.className = 'donut-range';
+    range.textContent = `${estimate.low}% to ${estimate.high}%`;
+    const annual = document.createElement('div');
+    annual.className = 'annual-tile';
+    annual.textContent = 'Hours back per year';
+    const annualRange = document.createElement('strong');
+    annualRange.textContent = `${estimate.annualLow} to ${estimate.annualHigh} hours`;
+    annual.append(annualRange);
+    shareDetails.append(range, annual);
+    donutContent.append(donutWrap, shareDetails);
+    shareFigure.append(shareTitle, donutContent);
+
+    const caption = document.createElement('p');
+    caption.className = 'chart-caption';
+    caption.textContent = 'Illustrative estimate based on your answers. Real savings vary, and nothing is guaranteed.';
+    wrapper.append(weekFigure, shareFigure, caption);
+    return wrapper;
+  }
+  function revealCharts(container) {
+    const charts = container.querySelectorAll('.week-bar-svg, .donut-svg');
+    const reveal = chart => chart.classList.add('chart-visible');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        !('IntersectionObserver' in window)) {
+      charts.forEach(reveal);
+      return;
+    }
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        reveal(entry.target);
+        observer.unobserve(entry.target);
+      }
+    }, { threshold: 0.2 });
+    charts.forEach(chart => observer.observe(chart));
+  }
+  function updateRecommendationSelection() {
+    for (const card of document.querySelectorAll('.recommendation')) {
+      const selected = card.dataset.recommendationId === session.plan.selected;
+      card.classList.toggle('is-selected', selected);
+      const badge = card.querySelector('.selected-badge');
+      if (badge) badge.hidden = !selected;
+      const button = card.querySelector('.choose-plan');
+      if (button) button.disabled = selectionSavePending || selectionSavedSessionId === session.id;
+    }
+  }
+  function makeTryBox(item) {
+    const box = document.createElement('section');
+    box.className = 'try-box';
+    const title = document.createElement('h4');
+    title.textContent = 'Try it in 20 minutes';
+    const prompt = document.createElement('p');
+    prompt.className = 'example-prompt';
+    prompt.textContent = item.example_prompt;
+    const meta = document.createElement('div');
+    meta.className = 'try-meta';
+    const time = document.createElement('p');
+    time.textContent = `Time to try: ${item.time_to_try}`;
+    const success = document.createElement('p');
+    success.textContent = `Success check: ${item.success_check}`;
+    const copy = document.createElement('button');
+    copy.className = 'copy-prompt';
+    copy.type = 'button';
+    copy.textContent = 'Copy prompt';
+    const copyStatus = document.createElement('span');
+    copyStatus.className = 'sr-only';
+    copyStatus.setAttribute('role', 'status');
+    copyStatus.setAttribute('aria-live', 'polite');
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(item.example_prompt);
+        copyStatus.textContent = 'Prompt copied.';
+      } catch {
+        copyStatus.textContent = 'Copy is unavailable. Select the prompt text and copy it manually.';
+      }
+    });
+    meta.append(time, success);
+    box.append(title, prompt, meta, copy, copyStatus);
+    return box;
+  }
+  function makeRecommendationActions(item) {
+    const actions = document.createElement('div');
+    actions.className = 'recommendation-actions';
+    const choose = document.createElement('button');
+    choose.className = 'primary choose-plan';
+    choose.type = 'button';
+    choose.textContent = 'Choose this plan';
+    choose.addEventListener('click', () => {
+      if (selectionSavePending || selectionSavedSessionId === session.id) return;
+      session.plan.selected = item.id;
+      updateRecommendationSelection();
+      const status = document.getElementById('save-status');
+      if (status) status.textContent = `Saving ${item.title} as your chosen plan...`;
+      const snapshot = assessmentSnapshot(session.plan);
+      const sessionId = snapshot.sessionId;
+      selectionSavePending = true;
+      updateRecommendationSelection();
+      saveAssessment(snapshot).then(() => {
+        if (session.id !== sessionId) return;
+        selectionSavePending = false;
+        selectionSavedSessionId = sessionId;
+        updateRecommendationSelection();
+        const backToAnswers = document.getElementById('back-to-answers');
+        if (backToAnswers) backToAnswers.disabled = true;
+        if (status?.isConnected) status.textContent = `${item.title} is selected and saved.`;
+      }).catch(error => {
+        if (session.id !== sessionId) return;
+        selectionSavePending = false;
+        updateRecommendationSelection();
+        if (status?.isConnected) status.textContent = `The selection is shown, but it could not be saved: ${error.message}`;
+      });
+    });
+    const download = document.createElement('button');
+    download.className = 'secondary';
+    download.type = 'button';
+    download.textContent = 'Download this plan';
+    download.addEventListener('click', () => downloadRecommendation(item));
+    actions.append(choose, download);
+    return actions;
+  }
   function renderResults() {
     document.querySelector('.progress').style.display = 'none';
     const plan = session.plan;
     const screen = document.getElementById('screen');
+    const weeklyTime = planMath.weeklyTime(session.answers.timeCost);
     const result = document.createElement('section');
     result.className = 'panel result';
     result.setAttribute('aria-live', 'polite');
@@ -1652,6 +2073,13 @@ document.getElementById('startNow').onclick=async()=>{
       fallbackNote.textContent = plan.fallback_note;
       result.append(fallbackNote);
     }
+    if (plan.reference_code) {
+      const reference = document.createElement('p');
+      reference.className = 'result-note';
+      reference.style.color = 'var(--muted)';
+      reference.textContent = `Reference: ${plan.reference_code}`;
+      result.append(reference);
+    }
     const aiLabel = document.createElement('p');
     aiLabel.className = 'result-note';
     aiLabel.textContent = plan.source === 'ai'
@@ -1668,20 +2096,35 @@ document.getElementById('startNow').onclick=async()=>{
       documentNotes.append(documentNotesTitle, documentNotesText);
       result.append(documentNotes);
     }
+    if (plan.recommendations.length === 2) {
+      const combined = planMath.combinedHighHours(weeklyTime.hours, plan.recommendations);
+      const summary = document.createElement('p');
+      summary.className = 'both-plans';
+      summary.textContent = `Both plans together: up to ${planMath.formatHours(combined)} hours a week`;
+      result.append(summary);
+    }
     for (const item of plan.recommendations) {
       const article = document.createElement('article');
       article.className = 'recommendation';
+      article.dataset.recommendationId = item.id;
+      const badge = document.createElement('span');
+      badge.className = 'selected-badge';
+      badge.textContent = 'Selected';
+      badge.hidden = item.id !== plan.selected;
       const title = document.createElement('h3');
       title.textContent = item.title;
       const headline = document.createElement('p');
       headline.className = 'headline';
       headline.textContent = item.headline;
+      const payoff = document.createElement('p');
+      payoff.className = 'payoff';
+      payoff.textContent = item.the_payoff;
       const why = document.createElement('p');
       const whyLabel = document.createElement('strong');
       whyLabel.textContent = 'Why this fits';
       why.append(whyLabel, document.createElement('br'), document.createTextNode(item.why_it_fits));
       const firstStepLabel = document.createElement('strong');
-      firstStepLabel.textContent = 'Your first step';
+      firstStepLabel.textContent = 'Your first steps';
       const firstSteps = document.createElement('ol');
       firstSteps.className = 'first-steps';
       for (const step of item.first_steps) {
@@ -1691,6 +2134,7 @@ document.getElementById('startNow').onclick=async()=>{
       }
       const steps = document.createElement('div');
       steps.append(firstStepLabel, firstSteps);
+      const charts = createRecommendationCharts(item, weeklyTime);
       const saving = document.createElement('p');
       const savingLabel = document.createElement('strong');
       savingLabel.textContent = 'Possible time saving: ';
@@ -1699,10 +2143,16 @@ document.getElementById('startNow').onclick=async()=>{
       const watchLabel = document.createElement('strong');
       watchLabel.textContent = 'Watch out: ';
       watch.append(watchLabel, document.createTextNode(item.watch_out));
+      const next = document.createElement('p');
+      const nextLabel = document.createElement('strong');
+      nextLabel.textContent = 'If it works: ';
+      next.append(nextLabel, document.createTextNode(item.next_step_if_it_works));
       const effort = document.createElement('span');
       effort.className = 'effort-tag';
       effort.textContent = `${item.effort} effort`;
-      article.append(title, headline, why, steps, saving, watch, effort);
+      const tryBox = makeTryBox(item);
+      const actions = makeRecommendationActions(item);
+      article.append(badge, title, headline, payoff, charts, why, steps, saving, watch, next, tryBox, effort, actions);
       result.append(article);
     }
     const control = document.createElement('div');
@@ -1717,58 +2167,84 @@ document.getElementById('startNow').onclick=async()=>{
     saveStatus.setAttribute('aria-live', 'polite');
     const actions = document.createElement('div');
     actions.className = 'plan-actions';
-    actions.innerHTML = `<button class="secondary" id="back-to-answers" type="button" ${busy ? 'disabled' : ''}>Back to answers</button><button class="primary" id="download" type="button">Download plan</button><button class="secondary" id="restart" type="button">Start again</button>`;
-    result.append(control, saveStatus, actions);
-    screen.replaceChildren(result);
-    document.getElementById('back-to-answers').onclick = () => {
+    const back = document.createElement('button');
+    back.className = 'secondary';
+    back.type = 'button';
+    back.id = 'back-to-answers';
+    back.disabled = busy;
+    back.textContent = 'Back to answers';
+    back.addEventListener('click', () => {
       document.querySelector('.progress').style.display = 'block';
       uiStep = 5;
       activeStep();
-    };
-    document.getElementById('download').onclick = downloadCurrentPlan;
-    document.getElementById('restart').onclick = resetFlow;
+    });
+    const restart = document.createElement('button');
+    restart.className = 'secondary';
+    restart.type = 'button';
+    restart.id = 'restart';
+    restart.textContent = 'Start again';
+    restart.addEventListener('click', resetFlow);
+    actions.append(back, restart);
+    result.append(control, saveStatus, actions);
+    screen.replaceChildren(result);
+    updateRecommendationSelection();
+    revealCharts(result);
   }
-  function downloadCurrentPlan() {
+  function downloadRecommendation(item) {
     const plan = session.plan;
-    const chosen = plan.recommendations.find(item => item.id === plan.selected) || plan.recommendations[0];
+    const weeklyTime = planMath.weeklyTime(session.answers.timeCost);
+    const estimate = planMath.savings(
+      weeklyTime.hours,
+      item.saving_percent_low,
+      item.saving_percent_high
+    );
     const lines = [
       'ZeroFriction AI Coach — Personalised AI Plan',
       '',
       `Written for ${plan.trade}, team of ${plan.team_size}`,
       plan.context,
       '',
-      'RECOMMENDATIONS',
-      ...plan.recommendations.flatMap((item, index) => [
-        `${index + 1}. ${item.title}`,
-        item.headline,
-        `Why this fits: ${item.why_it_fits}`,
-        'Your first step:',
-        ...item.first_steps.map((step, stepIndex) => `${stepIndex + 1}. ${step}`),
-        `Possible time saving: ${item.possible_time_saving}`,
-        `Watch out: ${item.watch_out}`,
-        `Effort: ${item.effort}`,
-        ''
-      ]),
-      `SELECTED: ${chosen.title}`,
+      `PLAN: ${item.title}`,
+      item.headline,
+      `Why it fits: ${item.why_it_fits}`,
+      `What you get back: ${item.the_payoff}`,
       '',
-      plan.fallback_note || 'AI-generated suggestion. You review everything before acting.'
+      'TRY IT',
+      item.example_prompt,
+      `Time to try: ${item.time_to_try}`,
+      `Success check: ${item.success_check}`,
+      '',
+      'FIRST STEPS',
+      ...item.first_steps.map((step, index) => `${index + 1}. ${step}`),
+      '',
+      `Possible time saving: ${estimate.sentence}`,
+      `Weekly time reported: ${weeklyTime.label}`,
+      `Saving range: ${estimate.low}% to ${estimate.high}%`,
+      `Hours back per year: ${estimate.annualLow} to ${estimate.annualHigh} hours`,
+      `Watch out: ${item.watch_out}`,
+      `Next step if it works: ${item.next_step_if_it_works}`,
+      '',
+      `${plan.source === 'ai' ? 'AI-generated' : 'Standard'} suggestion to review. Real savings vary, and nothing is guaranteed.`
     ];
     const url = URL.createObjectURL(new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' }));
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'zerofriction-ai-plan.txt';
+    link.download = `${item.catalog_id}-plan.txt`;
     link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
-  async function saveAssessment() {
+  async function saveAssessment(snapshot) {
     const config = window.ZF_SUPABASE;
     if (!config?.url || !config.anonKey) throw new Error('Supabase is not configured.');
-    if (!session?.plan) throw new Error('There is no recommendation plan to save.');
-    const answers = session.answers;
+    if (!snapshot?.plan || !snapshot.answers || !snapshot.sessionId) {
+      throw new Error('There is no recommendation plan to save.');
+    }
+    const answers = snapshot.answers;
+    const planToSave = snapshot.plan;
     const taskValues = answers.context.selected_tasks;
-    const bottleneckValues = slowdownAnswers();
-    const selected = session.plan.recommendations.find(item => item.id === session.plan.selected) ||
-      session.plan.recommendations[0];
+    const bottleneckValues = Object.values(answers.context.slowdowns_by_task || {}).flat();
+    const selected = planToSave.recommendations.find(item => item.id === planToSave.selected) ||
+      planToSave.recommendations[0];
     const body = {
       trade_type: answers.context.trade,
       business_size: answers.size,
@@ -1783,8 +2259,8 @@ document.getElementById('startNow').onclick=async()=>{
       selected_use_case: selected.title,
       first_action: (selected.first_steps || [selected.first_action]).join(' '),
       context: answers.context,
-      recommendation_plan: session.plan,
-      recommendation_source: session.plan.source
+      recommendation_plan: planToSave,
+      recommendation_source: planToSave.source
     };
     const response = await window.ZF_REMOTE_FETCH(`${config.url.replace(/\/+$/, '')}/functions/v1/assessments`, {
       method: 'POST',
@@ -1797,6 +2273,8 @@ document.getElementById('startNow').onclick=async()=>{
   async function resetFlow() {
     session = await api('/api/start', 'POST', {});
     uiStep = 0;
+    selectionSavePending = false;
+    selectionSavedSessionId = null;
     picked = newAnswers();
     selectedExampleFiles = [];
     documentConsent = false;

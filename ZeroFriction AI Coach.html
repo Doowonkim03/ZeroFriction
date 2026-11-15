@@ -408,7 +408,7 @@ body{font-size:var(--type-body)}
 <a class="back" href="/">← BACK TO HOME</a>
 <section class="start-screen" id="startScreen"><div class="glass"><label>AI task coach</label><h1>Find your first practical AI step</h1><p>Answer five questions and optionally add one redacted example.</p><button class="start-button" id="startNow" type="button">Start now</button><small class="subnote">Answers are stored in this browser and sent to Google's Gemini service on a free plan; they may be used to improve Google's products and could be seen by reviewers. Uploaded examples are also processed by Gemini and deleted afterwards. Use fictional or fully redacted details only. Only whether a document was attached and the file count are saved; the assessment and plan are saved in Supabase.</small></div></section>
 <main class="app" id="app"><div class="coach" id="coach"><div class="progress-head"><span>AI task coach</span><span id="progressLabel">1/6</span></div><div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"><i id="progressFill"></i></div><div id="screen" aria-live="polite"></div></div></main>
-<script src="./scripts/plan-math.js"></script>
+<script src="/plan-math.js"></script>
 <script>window.ZF_SUPABASE = {url:'https://zocfisqgqbqxjdgnvnoe.supabase.co', anonKey:'sb_publishable_BZjEPwjKOjsCbbopw57OQg_EQYe_QaP'};</script>
 <script>
 
@@ -725,6 +725,7 @@ document.getElementById('startNow').onclick=async()=>{
 </script>
 <script>
 (() => {
+  const planMath = window.ZF_PLAN_MATH;
   const taskOptions = [
     ['quoting', 'Preparing quotes'],
     ['enquiries', 'Customer enquiries'],
@@ -822,28 +823,6 @@ document.getElementById('startNow').onclick=async()=>{
         recommendations: plan.recommendations.map(item => ({ ...item }))
       }
     };
-  }
-  function displayPlanAndSave(plan, context, documents) {
-    session.plan = plan;
-    cachePlan(context, documents, plan);
-    uiStep = 6;
-    try {
-      renderResults();
-    } catch (error) {
-      if (plan.source !== 'ai') throw error;
-      const reason = `render error: ${error instanceof Error ? error.name : 'unknown error'}`;
-      console.error(reason);
-      generatedPlanCache = null;
-      session.plan = makeFallbackPlan();
-      session.plan.fallback_note = 'Showing a standard plan because the AI result could not be displayed.';
-      session.plan.reference_code = 'render_error';
-      renderResults();
-    }
-    const status = document.getElementById('save-status');
-    if (status) status.textContent = 'Choose a plan to save it with your assessment.';
-    busy = false;
-    const backToAnswers = document.getElementById('back-to-answers');
-    if (backToAnswers) backToAnswers.disabled = false;
   }
   const displayTask = key => key === 'other'
     ? picked.otherTaskText.trim()
@@ -961,7 +940,10 @@ document.getElementById('startNow').onclick=async()=>{
     const refresh = () => {
       picked.size = sizeInput.value;
       const validSize = Number.isInteger(Number(picked.size)) && Number(picked.size) >= 1 && Number(picked.size) <= 200;
-      document.getElementById('continue').disabled = !picked.trade || (isOtherTrade() && !picked.otherTradeText.trim()) || !validSize;
+      const continueButton = document.getElementById('continue');
+      if (continueButton) {
+        continueButton.disabled = !picked.trade || (isOtherTrade() && !picked.otherTradeText.trim()) || !validSize;
+      }
     };
     sizeInput.addEventListener('input', refresh);
     document.querySelectorAll('.trade-choice').forEach(button => button.addEventListener('click', () => setTimeout(refresh)));
@@ -1449,6 +1431,7 @@ document.getElementById('startNow').onclick=async()=>{
     const invalid = (reason, referenceCode) => {
       const error = new Error(reason);
       error.referenceCode = referenceCode;
+      error.stage = 'validation';
       throw error;
     };
     if (!data || typeof data !== 'object' || Array.isArray(data)) {
@@ -1483,7 +1466,13 @@ document.getElementById('startNow').onclick=async()=>{
         invalid('validation: invalid document_notes', 'validation_invalid_document_notes');
       }
     }
-    const weeklyTime = planMath.weeklyTime(context.time_cost_per_week);
+    let weeklyTime;
+    try {
+      weeklyTime = planMath.weeklyTime(context.time_cost_per_week);
+    } catch (error) {
+      error.stage = 'math';
+      throw error;
+    }
     const catalog = new Map(Object.entries(D.use_cases));
     const seen = new Set();
     const recommendations = data.recommendations.map((item, index) => {
@@ -1533,8 +1522,14 @@ document.getElementById('startNow').onclick=async()=>{
       }
       seen.add(catalog_id);
       const id = catalogItem ? catalog_id : `ai_recommendation_${index + 1}`;
-      const percentages = planMath.savingRange(item.saving_percent_low, item.saving_percent_high);
-      const estimate = planMath.savings(weeklyTime.hours, percentages.low, percentages.high);
+      let percentages, estimate;
+      try {
+        percentages = planMath.savingRange(item.saving_percent_low, item.saving_percent_high);
+        estimate = planMath.savings(weeklyTime.hours, percentages.low, percentages.high);
+      } catch (error) {
+        error.stage = 'math';
+        throw error;
+      }
       return {
         id,
         catalog_id,
@@ -1628,17 +1623,24 @@ document.getElementById('startNow').onclick=async()=>{
       if (controller.signal.aborted) {
         const timeoutError = new Error(`timeout after ${timeoutMs}ms`);
         timeoutError.referenceCode = `timeout_${timeoutMs}ms`;
+        timeoutError.stage = 'request';
         throw timeoutError;
       }
       if (!(error instanceof Error)) {
         const requestError = new Error('request: failed');
         requestError.referenceCode = 'request_error';
+        requestError.stage = 'request';
         throw requestError;
       }
       if (!error.referenceCode) {
-        error.referenceCode = error instanceof TypeError ? 'network_error' : 'request_error';
-        error.message = error instanceof TypeError ? 'request: network error' : 'request: failed';
+        error.referenceCode = error.stage
+          ? `${error.stage}_error`
+          : error instanceof TypeError ? 'network_error' : 'request_error';
+        error.message = error.stage
+          ? `${error.stage}: failed`
+          : error instanceof TypeError ? 'request: network error' : 'request: failed';
       }
+      if (!error.stage) error.stage = 'request';
       throw error;
     } finally {
       if (timeout !== undefined) clearTimeout(timeout);
@@ -1650,7 +1652,20 @@ document.getElementById('startNow').onclick=async()=>{
     plan.trade = context.trade;
     plan.team_size = context.team_size;
     plan.source = 'fallback';
-    const weeklyTime = planMath.weeklyTime(context.time_cost_per_week);
+    let weeklyTime = { hours: 0, label: 'not available' };
+    try {
+      if (planMath?.weeklyTime) weeklyTime = planMath.weeklyTime(context.time_cost_per_week);
+    } catch {
+      console.error('Coach math stage failed.');
+    }
+    let possibleTimeSaving = 'A small amount of time, if the test helps.';
+    try {
+      if (planMath?.savings) {
+        possibleTimeSaving = planMath.savings(weeklyTime.hours, 20, 40).sentence;
+      }
+    } catch {
+      console.error('Coach math stage failed.');
+    }
     plan.recommendations = plan.recommendations.map(item => ({
       ...item,
       catalog_id: item.id,
@@ -1661,8 +1676,8 @@ document.getElementById('startNow').onclick=async()=>{
         `Ask for a draft of this ${item.title.toLowerCase()} using fictional job details.`,
         'Check every detail before deciding whether the draft helps.'
       ],
-      possible_time_saving: planMath.savings(weeklyTime.hours, 20, 40).sentence,
-      watch_out: `Use fictional or redacted details and check every result. Your main worry is ${context.ai_worries[0].toLowerCase()}.`,
+      possible_time_saving: possibleTimeSaving,
+      watch_out: `Use fictional or redacted details and check every result. Your main worry is ${(context.ai_worries[0] || 'accuracy').toLowerCase()}.`,
       effort: 'Low',
       the_payoff: `A clearer first draft could make ${context.selected_tasks[0].toLowerCase()} less of a last-minute task.`,
       example_prompt: `Using fictional [trade job] details and [site condition], draft a ${item.title.toLowerCase()}. List missing information and assumptions, and flag anything a person must verify. Do not invent prices, dates, or commitments.`,
@@ -1715,60 +1730,110 @@ document.getElementById('startNow').onclick=async()=>{
         session.plan = generatedPlanCache.plan;
         uiStep = 6;
         renderResults();
+        void loadCuratedResources().catch(() => {
+          console.error('Coach resources stage failed.');
+        });
         return;
       }
       busy = true;
       const submitButton = document.getElementById('continue');
       if (submitButton) submitButton.disabled = true;
-      const usage = reserveAIPlanRequest();
-      if (!usage.allowed) {
-        const reason = usage.reason === 'limit'
-          ? 'local: hourly plan limit reached'
-          : 'local: AI usage limit unavailable';
-        const referenceCode = usage.reason === 'limit' ? 'local_limit_reached' : 'local_limit_unavailable';
-        console.error(reason);
-        session.plan = makeFallbackPlan();
-        session.plan.fallback_note = usage.reason === 'limit'
-          ? 'You have reached the limit of five AI plans per hour, so this is a standard plan.'
-          : 'We could not check the AI usage limit, so this is a standard plan.';
-        session.plan.reference_code = referenceCode;
-        displayPlanAndSave(session.plan, context, documents);
-        return;
-      }
-      document.getElementById('screen').innerHTML = `<section class="panel loading" aria-live="polite"><div><div class="loader" aria-hidden="true"></div><h2 id="loading-message">Reading your answers</h2></div></section>`;
-      const loadingMessages = [
-        'Reading your answers',
-        'Matching tasks to your business',
-        'Choosing a practical first step'
-      ];
-      let messageIndex = 0;
-      const loadingTimer = setInterval(() => {
-        messageIndex = (messageIndex + 1) % loadingMessages.length;
-        const message = document.getElementById('loading-message');
-        if (message) message.textContent = loadingMessages[messageIndex];
-      }, 1100);
-      const result = await requestGeneratedPlan(context, documents)
-        .then(plan => ({ plan, error: null }))
-        .catch(error => ({ plan: null, error }));
-      clearInterval(loadingTimer);
-      if (result.error) {
-        const reason = result.error.message || 'request: failed';
-        const referenceCode = result.error.referenceCode || 'request_error';
-        console.error(reason);
-        session.plan = makeFallbackPlan();
-        session.plan.fallback_note = result.error.code === 'ai_busy'
+      let stage = 'request';
+      let loadingTimer;
+      let watchdogTimer;
+      let watchdogExpired = false;
+      const standardPlan = (note, referenceCode) => {
+        try {
+          session.plan = makeFallbackPlan();
+          session.plan.fallback_note = note;
+          session.plan.reference_code = referenceCode;
+          session.plan.source = 'fallback';
+          uiStep = 6;
+          stage = 'render';
+          renderResults();
+          cachePlan(context, documents, session.plan);
+          void loadCuratedResources().catch(() => {
+            console.error('Coach resources stage failed.');
+          });
+        } catch (error) {
+          console.error(`Coach ${error.stage || stage} stage failed.`);
+          renderEmergencyResults(note, referenceCode);
+        }
+      };
+      try {
+        document.getElementById('screen').innerHTML = `<section class="panel loading" aria-live="polite"><div><div class="loader" aria-hidden="true"></div><h2 id="loading-message">Reading your answers</h2></div></section>`;
+        const loadingMessages = [
+          'Reading your answers',
+          'Matching tasks to your business',
+          'Choosing a practical first step'
+        ];
+        let messageIndex = 0;
+        loadingTimer = setInterval(() => {
+          messageIndex = (messageIndex + 1) % loadingMessages.length;
+          const message = document.getElementById('loading-message');
+          if (message) message.textContent = loadingMessages[messageIndex];
+        }, 1100);
+        watchdogTimer = setTimeout(() => {
+          if (document.querySelector('#screen .result')) return;
+          watchdogExpired = true;
+          console.error('Coach request stage failed.');
+          try {
+            standardPlan('Showing a standard plan because results took too long to load.', 'watchdog_60s');
+          } catch {
+            console.error('Coach render stage failed.');
+          } finally {
+            if (!document.querySelector('#screen .result')) {
+              const screen = document.getElementById('screen');
+              if (screen) {
+                screen.innerHTML = '<section class="panel result"><h2>Your standard plan</h2><p class="result-note fallback-note">Showing a standard plan because results took too long to load.</p><p class="result-note">Reference: watchdog_60s</p><p>Start with one small, fictional or redacted example. Review every AI draft and keep decisions with a person.</p></section>';
+              }
+            }
+            busy = false;
+          }
+        }, 60000);
+
+        stage = 'request';
+        const usage = reserveAIPlanRequest();
+        if (!usage.allowed) {
+          const reason = usage.reason === 'limit'
+            ? 'You have reached the limit of five AI plans per hour, so this is a standard plan.'
+            : 'We could not check the AI usage limit, so this is a standard plan.';
+          console.error('Coach request stage failed.');
+          standardPlan(reason, usage.reason === 'limit' ? 'local_limit_reached' : 'local_limit_unavailable');
+          return;
+        }
+        const plan = await requestGeneratedPlan(context, documents);
+        if (watchdogExpired) return;
+        stage = 'render';
+        session.plan = plan;
+        uiStep = 6;
+        renderResults();
+        cachePlan(context, documents, plan);
+        void loadCuratedResources().catch(() => {
+          console.error('Coach resources stage failed.');
+        });
+      } catch (error) {
+        if (watchdogExpired) return;
+        const failedStage = error?.stage || stage;
+        console.error(`Coach ${failedStage} stage failed.`);
+        const referenceCode = error?.referenceCode || `${failedStage}_error`;
+        const note = error?.code === 'ai_busy'
           ? 'Our AI service is busy, so this is a standard plan.'
           : 'Showing a standard plan because the AI service was unavailable.';
-        if (result.error.code === 'document_cleanup_failed') {
-          session.plan.fallback_note = 'We could not confirm deletion of your uploaded example, so the plan was not generated.';
-        } else if (result.error.code === 'file_unreadable') {
-          session.plan.fallback_note = 'The uploaded file could not be read, so this is a standard plan.';
+        standardPlan(note, referenceCode);
+      } finally {
+        clearInterval(loadingTimer);
+        clearTimeout(watchdogTimer);
+        if (!document.querySelector('#screen .result')) {
+          const screen = document.getElementById('screen');
+          if (screen) {
+            screen.innerHTML = '<section class="panel result"><h2>Your standard plan</h2><p class="result-note fallback-note">Showing a standard plan because results could not be displayed.</p><p class="result-note">Reference: render_finally</p><p>Start with one small, fictional or redacted example. Review every AI draft and keep decisions with a person.</p></section>';
+          }
         }
-        session.plan.reference_code = referenceCode;
-      } else {
-        session.plan = result.plan;
+        busy = false;
+        const backToAnswers = document.getElementById('back-to-answers');
+        if (backToAnswers) backToAnswers.disabled = false;
       }
-      displayPlanAndSave(session.plan, context, documents);
       return;
     }
     uiStep++;
@@ -1979,13 +2044,13 @@ document.getElementById('startNow').onclick=async()=>{
     title.textContent = 'Try it in 20 minutes';
     const prompt = document.createElement('p');
     prompt.className = 'example-prompt';
-    prompt.textContent = item.example_prompt;
+    prompt.textContent = displayText(item.example_prompt);
     const meta = document.createElement('div');
     meta.className = 'try-meta';
     const time = document.createElement('p');
-    time.textContent = `Time to try: ${item.time_to_try}`;
+    time.textContent = `Time to try: ${displayText(item.time_to_try)}`;
     const success = document.createElement('p');
-    success.textContent = `Success check: ${item.success_check}`;
+    success.textContent = `Success check: ${displayText(item.success_check)}`;
     const copy = document.createElement('button');
     copy.className = 'copy-prompt';
     copy.type = 'button';
@@ -2013,17 +2078,19 @@ document.getElementById('startNow').onclick=async()=>{
     choose.className = 'primary choose-plan';
     choose.type = 'button';
     choose.textContent = 'Choose this plan';
-    choose.addEventListener('click', () => {
+    choose.addEventListener('click', async () => {
       if (selectionSavePending || selectionSavedSessionId === session.id) return;
-      session.plan.selected = item.id;
-      updateRecommendationSelection();
       const status = document.getElementById('save-status');
-      if (status) status.textContent = `Saving ${item.title} as your chosen plan...`;
-      const snapshot = assessmentSnapshot(session.plan);
-      const sessionId = snapshot.sessionId;
-      selectionSavePending = true;
-      updateRecommendationSelection();
-      saveAssessment(snapshot).then(() => {
+      let sessionId = session.id;
+      try {
+        session.plan.selected = item.id;
+        updateRecommendationSelection();
+        if (status) status.textContent = `Saving ${item.title} as your chosen plan...`;
+        const snapshot = assessmentSnapshot(session.plan);
+        sessionId = snapshot.sessionId;
+        selectionSavePending = true;
+        updateRecommendationSelection();
+        await saveAssessment(snapshot);
         if (session.id !== sessionId) return;
         selectionSavePending = false;
         selectionSavedSessionId = sessionId;
@@ -2031,26 +2098,99 @@ document.getElementById('startNow').onclick=async()=>{
         const backToAnswers = document.getElementById('back-to-answers');
         if (backToAnswers) backToAnswers.disabled = true;
         if (status?.isConnected) status.textContent = `${item.title} is selected and saved.`;
-      }).catch(error => {
+      } catch (error) {
         if (session.id !== sessionId) return;
         selectionSavePending = false;
         updateRecommendationSelection();
+        console.error('Coach save stage failed.');
         if (status?.isConnected) status.textContent = `The selection is shown, but it could not be saved: ${error.message}`;
-      });
+      }
     });
     const download = document.createElement('button');
     download.className = 'secondary';
     download.type = 'button';
     download.textContent = 'Download this plan';
-    download.addEventListener('click', () => downloadRecommendation(item));
+    download.addEventListener('click', () => {
+      try {
+        downloadRecommendation(item);
+      } catch {
+        console.error('Coach downloads stage failed.');
+      }
+    });
     actions.append(choose, download);
     return actions;
   }
-  function renderResults() {
-    document.querySelector('.progress').style.display = 'none';
-    const plan = session.plan;
+  function displayText(value, fallback = 'Not provided') {
+    return typeof value === 'string' && value.trim() ? value.trim() : fallback;
+  }
+  function renderEmergencyResults(note, referenceCode) {
     const screen = document.getElementById('screen');
-    const weeklyTime = planMath.weeklyTime(session.answers.timeCost);
+    const result = document.createElement('section');
+    result.className = 'panel result';
+    const heading = document.createElement('h2');
+    heading.textContent = 'Your standard plan';
+    const banner = document.createElement('p');
+    banner.className = 'result-note fallback-note';
+    banner.textContent = note;
+    const reference = document.createElement('p');
+    reference.className = 'result-note';
+    reference.textContent = `Reference: ${referenceCode}`;
+    const recommendation = document.createElement('p');
+    recommendation.textContent = 'Start with one small, fictional or redacted example. Review every AI draft and keep decisions with a person.';
+    result.append(heading, banner, reference, recommendation);
+    screen.replaceChildren(result);
+    uiStep = 6;
+  }
+  async function loadCuratedResources() {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    let data;
+    try {
+      const response = await window.ZF_REMOTE_FETCH('/resources.json', {
+        cache: 'no-store',
+        signal: controller.signal
+      });
+      if (!response.ok) throw new Error('Resource list was not available.');
+      data = await response.json();
+    } finally {
+      clearTimeout(timeout);
+    }
+    const resources = Array.isArray(data) ? data : data?.resources;
+    if (!Array.isArray(resources)) throw new Error('Resource list was invalid.');
+    const result = document.querySelector('#screen .result');
+    if (!result || !resources.length) return;
+    const validResources = resources.filter(resource =>
+      resource && typeof resource.title === 'string' && resource.title.trim() &&
+      typeof resource.url === 'string' && /^https:\/\//i.test(resource.url));
+    if (!validResources.length) return;
+    const section = document.createElement('section');
+    section.className = 'curated-resources';
+    const heading = document.createElement('h3');
+    heading.textContent = 'Further reading';
+    section.append(heading);
+    for (const resource of validResources) {
+      const article = document.createElement('article');
+      const link = document.createElement('a');
+      link.href = resource.url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = resource.title.trim();
+      article.append(link);
+      if (typeof resource.description === 'string' && resource.description.trim()) {
+        const description = document.createElement('p');
+        description.textContent = resource.description.trim();
+        article.append(description);
+      }
+      section.append(article);
+    }
+    result.append(section);
+  }
+  function renderResults() {
+    const plan = session?.plan || {};
+    const recommendations = Array.isArray(plan.recommendations)
+      ? plan.recommendations.filter(item => item && typeof item === 'object').slice(0, 2)
+      : [];
+    const screen = document.getElementById('screen');
     const result = document.createElement('section');
     result.className = 'panel result';
     result.setAttribute('aria-live', 'polite');
@@ -2058,12 +2198,12 @@ document.getElementById('startNow').onclick=async()=>{
     eyebrow.className = 'eyebrow';
     eyebrow.textContent = 'Your recommendations';
     const heading = document.createElement('h2');
-    heading.textContent = plan.recommendations.length === 1
+    heading.textContent = recommendations.length === 1
       ? 'One clear place to start.'
       : 'Two options worth considering.';
     const audience = document.createElement('p');
     audience.className = 'result-note';
-    audience.textContent = `Written for ${plan.trade}, team of ${plan.team_size}`;
+    audience.textContent = `Written for ${displayText(plan.trade, 'your business')}, team of ${displayText(plan.team_size == null ? '' : String(plan.team_size), 'an unspecified size')}`;
     result.append(eyebrow, heading, audience);
     if (plan.fallback_note) {
       const fallbackNote = document.createElement('p');
@@ -2084,73 +2224,69 @@ document.getElementById('startNow').onclick=async()=>{
       ? 'AI-generated suggestion. You review everything before acting.'
       : 'Standard suggestion. You review everything before acting.';
     result.append(aiLabel);
-    if (typeof plan.document_notes === 'string' && plan.document_notes) {
-      const documentNotes = document.createElement('article');
-      documentNotes.className = 'example-notes';
-      const documentNotesTitle = document.createElement('h3');
-      documentNotesTitle.textContent = 'What we noticed in your example';
-      const documentNotesText = document.createElement('p');
-      documentNotesText.textContent = plan.document_notes;
-      documentNotes.append(documentNotesTitle, documentNotesText);
-      result.append(documentNotes);
+    if (typeof plan.document_notes === 'string' && plan.document_notes.trim()) {
+      try {
+        const documentNotes = document.createElement('article');
+        documentNotes.className = 'example-notes';
+        const documentNotesTitle = document.createElement('h3');
+        documentNotesTitle.textContent = 'What we noticed in your example';
+        const documentNotesText = document.createElement('p');
+        documentNotesText.textContent = plan.document_notes.trim();
+        documentNotes.append(documentNotesTitle, documentNotesText);
+        result.append(documentNotes);
+      } catch {
+        console.error('Coach resources stage failed.');
+      }
     }
-    if (plan.recommendations.length === 2) {
-      const combined = planMath.combinedHighHours(weeklyTime.hours, plan.recommendations);
-      const summary = document.createElement('p');
-      summary.className = 'both-plans';
-      summary.textContent = `Both plans together: up to ${planMath.formatHours(combined)} hours a week`;
-      result.append(summary);
-    }
-    for (const item of plan.recommendations) {
+    for (const item of recommendations) {
       const article = document.createElement('article');
       article.className = 'recommendation';
-      article.dataset.recommendationId = item.id;
+      article.dataset.recommendationId = displayText(item.id, '');
       const badge = document.createElement('span');
       badge.className = 'selected-badge';
       badge.textContent = 'Selected';
       badge.hidden = item.id !== plan.selected;
       const title = document.createElement('h3');
-      title.textContent = item.title;
+      title.textContent = displayText(item.title, 'A practical first test');
       const headline = document.createElement('p');
       headline.className = 'headline';
-      headline.textContent = item.headline;
+      headline.textContent = displayText(item.headline);
       const payoff = document.createElement('p');
       payoff.className = 'payoff';
-      payoff.textContent = item.the_payoff;
+      payoff.textContent = displayText(item.the_payoff);
       const why = document.createElement('p');
       const whyLabel = document.createElement('strong');
       whyLabel.textContent = 'Why this fits';
-      why.append(whyLabel, document.createElement('br'), document.createTextNode(item.why_it_fits));
+      why.append(whyLabel, document.createElement('br'), document.createTextNode(displayText(item.why_it_fits || item.why)));
       const firstStepLabel = document.createElement('strong');
       firstStepLabel.textContent = 'Your first steps';
       const firstSteps = document.createElement('ol');
       firstSteps.className = 'first-steps';
-      for (const step of item.first_steps) {
+      const stepsToShow = Array.isArray(item.first_steps) ? item.first_steps :
+        (typeof item.first_action === 'string' ? [item.first_action] : []);
+      for (const step of stepsToShow) {
         const listItem = document.createElement('li');
-        listItem.textContent = step;
+        listItem.textContent = displayText(step);
         firstSteps.append(listItem);
       }
       const steps = document.createElement('div');
       steps.append(firstStepLabel, firstSteps);
-      const charts = createRecommendationCharts(item, weeklyTime);
       const saving = document.createElement('p');
       const savingLabel = document.createElement('strong');
       savingLabel.textContent = 'Possible time saving: ';
-      saving.append(savingLabel, document.createTextNode(item.possible_time_saving));
+      saving.append(savingLabel, document.createTextNode(displayText(item.possible_time_saving)));
       const watch = document.createElement('p');
       const watchLabel = document.createElement('strong');
       watchLabel.textContent = 'Watch out: ';
-      watch.append(watchLabel, document.createTextNode(item.watch_out));
+      watch.append(watchLabel, document.createTextNode(displayText(item.watch_out)));
       const next = document.createElement('p');
       const nextLabel = document.createElement('strong');
       nextLabel.textContent = 'If it works: ';
-      next.append(nextLabel, document.createTextNode(item.next_step_if_it_works));
+      next.append(nextLabel, document.createTextNode(displayText(item.next_step_if_it_works)));
       const effort = document.createElement('span');
       effort.className = 'effort-tag';
-      effort.textContent = `${item.effort} effort`;
-      const tryBox = makeTryBox(item);
-      const actions = makeRecommendationActions(item);
-      article.append(badge, title, headline, payoff, charts, why, steps, saving, watch, next, tryBox, effort, actions);
+      effort.textContent = `${displayText(item.effort, 'Unknown')} effort`;
+      article.append(badge, title, headline, payoff, why, steps, saving, watch, next, effort);
       result.append(article);
     }
     const control = document.createElement('div');
@@ -2171,22 +2307,79 @@ document.getElementById('startNow').onclick=async()=>{
     back.id = 'back-to-answers';
     back.disabled = busy;
     back.textContent = 'Back to answers';
-    back.addEventListener('click', () => {
-      document.querySelector('.progress').style.display = 'block';
-      uiStep = 5;
-      activeStep();
-    });
     const restart = document.createElement('button');
     restart.className = 'secondary';
     restart.type = 'button';
     restart.id = 'restart';
     restart.textContent = 'Start again';
-    restart.addEventListener('click', resetFlow);
     actions.append(back, restart);
     result.append(control, saveStatus, actions);
     screen.replaceChildren(result);
-    updateRecommendationSelection();
-    revealCharts(result);
+    const progressBar = document.querySelector('.progress');
+    if (progressBar) progressBar.style.display = 'none';
+
+    let weeklyTime;
+    try {
+      weeklyTime = planMath.weeklyTime(session.answers.timeCost);
+    } catch {
+      console.error('Coach math stage failed.');
+    }
+    if (weeklyTime) {
+      for (const [index, item] of recommendations.entries()) {
+        try {
+          const card = result.querySelectorAll('.recommendation')[index];
+          const charts = createRecommendationCharts(item, weeklyTime);
+          card.insertBefore(charts, card.querySelector('.headline'));
+        } catch {
+          console.error('Coach charts stage failed.');
+        }
+      }
+      if (recommendations.length === 2) {
+        try {
+          const combined = planMath.combinedHighHours(weeklyTime.hours, recommendations);
+          const summary = document.createElement('p');
+          summary.className = 'both-plans';
+          summary.textContent = `Both plans together: up to ${planMath.formatHours(combined)} hours a week`;
+          result.insertBefore(summary, result.querySelector('.recommendation'));
+        } catch {
+          console.error('Coach math stage failed.');
+        }
+      }
+      try {
+        revealCharts(result);
+      } catch {
+        console.error('Coach charts stage failed.');
+      }
+    }
+
+    for (const [index, item] of recommendations.entries()) {
+      const card = result.querySelectorAll('.recommendation')[index];
+      try {
+        card.append(makeTryBox(item));
+      } catch {
+        console.error('Coach render stage failed.');
+      }
+      try {
+        card.append(makeRecommendationActions(item));
+      } catch {
+        console.error('Coach downloads stage failed.');
+      }
+    }
+    try {
+      updateRecommendationSelection();
+    } catch {
+      console.error('Coach save stage failed.');
+    }
+    try {
+      back.addEventListener('click', () => {
+        if (progressBar) progressBar.style.display = 'block';
+        uiStep = 5;
+        activeStep();
+      });
+      restart.addEventListener('click', resetFlow);
+    } catch {
+      console.error('Coach render stage failed.');
+    }
   }
   function downloadRecommendation(item) {
     const plan = session.plan;

@@ -1,1 +1,1 @@
-{"rewrites":[{"source":"/","destination":"/index.html"},{"source":"/coach","destination":"/ZeroFriction%20AI%20Coach.html"}]}
+{"rewrites":[{"source":"/plan-math.js","destination":"/scripts/plan-math.js"},{"source":"/","destination":"/index.html"},{"source":"/coach","destination":"/ZeroFriction%20AI%20Coach.html"}]}

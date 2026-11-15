@@ -297,7 +297,10 @@ function validateRecommendations(
   }
   const result = value as Record<string, unknown>;
   let documentNotes: string | undefined;
-  if (result.document_notes !== undefined) {
+  if (requireDocumentNotes && result.document_notes === undefined) {
+    throw new Error("Gemini response is missing document_notes.");
+  }
+  if (requireDocumentNotes) {
     if (typeof result.document_notes !== "string") {
       throw new Error("Gemini document_notes must be text.");
     }
@@ -307,8 +310,6 @@ function validateRecommendations(
         containsUrl(documentNotes)) {
       throw new Error("Gemini document_notes must contain two or three complete sentences.");
     }
-  } else if (requireDocumentNotes) {
-    throw new Error("Gemini response is missing document_notes.");
   }
   if (!Array.isArray(result.recommendations) ||
       result.recommendations.length < 1 || result.recommendations.length > 2) {
@@ -495,7 +496,7 @@ async function generateRecommendationsWithModel(
   const responseJsonSchema = {
     type: "object",
     properties: {
-      document_notes: { type: "string" },
+      ...(hasDocuments ? { document_notes: { type: "string" } } : {}),
       recommendations: {
         type: "array",
         items: {

@@ -1472,7 +1472,7 @@ document.getElementById('startNow').onclick=async()=>{
         data.recommendations.length < 1 || data.recommendations.length > 2) {
       invalid('validation: expected one or two recommendations', 'validation_recommendation_count');
     }
-    if (data.document_notes !== undefined) {
+    if (hasDocuments && data.document_notes !== undefined) {
       if (typeof data.document_notes !== 'string') {
         invalid('validation: invalid document_notes', 'validation_invalid_document_notes');
       }
@@ -1607,8 +1607,6 @@ document.getElementById('startNow').onclick=async()=>{
         body,
         signal: controller.signal
       });
-      clearTimeout(timeout);
-      timeout = undefined;
       let data;
       try {
         data = await response.json();
